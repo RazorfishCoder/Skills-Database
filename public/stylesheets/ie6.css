@@ -1,0 +1,13 @@
+/* Fix to align the 2 columns next to each other */
+.grid2{
+	margin: 0 4px 20px 0 !important;
+}
+
+/* Droid serif is not rendered nice in older browsers so fallback to georiga */
+* {
+	font-family: Georgia, arial, serif !important;
+}
+
+h1{
+	font-family: arial !important;
+}

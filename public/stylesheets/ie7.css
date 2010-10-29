@@ -1,0 +1,11 @@
+/* Fix rulers */
+.ruler h2, .ruler div {
+	display: inline;
+}
+
+/* Only show scroll when needed */
+textarea{
+	overflow:auto;
+	overflow-y: auto;
+	overflow-x: auto;	
+}
