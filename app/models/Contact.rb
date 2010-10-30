@@ -1,8 +1,9 @@
+# TODO: Refactor the next 4-6 lines into a base class
 require 'rubygems'
 require 'couchrest'
 
 SERVER = CouchRest.new
-DB     = SERVER.database!('skillsdatabase')
+DB     = SERVER.database!('skillsdatabase')  
 
 class Contact < CouchRest::ExtendedDocument
   use_database DB
