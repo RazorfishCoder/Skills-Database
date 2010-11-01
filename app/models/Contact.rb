@@ -12,6 +12,7 @@ class Contact < CouchRest::ExtendedDocument
   property :last_name, :alias => :family_name
   property :company_name
   property :job_title
+  property :tags, [String]
   property :address, :cast_as => 'Address'
   property :phone_numbner
   property :email
