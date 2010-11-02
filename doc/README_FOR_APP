@@ -7,12 +7,10 @@ RubyGems Version: 1.3.7
 Rails Version: 3.0.1
 CouchDB Version: 1.0.1
 
-Additional Installs
--------------------
-NOT CURRENTLY USED: sudo gem install simply_stored (ActiveRecord style wrapper for couch with 6 total gems)
-
-sudo gem install couchrest_model --pre (after which you may have to run "bundle update")
-
+LinkedIn - Skills Database Application 
+--------------------------------------
+apiKey: eA_Uz2aQ8XlzEmiQv5zEcvcM3HYm-PYUghlJTir3FSC9L_Wbq8At_9kSpnj1lZQx
+secretKey: g2n_LE5xH3Mr1Repvki_imIO7LqvrIfcqwCOCdQRxBJ3JTto434BC3SR8fgijIrT
 
 
 
