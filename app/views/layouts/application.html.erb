@@ -17,11 +17,12 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">	</script>
   <![endif]-->
 
-  <!-- LinkedIn - TODO: Replace the api_key with call to CouchDB to retrieve -->
-  <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-    api_key: <%=h @linkedin.api_key %>
-	authorize: true
-  </script>
+  <% unless @linkedin.nil? %>
+  	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+    	api_key: <%=h @linkedin.api_key %>
+		authorize: true
+  	</script>
+  <% end %>
 
   <script type="text/javascript">
 
