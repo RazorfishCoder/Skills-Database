@@ -1,20 +1,14 @@
-# TODO: Refactor the next 4-6 lines into a base class
-require 'rubygems'
-require 'couchrest'
+require 'BaseExtendedDocument'
 
-SERVER = CouchRest.new
-DB     = SERVER.database!('skillsdatabase')  
-
-class Contact < CouchRest::ExtendedDocument
-  use_database DB
-  
+class Contact < BaseExtendedDocument
+    
   property :first_name
-  property :last_name, :alias => :family_name
+  property :last_name, :alias => :family_name  #playing around with aliases
   property :company_name
   property :job_title
   property :tags, [String]
   property :address, :cast_as => 'Address'
-  property :phone_numbner
+  property :phone_number
   property :email
   timestamps!
   
