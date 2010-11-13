@@ -9,10 +9,10 @@ class WelcomeController < ApplicationController
     @rsecret = @client.request_token.secret
 
     # then fetch your access keys
-    @client.authorize_from_request(@rtoken, @rsecret)
+    #@client.authorize_from_request(@rtoken, @rsecret)
 
 
-    @myProfile = @client.profile.headline
+    #@myProfile = @client.profile.headline
 
 
   end
