@@ -25,6 +25,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'couchrest_model'
 gem 'couchrest'
 gem 'couchrest_extended_document'
+gem 'linkedin'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -37,4 +38,5 @@ group :development, :test do
    gem 'couchrest_model'
    gem 'couchrest'
    gem 'couchrest_extended_document'
+   gem 'linkedin'
 end
