@@ -2,5 +2,12 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
-
-<%= @profile.inspect %>
+<h2>Standard Profile Request</h2>
+First Name: <%= @profile.first_name %><br/>
+Last Name: <%= @profile.last_name %><br/>
+Headline: <%= @profile.headline %><br/>
+Profile: <%=link_to 'Profile', @profile.site_standard_profile_request.url %>
+<br/>
+<h2>Field Selectors Request</h2>
+id: <%= @profile.id %><br/>
+industry: <%= @profile.industry %><br/>
