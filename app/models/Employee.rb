@@ -4,8 +4,7 @@ class Employee < BaseCouchDocument
   
   #############
   # Properties
-  #############
-  
+  #############  
   property :linkedin_id    
   property :first_name
   property :last_name
@@ -21,8 +20,7 @@ class Employee < BaseCouchDocument
   
   #############
   # Views
-  #############
-  
+  #############  
   #view_by :last_name, :first_name
   view_by :updated_at, :descending => true
   view_by :linkedin_id
