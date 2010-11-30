@@ -1,6 +1,6 @@
-require 'BaseExtendedDocument'
+require 'BaseCouchDocument'
 
-class Linkedin < BaseExtendedDocument
+class Linkedin < BaseCouchDocument
   
   property :api_key
   property :secret_key
