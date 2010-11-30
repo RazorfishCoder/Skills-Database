@@ -22,9 +22,9 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+# Application Specific Gems
 gem 'couchrest_model'
-gem 'couchrest'
-gem 'couchrest_extended_document'
+#gem 'couchrest'
 gem 'linkedin'
 
 # Bundle gems for the local environment. Make sure to
@@ -36,7 +36,6 @@ gem 'linkedin'
 
 group :development, :test do
    gem 'couchrest_model'
-   gem 'couchrest'
-   gem 'couchrest_extended_document'
+   #gem 'couchrest'
    gem 'linkedin'
 end
