@@ -1,40 +1,28 @@
-  <script type="in/login" data-onAuth="onLinkedInAuth">
-  	Hello, <?js= firstName ?> <?js= lastName ?>
-	
-	<?js if (pictureUrl) { ?>
-	  <img src="<?js= pictureUrl ?>"></img>
-	<?js } else { ?>
-	  <p>Upload a photo, so we can see what you look like.</p>
-	<?js } ?>
-	
-  </script>
-   		
-<div id="userprofile">
-	
-</div>
+<div class="grid1"> 
+	<div class="font_small"><strong>Updated:</strong> <%= Time.now %></div> 
+	<h3 class="inset">Billy Zane</h3> 
+	<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
+	<a href="gallery.html">More details</a> 
+</div> 
+<div class="grid1"> 
+	<div class="font_small"><strong>Updated:</strong> <%= Time.now %></div> 
+	<h3 class="inset">John Doe</h3> 
+	<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
+	<a href="about.html">More details</a> 
+</div> 
+<div class="grid1 margin_no_side"> 
+	<div class="font_small"><strong>Updated:</strong> <%= Time.now %></div> 
+	<h3 class="inset">Finnigan Bell</h3> 
+	<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur sit amet adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
+	<a href="typography.html">More details</a> 
+</div> 
 
-<div><script type="IN/Share" data-url="http://developer.linkedin.com/"></script></div>
-
-<script type="IN/MemberData" data-ids="me">
-<?js if ($("me").pictureUrl) { ?>
-  <img src="<?js= $("me").pictureUrl ?>"></img>
-<?js } else { ?>
-  <p>Upload a photo, so we can see what you look like.</p>
-<?js } ?>
-</script>
-
-<script type="IN/MemberData" data-ids="me" data-fields="firstName,lastName,industry">
-<ul>
-<?js for (var member in $("*")) { ?>
-    <li><?js= $(member).firstName ?> <?js= $(member).lastName ?> 
-    works in the <?js= $(member).industry ?> profession.</li>
-<?js } ?>
-</ul>
-</script>
-
-
-<div>
-
-  <%=h @myProfile %>
-
+<div class="grid5"> 
+	<hr /> 
+	<div class="grid4 font_big padding_top"> 
+		<p class="padding_left padding_no_bottom"><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </em></p> 
+	</div> 
+	<div class="grid1 padding_top"> 
+		<a href="#" class="button big">Join Our Project</a> 
+	</div> 
 </div>
