@@ -17,141 +17,21 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">	</script>
   <![endif]-->
 
-  <% unless @linkedin.nil? %>
-  	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-    	api_key: <%=h @linkedin.api_key %>
-		authorize: true
-  	</script>
-  <% end %>
-
-  <script type="text/javascript">
-
-    // Once we have an authorization, fetch the user's profile via API
-    function onLinkedInAuth() {
-      IN.API.Profile("me")
-        .result( function(r) {setProfile(r);} )
-        .error( function(e) {alert("something broke " + e);} );
-    }
-
-    // Display basic profile information inside the page
-    function setProfile(result) {
-      var user = result.values[0];
-      var msg = "<p>Welcome " + user.firstName + " " + user.lastName + "</p>";
-      var profileDiv = document.getElementById("userprofile");
-      profileDiv.innerHTML = msg;
-    }
-  </script>
-
 </head>
 <body>
 
-<%= yield %>
-
 <!-- START WRAPPER --> 
 <div id="wrapper"> 
-	<div class="grid2 margin_no_bottom"> 
-		<nav> 
-			<ul class="nav"> 
-				<li class="active"><a href="index.html">Home</a></li> 
-				<li><a href="about.html">About Our Project</a></li> 
-				<li><a href="gallery.html">Photo Gallery</a></li> 
-				<li><a href="contact.html">Contact</a></li> 
-                <li><a href="typography.html">Typography</a></li> 
-			</ul> 
-		</nav> 
-	</div> 
-    <header class="grid3 no_side_margin"> 
-		<h1 class="inset">Project Name</h1> 
-		<div class="font_huge inset">At veros os et accusamus et iusto degnissimos</div> 
-	</header> 
-	<div class="grid3 no_side_margin"> 
-		<div class="ruler"> 
-			<hr /> 
-			<h2>About the project</h2> 
-		</div> 
-		<p>At vero eos et accusamus blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p> <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus Temnobis est eligendi optio.
-		</p> 
-		<div class="ruler"> 
-      <hr /> 
-			<div><img src="images/organic.png" alt="Organic detail" /></div> 
-		</div> 
-	</div> 
-    <div class="grid1"> 
-		<div class="font_small">extra text here</div> 
-		<h3 class="inset">Finibus Bonorum</h3> 
-		<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
-		<a href="gallery.html">More details</a> 
-	</div> 
-	<div class="grid1"> 
-		<div class="font_small">extra text here</div> 
-		<h3 class="inset">Finibus Bonorum</h3> 
-		<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
-		<a href="about.html">More details</a> 
-	</div> 
-	<div class="grid1 margin_no_side"> 
-		<div class="font_small">extra text here</div> 
-		<h3 class="inset">Finibus Bonorum</h3> 
-		<p class="padding_no_bottom">Lorem ipsum dolor sit amet, consectetur sit amet adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> 
-		<a href="typography.html">More details</a> 
-	</div> 
 	
-	<div class="grid5"> 
-		<hr /> 
-		<div class="grid4 font_big padding_top"> 
-			<p class="padding_left padding_no_bottom"><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </em></p> 
-		</div> 
-		<div class="grid1 padding_top"> 
-			<a href="#" class="button big">support our project</a> 
-		</div> 
-		<hr /> 
-	</div> 
+	<!-- Include Header Partial -->
+	<%= render :partial => "shared/header" %>
+	<!-- End Include Header Partial  -->
+	 
+    <%= yield %> 
 	
-	<div class="grid5 margin_no_bottom"> 
-		<div class="grid4 margin_no_bottom"> 
-			<ul class="gallery"> 
-				<li><a href="images/example/1_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/1_b.jpg&amp;w=60&amp;h=44" alt="Description of image 1" /></a></li> 
-				<li><a href="images/example/2_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/2_b.jpg&amp;w=60&amp;h=44" alt="Description of image 2" /></a></li> 
-				<li><a href="images/example/3_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/3_b.jpg&amp;w=60&amp;h=44" alt="Description of image 3" /></a></li> 
-				<li><a href="images/example/4_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/4_b.jpg&amp;w=60&amp;h=44" alt="Description of image 4" /></a></li> 
-				<li><a href="images/example/5_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/5_b.jpg&amp;w=60&amp;h=44" alt="Description of image 5" /></a></li> 
-				<li class="padding_no_side"><a href="images/example/6_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/6_b.jpg&amp;w=60&amp;h=44" alt="Description of image 6" /></a></li> 
-				<li><a href="images/example/7_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/7_b.jpg&amp;w=60&amp;h=44" alt="Description of image 7" /></a></li> 
-				<li><a href="images/example/8_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/8_b.jpg&amp;w=60&amp;h=44" alt="Description of image 8" /></a></li> 
-				<li><a href="images/example/9_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/9_b.jpg&amp;w=60&amp;h=44" alt="Description of image 9" /></a></li> 
-                <li><a href="images/example/6_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/6_b.jpg&amp;w=60&amp;h=44" alt="Description of image 10" /></a></li> 
-				<li><a href="images/example/7_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/7_b.jpg&amp;w=60&amp;h=44" alt="Description of image 11" /></a></li> 
-				<li><a href="images/example/8_b.jpg" rel="gallery"><img src="imageprocessor.php?src=images/example/8_b.jpg&amp;w=60&amp;h=44" alt="Description of image 12" /></a></li> 
-			</ul> 
-		</div> 
-		<div class="grid1 margin_no_side margin_no_bottom"> 
-			<h3 class="inset">Finibus Bonorum</h3> 
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> 
-		</div> 
-	</div> 
-	
-	<footer class="grid5"> 
-		<hr /> 
-		<div class="grid4">&copy; 2010 Project vzw &#8226; <strong>(e)</strong> <a href="mailto:info@project.be">info@project.be</a> &#8226; <strong>(t)</strong> 014 55 55 55 &#8226; <a href="http://twitter.com/Sitebase">twitter</a> &#8226; <a href="http://www.linkedin.com/in/sitebase">linkedin</a></div> 
-		<div class="grid1"><a href="http://www.sitebase.be">website by Sitebase</a></div> 
-	</footer> 
-	
-	<div class="spacer"><!-- SPACER --></div> 
-</div> 
-<!-- END WRAPPER -->
-
-<%= javascript_include_tag "enhance" %> 
-<script type="text/javascript"> 
-$(document).ready(function() {
-	$("a[rel=gallery]").fancybox({
-				'transitionIn'		: 'none',
-				'transitionOut'		: 'none',
-				'titlePosition' 	: 'over',
-				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
-					return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
-				}
-			});
-	});
-</script>
+	<!-- Include Footer Partial -->
+    <%= render :partial => "shared/footer" %>
+	<!-- End Include Footer Partial  -->
 
 </body>
 </html>
