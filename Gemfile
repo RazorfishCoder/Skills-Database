@@ -34,8 +34,8 @@ gem 'linkedin'
 #   gem 'webrat'
 # end
 
-group :development, :test do
-   gem 'couchrest_model'
+#group :development, :test do
+   #gem 'couchrest_model'
    #gem 'couchrest'
-   gem 'linkedin'
-end
+   #gem 'linkedin'
+#end
