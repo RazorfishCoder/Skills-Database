@@ -43,7 +43,11 @@ class AuthController < ApplicationController
     employee.industry = @profile.industry
     employee.job_title = @profile.headline
     employee.linkedin_url = @profile.site_standard_profile_request.url
-    employee.save
+    if employee.save
+      flash[:notice] = 'The user has been added to couch!'
+    else
+      flash[:error] = 'User not added...could already be in there!'
+    end
   end
 
   def logout
