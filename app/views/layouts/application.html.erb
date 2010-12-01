@@ -23,6 +23,22 @@
 <!-- START WRAPPER --> 
 <div id="wrapper"> 
 	
+	<!-- Flash error messages -->
+	<% if flash[:error] %>
+	<div>
+		<strong>Error:</strong>
+		<%= flash[:error] %>
+	</div>
+	<% end %>
+
+	<!-- Flash informational messages and notices -->
+	<% if flash[:notice] %>
+	<div>
+		<strong>Notice:</strong>
+		<%= flash[:notice] %>
+	</div>
+	<% end %>
+	
 	<!-- Include Header Partial -->
 	<%= render :partial => "shared/header" %>
 	<!-- End Include Header Partial  -->
