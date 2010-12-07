@@ -3,51 +3,73 @@
 <head>
   <title>Skills Database</title>
   <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold,bolditalic" %>
-  <%= javascript_include_tag "enhance" %>
-  <%= javascript_include_tag "jquery.fancybox-1.3.1" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-  <%= javascript_include_tag "https://getfirebug.com/firebug-lite.js" %>
+  <%= stylesheet_link_tag "jit/base", "jit/Sunburst" %>
+  <%= javascript_include_tag "example2" %>
+  <%= javascript_include_tag "jit/jit", "jit/Extras/excanvas" %>
   <%= csrf_meta_tag %> 
-  <!-- FAVICON --> 
-  <link type="image/x-icon" href="favicon.ico" rel="shortcut icon" /> 
-
-  <!-- HTML5 FIX OLDER BROWSERS --> 
-  <!--[if IE]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">	</script>
-  <![endif]-->
 
 </head>
-<body>
-
-<!-- START WRAPPER --> 
-<div id="wrapper"> 
-	
-	<!-- Flash error messages -->
-	<% if flash[:error] %>
-	<div>
-		<strong>Error:</strong>
-		<%= flash[:error] %>
+<body onload="init();">
+	<!-- Start Wrapper -->
+	<div id="wrap">
+	  	<div id="mainContent">
+	    	<div id="chart">
+	        <div id="container">
+	        	<div id="center-container">
+	            <div id="infovis"></div>    
+	        	</div>
+	        	<div id="right-container">
+		        	<div id="inner-details"></div>
+	        	</div>
+	        	<div id="log"></div>
+	      	</div>
+	    	</div>
+	      <div class="contentContainer">
+	      	<h3>Recent Activity</h3>
+	        <ul>
+	        	<li>Todd Matthews uploaded his resume</li>
+	          <li>Martin Jacobs added telecom to his industry experience</li>
+	          <li>Martin Jacobs added Ruby on Rails 3 to his skills</li>
+	          <li>Martin Jacobs added Git to his skills</li>
+	          <li>Todd Matthews added expert level Couch dB to his skills</li>
+	          <li>Howard Cohen registered</li>
+	        </ul>
+	        <p><a href="#">See more updates</a></p>
+	      </div>
+	    </div>
+	    <div id="supplementContent">
+	    	<div class="contentContainer">
+	      	<h3>Your Profile</h3>
+	        <img src="i/profile.jpg" width="180" height="135" id="profileImg" />
+	        <ul>
+	        	<li>Todd Matthews</li>
+	        	<li>Technical Architect</li>
+	        	<li>Industry: Automotive, Telecom, Travel, Finance</li>
+	        	<li>Skills: Java, Ruby, Grails, Objective C</li>
+	        	<li>Products: ATG, iOS, Facebook Connect</li>
+	        </ul>
+	        <p><a href="#">Update your profile</a></p>
+	      </div>
+	      <div class="contentContainer">
+	      	<h3>Search Skills</h3>
+	        <form name="" method="" action="">
+	          <input type="submit" />
+	        	<input type="text" name="" value="search" />
+	        </form>
+	        <p><a href="#">Browse our visual skills graph</a></p>
+	      </div>
+	      <div class="contentContainer">
+	      	<h3>Looking For</h3>
+	        <ul>
+	        	<li><a href="#">Sharepoint 2010</a></li>
+	        	<li><a href="#">Autonomy CRM</a></li>
+	        	<li><a href="#">iPhone Objective-C</a></li>
+	        	<li><a href="#">PhoneGap</a></li>
+	        </ul>
+	      </div>
+	    </div>
 	</div>
-	<% end %>
-
-	<!-- Flash informational messages and notices -->
-	<% if flash[:notice] %>
-	<div>
-		<strong>Notice:</strong>
-		<%= flash[:notice] %>
-	</div>
-	<% end %>
+	<!-- Start Wrapper -->
 	
-	<!-- Include Header Partial -->
-	<%= render :partial => "shared/header" %>
-	<!-- End Include Header Partial  -->
-	 
-    <%= yield %> 
-	
-	<!-- Include Footer Partial -->
-    <%= render :partial => "shared/footer" %>
-	<!-- End Include Footer Partial  -->
-
 </body>
 </html>
