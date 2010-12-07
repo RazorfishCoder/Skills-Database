@@ -24,8 +24,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Application Specific Gems
 gem 'couchrest_model'
-#gem 'couchrest'
 gem 'linkedin'
+#gem "acts_as_audited", "2.0.0.rc2"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
