@@ -1,6 +1,7 @@
 Skillsdatabase::Application.routes.draw do
   get "welcome/index"
 
+  resources :employees
 
   match '/:controller(/:action(/:id))'
   

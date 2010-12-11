@@ -24,6 +24,8 @@ class Employee < BaseCouchDocument
   #view_by :last_name, :first_name
   view_by :updated_at, :descending => true
   view_by :linkedin_id
+  view_by :latest_updates
+  view_by :id
   
   #############
   # Validations

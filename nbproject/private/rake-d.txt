@@ -67,7 +67,7 @@ rails\:update\:javascripts=
 rails\:update\:scripts=
 rails_env=
 routes=Print out all defined routes in match order, with names. Target specific controller with CONTROLLER=x.
-secret=Generate a crytographically secure secret key (this is typically used to generate a secret for cookie sessions).
+secret=Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions).
 stats=Report code statistics (KLOCs, etc) from the application
 test=Runs test:units, test:functionals, test:integration together (also available: test:benchmark, test:profile, test:plugins)
 test\:benchmark=
