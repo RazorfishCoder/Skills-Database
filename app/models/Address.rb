@@ -1,4 +1,6 @@
-class Address < Hash
+require 'BaseCouchDocument'
+
+class Address < BaseCouchDocument
   
   property :line_1
   property :line_2
