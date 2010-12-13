@@ -1,5 +1,4 @@
 class Address < Hash
-  include ::CouchRest::CastedModel
   
   property :line_1
   property :line_2
