@@ -38,4 +38,5 @@ gem 'linkedin'
    #gem 'couchrest_model'
    #gem 'couchrest'
    #gem 'linkedin'
+   gem 'rspec-rails',      ">= 2.0.0.beta"
 #end

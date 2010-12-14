@@ -39,17 +39,18 @@
 	    </div>
 	    <div id="supplementContent">
 	    	<div class="contentContainer">
-			<% if @profile %>
+			<% if @employee %>
 	      		<h3>Your Profile</h3>
-	        	<img src="i/profile.jpg" width="180" height="135" id="profileImg" />
-	       	 	<ul>
-		        	<li><%= @profile.first_name %> <%= @profile.last_name %></li>
-		        	<li><%= @profile.headline %></li>
-		        	<li>Industry: <%= @profile.industry %></li>
+                                <img src="<%= @employee.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	<ul>
+		        	<li><%= @employee.first_name %> <%= @employee.last_name %></li>
+		        	<li><%= @employee.job_title %></li>
+		        	<li>Industry: <%= @employee.industry %></li>
 		        	<li>Skills: </li>
 		        	<li>Products: </li>
+                                <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
 		        </ul>
-	        	<p><%=link_to 'Update your profile', @profile.site_standard_profile_request.url %></p>
+
+	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
 			<% else %>
 				<%= link_to "Login via LinkedIn", :controller => "auth" %>
 			<% end %>

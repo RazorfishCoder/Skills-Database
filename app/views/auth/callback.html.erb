@@ -7,6 +7,8 @@ First Name: <%= @profile.first_name %><br/>
 Last Name: <%= @profile.last_name %><br/>
 Headline: <%= @profile.headline %><br/>
 Profile: <%=link_to 'Profile', @profile.site_standard_profile_request.url %>
+<img src="<%= @profile.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @profile.first_name %> <%= @profile.last_name %>" />
+
 <br/>
 <h2>Field Selectors Request</h2>
 id: <%= @profile.id %><br/>
