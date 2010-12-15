@@ -34,9 +34,6 @@ gem 'linkedin'
 #   gem 'webrat'
 # end
 
-#group :development, :test do
-   #gem 'couchrest_model'
-   #gem 'couchrest'
-   #gem 'linkedin'
+group :development, :test do
    gem 'rspec-rails',      ">= 2.0.0.beta"
-#end
+end
