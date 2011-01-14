@@ -23,7 +23,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Application Specific Gems
-gem 'couchrest_model'
+# Fix a bug with encoding
+gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git'
 gem 'linkedin'
 #gem "acts_as_audited", "2.0.0.rc2"
 
@@ -37,3 +38,4 @@ gem 'linkedin'
 group :development, :test do
    gem 'rspec-rails',      ">= 2.0.0.beta"
 end
+
