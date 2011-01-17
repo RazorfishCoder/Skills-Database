@@ -1,11 +1,11 @@
-require 'BaseCouchDocument'
+require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-  
+
   #############
   # Properties
-  #############  
-  property :linkedin_id    
+  #############
+  property :linkedin_id
   property :first_name
   property :last_name
   property :last_name, :alias => :family_name  #playing around with aliases
@@ -18,10 +18,10 @@ class Employee < BaseCouchDocument
   property :phone_number
   property :email
   timestamps!
-  
+
   #############
   # Views
-  #############  
+  #############
   #view_by :last_name, :first_name
   view_by :updated_at, :descending => true
   view_by :linkedin_id
@@ -34,10 +34,11 @@ class Employee < BaseCouchDocument
       }
     }
   "
-  
+
   #############
   # Validations
   #############
   validates_uniqueness_of :linkedin_id
-  
+
 end
+

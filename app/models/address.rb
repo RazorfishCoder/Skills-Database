@@ -1,7 +1,7 @@
-require 'BaseCouchDocument'
+require 'base_couch_document'
 
 class Address < BaseCouchDocument
-  
+
   property :line_1
   property :line_2
   property :city
@@ -20,3 +20,4 @@ class Address < BaseCouchDocument
     address_str
   end
 end
+
