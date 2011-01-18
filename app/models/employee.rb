@@ -17,6 +17,7 @@ class Employee < BaseCouchDocument
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email
+  property :resume
   timestamps!
 
   #############
