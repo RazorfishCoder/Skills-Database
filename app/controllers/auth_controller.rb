@@ -7,6 +7,7 @@ class AuthController < ApplicationController
 
     if session[:atoken].nil?
       client = LinkedIn::Client.new(linkedin.api_key, linkedin.secret_key)
+
       request_token = client.request_token(:oauth_callback =>"http://#{request.host_with_port}/auth/callback")
       session[:rtoken] = request_token.token
       session[:rsecret] = request_token.secret
