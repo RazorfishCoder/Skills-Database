@@ -1,7 +1,7 @@
 require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-
+  collection_of :skill_tags, :product_tags, :industry_tags
   #############
   # Properties
   #############
@@ -13,7 +13,9 @@ class Employee < BaseCouchDocument
   property :industry
   property :linkedin_url
   property :picture_url
-  property :tags, [String]
+  property :industry_tags, [IndustryTag]
+  property :skill_tags, [SkillTag]
+  property :product_tags, [ProductTag]
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email

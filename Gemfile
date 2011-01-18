@@ -26,6 +26,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Fix a bug with encoding
 gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git'
 gem 'linkedin'
+
 #gem "acts_as_audited", "2.0.0.rc2"
 
 # Bundle gems for the local environment. Make sure to
