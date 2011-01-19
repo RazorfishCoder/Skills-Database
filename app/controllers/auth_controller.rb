@@ -33,27 +33,33 @@ class AuthController < ApplicationController
     else
       client.authorize_from_access(session[:atoken], session[:asecret])
     end
+
     #Grab the linked in profile information we want to store in couch
-    @profile = client.profile(:fields => %w(id first-name last-name industry headline picture_url site-standard-profile-request))
+    @profile = client.profile(:fields => %w(id first-name last-name industry headline picture_url site-standard-profile-request positions))
 
-    #Create a new Employee and save if not present already
-    employee = Employee.find_by_linkedin_id(@profile.id)
+    if @profile.positions.first.company.name.match /Globant|Razorfish/
+      #Create a new Employee and save if not present already
+      employee = Employee.find_by_linkedin_id(@profile.id)
 
-    unless employee
-      employee = Employee.new
-    end
+      unless employee
+        employee = Employee.new
+      end
 
-    employee.linkedin_id = @profile.id
-    employee.first_name = @profile.first_name
-    employee.last_name = @profile.last_name
-    employee.industry = @profile.industry
-    employee.job_title = @profile.headline
-    employee.linkedin_url = @profile.site_standard_profile_request.url
-    employee.picture_url = @profile.picture_url
-    if employee.save
-      flash[:notice] = 'The user has been added to couch!'
+      employee.linkedin_id = @profile.id
+      employee.first_name = @profile.first_name
+      employee.last_name = @profile.last_name
+      employee.industry = @profile.industry
+      employee.job_title = @profile.headline
+      employee.linkedin_url = @profile.site_standard_profile_request.url
+      employee.picture_url = @profile.picture_url
+      if employee.save
+        flash[:notice] = 'The user has been added to couch!'
+      else
+        flash[:error] = 'User not added or updated!'
+      end
     else
-      flash[:error] = 'User not added or updated!'
+      flash[:error] = "You need to work on Razorfish or Globant"
+      logout
     end
   end
 
@@ -61,8 +67,7 @@ class AuthController < ApplicationController
     session[:atoken] = nil
     session[:rtoken] = nil
     session[:rsecret] = nil
-    redirect_to :action => 'index'
+    redirect_to root_path
   end
-
 end
 

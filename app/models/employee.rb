@@ -19,6 +19,7 @@ class Employee < BaseCouchDocument
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email
+  property :resume
   timestamps!
 
   #############
@@ -61,6 +62,13 @@ class Employee < BaseCouchDocument
 
   end
 
+  def resume_data
+    self.read_attachment(self.resume)
+  end
 
+  def store_resume(file, filename)
+    self.create_attachment({:file => file , :name => filename})
+    self.resume = filename
+  end
 end
 
