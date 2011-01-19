@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag "jit/base", "jit/Sunburst" %>
   <%= javascript_include_tag "example2" %>
   <%= javascript_include_tag "jit/jit", "jit/Extras/excanvas" %>
-  <%= csrf_meta_tag %> 
+  <%= csrf_meta_tag %>
 
 </head>
 <body onload="init();">
@@ -16,7 +16,7 @@
 	    	<div id="chart">
 	        <div id="container">
 	        	<div id="center-container">
-	            <div id="infovis"></div>    
+	            <div id="infovis"></div>
 	        	</div>
 	        	<div id="right-container">
 		        	<div id="inner-details"></div>
@@ -47,7 +47,8 @@
 		        	<li>Industry: <%= @employee.industry %></li>
 		        	<li>Skills: </li>
 		        	<li>Products: </li>
-                                <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
+		        	<li>Resume: <%= link_to @employee.resume, resume_path(@employee) %></li>
+              <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
 		        </ul>
 
 	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
@@ -75,6 +76,7 @@
 	    </div>
 	</div>
 	<!-- Start Wrapper -->
-	
+
 </body>
 </html>
+

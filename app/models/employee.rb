@@ -41,5 +41,13 @@ class Employee < BaseCouchDocument
   #############
   validates_uniqueness_of :linkedin_id
 
+  def resume_data
+    self.read_attachment(self.resume)
+  end
+
+  def store_resume(file, filename)
+    self.create_attachment({:file => file , :name => filename})
+    self.resume = filename
+  end
 end
 
