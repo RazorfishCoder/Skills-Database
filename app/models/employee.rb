@@ -55,20 +55,20 @@ class Employee < BaseCouchDocument
     tags_name_to_s(self.product_tags,join_str)
   end
 
-  private
-
-  def tags_name_to_s(tags_arr, join_str)
-    tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
-
+  def store_resume(file, filename)
+    self.create_attachment({:file => file , :name => filename})
+    self.resume = filename
   end
 
   def resume_data
     self.read_attachment(self.resume)
   end
 
-  def store_resume(file, filename)
-    self.create_attachment({:file => file , :name => filename})
-    self.resume = filename
+  private
+
+  def tags_name_to_s(tags_arr, join_str)
+    tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
   end
+
 end
 

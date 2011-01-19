@@ -41,3 +41,7 @@ group :development, :test do
    gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
+if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
+  instance_eval(File.read(file))
+end
+
