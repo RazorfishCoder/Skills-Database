@@ -1,10 +1,11 @@
 require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-  collection_of :skill_tags, :product_tags, :industry_tags
   #############
   # Properties
   #############
+  collection_of :skill_tags, :product_tags, :industry_tags, :employees
+
   property :linkedin_id
   property :first_name
   property :last_name
@@ -25,7 +26,7 @@ class Employee < BaseCouchDocument
   #############
   # Views
   #############
-  #view_by :last_name, :first_name
+  view_by :first_name, :last_name
   view_by :updated_at, :descending => true
   view_by :linkedin_id
   view_by :latest_updates
@@ -43,6 +44,16 @@ class Employee < BaseCouchDocument
   #############
   validates_uniqueness_of :linkedin_id
 
+  ################
+  # class Methods
+  ################
+  def self.create_from_hash!(hash)
+    create({:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'] })
+  end
+
+  ################
+  # public Methods
+  ################
   def skill_tags_names(join_str = ', ')
     tags_name_to_s(self.skill_tags,join_str)
   end
@@ -55,13 +66,6 @@ class Employee < BaseCouchDocument
     tags_name_to_s(self.product_tags,join_str)
   end
 
-  private
-
-  def tags_name_to_s(tags_arr, join_str)
-    tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
-
-  end
-
   def resume_data
     self.read_attachment(self.resume)
   end
@@ -69,6 +73,15 @@ class Employee < BaseCouchDocument
   def store_resume(file, filename)
     self.create_attachment({:file => file , :name => filename})
     self.resume = filename
+  end
+
+  #################
+  # private Methods
+  #################
+  private
+
+  def tags_name_to_s(tags_arr, join_str)
+    tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
   end
 end
 

@@ -39,21 +39,21 @@
 	    </div>
 	    <div id="supplementContent">
 	    	<div class="contentContainer">
-			<% if @employee %>
+			<% if current_user %>
 	      		<h3>Your Profile</h3>
-                                <img src="<%= @employee.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	<ul>
-		        	<li><%= @employee.first_name %> <%= @employee.last_name %></li>
-		        	<li><%= @employee.job_title %></li>
-		        	<li>Industry: <%= @employee.industry %></li>
+              <img src="<%= current_user.picture_url %>" width="80" height="80" id="profileImg" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />	       	 	<ul>
+		        	<li><%= current_user.first_name %> <%= current_user.last_name %></li>
+		        	<li><%= current_user.job_title %></li>
+		        	<li>Industry: <%= current_user.industry %></li>
 		        	<li>Skills: </li>
 		        	<li>Products: </li>
-		        	<li>Resume: <%= link_to @employee.resume, resume_path(@employee) %></li>
-              <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
+		        	<li>Resume: <%= link_to current_user.resume, resume_path(current_user) %></li>
+              <li><%= link_to 'Edit', edit_employee_path(current_user.id) %></li>
 		        </ul>
 
-	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
+	        	<p><%=link_to 'Update your linkedin profile', current_user.linkedin_url %></p>
 			<% else %>
-				<%= link_to "Login via LinkedIn", linkedin_auth_path %>
+				<%= link_to "Login via LinkedIn", '/auth/linked_in' %>
 			<% end %>
 	      	</div>
 	      	<div class="contentContainer">
