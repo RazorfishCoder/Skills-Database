@@ -1,9 +1,12 @@
 Skillsdatabase::Application.routes.draw do
-  get "welcome/index"
+  match '/logout', :to => "auth#logout"
+
+  match 'auth', :to => "auth#index", :as => "linkedin_auth"
+  match '/auth/callback', :to => "auth#callback"
 
   resources :employees
+
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
-  match '/:controller(/:action(/:id))'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
