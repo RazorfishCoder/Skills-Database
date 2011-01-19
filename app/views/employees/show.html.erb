@@ -15,6 +15,22 @@
   <%= @employee.email %>
 </p>
 
+<p>
+  <b>SkillTag:</b>
+  <%= @employee.skill_tags_names %>
+</p>
+
+<p>
+  <b>IndustryTag:</b>
+  <%= @employee.industry_tags_names %>
+</p>
+
+<p>
+  <b>ProductTag:</b>
+  <%= @employee.product_tags_names %>
+</p>
+
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>
+

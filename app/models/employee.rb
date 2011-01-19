@@ -13,9 +13,9 @@ class Employee < BaseCouchDocument
   property :industry
   property :linkedin_url
   property :picture_url
-  property :industry_tags, [IndustryTag]
-  property :skill_tags, [SkillTag]
-  property :product_tags, [ProductTag]
+  property :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
+  property :skill_tags
+  property :product_tags
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email
@@ -41,6 +41,26 @@ class Employee < BaseCouchDocument
   # Validations
   #############
   validates_uniqueness_of :linkedin_id
+
+  def skill_tags_names(join_str = ', ')
+    tags_name_to_s(self.skill_tags,join_str)
+  end
+
+  def industry_tags_names(join_str = ', ')
+    tags_name_to_s(self.industry_tags,join_str)
+  end
+
+  def product_tags_names(join_str = ', ')
+    tags_name_to_s(self.product_tags,join_str)
+  end
+
+  private
+
+  def tags_name_to_s(tags_arr, join_str)
+    tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
+
+  end
+
 
 end
 

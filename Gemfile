@@ -38,5 +38,6 @@ gem 'linkedin'
 
 group :development, :test do
    gem 'rspec-rails',      ">= 2.0.0.beta"
+   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
