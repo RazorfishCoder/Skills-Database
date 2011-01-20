@@ -4,6 +4,7 @@ Skillsdatabase::Application.routes.draw do
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
 
   match '/auth/:provider/callback', :to => 'sessions#create'
+  match "/signout" => "sessions#destroy", :as => :signout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -48,7 +48,7 @@ class Employee < BaseCouchDocument
   # class Methods
   ################
   def self.create_from_hash!(hash)
-    create({:first_name => hash['user_info']['first_name'], :last_name => hash['user_info']['last_name'] })
+    Employee.create(hash['user_info'])
   end
 
   ################
