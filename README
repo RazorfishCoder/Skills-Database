@@ -2,6 +2,12 @@
 
 Instructions about the project here...
 
+== Installation
+
+Install GIT - http://book.git-scm.com/2_installing_git.html
+Install CouchDB - http://www.couchone.com/get
+Install Ruby/Rails/Rubygems - http://www.rubyonrails.org
+
 == Getting Started
 
 After cloning or performing a pull, run "bundle install" to ensure you have the latest gems listed in the Gemfile used in the project.  This should download and install the gems listed from the "source" gem repository listed at the top.
