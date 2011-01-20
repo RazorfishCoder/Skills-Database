@@ -12,9 +12,7 @@ Install Ruby/Rails/Rubygems - http://www.rubyonrails.org
 
 After cloning or performing a pull, run "bundle install" to ensure you have the latest gems listed in the Gemfile used in the project.  This should download and install the gems listed from the "source" gem repository listed at the top.
 
-I've added two models for initial rails3/couchdb testing: Contact and Address (maybe a rename later).  Once you've updated, run the command "rails console" to load up the development environment in an irb console.  This will allow you to play around with your models in a scripting type environment.  Type "exit" to quit the irb console.  Test out the couchdb functionality using the following irb commands:
-
-Make sure you start CouchDBX and have a database created and named "skillsdatabase".  This is defined in the Contact.rb model file.  This should eventually be refactored into a base model class.
+Next you'll need to populate your couch instance with seed data.  Make sure couchdb is started and run the command from the root skills-database folder: 'rake db:seed' to load it with the initial set of employees as well as the linkedin api/secret keys.
 
 --------------------- within irb console
 puts "You have #{Contact.all.size} contacts"
