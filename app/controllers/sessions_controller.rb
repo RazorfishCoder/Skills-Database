@@ -6,8 +6,13 @@ class SessionsController < ApplicationController
       # whether there is already a user signed in.
       @auth = Authorization.create_from_hash(auth, current_user)
     end
-    # Log the authorizing user in.
-    self.current_user = @auth.employee
+
+    if @auth
+      # Log the authorizing user in.
+      self.current_user = @auth.employee
+    else
+      flash[:notice] = 'You must work on Razorfish or Globant'
+    end
 
     redirect_to root_path
   end

@@ -12,6 +12,11 @@ class Authorization < BaseCouchDocument
   #############
   view_by :provider, :uid
 
+  #############
+  # Validations
+  #############
+  validates_uniqueness_of :uid
+
   ###############
   # Class Methods
   ###############
@@ -21,7 +26,12 @@ class Authorization < BaseCouchDocument
 
   def self.create_from_hash(hash, user = nil)
     user ||= Employee.create_from_hash!(hash)
-    create(:employee => user, :uid => hash['uid'], :provider => hash['provider'])
+
+    if user
+      create(:employee => user, :uid => hash['uid'], :provider => hash['provider'])
+    else
+      return false
+    end
   end
 end
 

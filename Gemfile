@@ -25,7 +25,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Application Specific Gems
 # Fix a bug with encoding
 gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git'
-gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
+#gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
 gem 'omniauth', ">= 0.1.6"
 
 #gem "acts_as_audited", "2.0.0.rc2"

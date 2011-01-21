@@ -6,7 +6,6 @@ class Employee < BaseCouchDocument
   #############
   collection_of :skill_tags, :product_tags, :industry_tags, :employees
 
-  property :linkedin_id
   property :first_name
   property :last_name
   property :last_name, :alias => :family_name  #playing around with aliases
@@ -28,7 +27,6 @@ class Employee < BaseCouchDocument
   #############
   view_by :first_name, :last_name
   view_by :updated_at, :descending => true
-  view_by :linkedin_id
   view_by :latest_updates
   view_by :id
   view_by :product_code, :map => "
@@ -39,16 +37,15 @@ class Employee < BaseCouchDocument
     }
   "
 
-  #############
-  # Validations
-  #############
-  validates_uniqueness_of :linkedin_id
-
   ################
   # class Methods
   ################
   def self.create_from_hash!(hash)
-    Employee.create(hash['user_info'])
+    if hash['user_info'][:last_job].match(/Razorfish|Globant|Selfemployed/)
+      self.create(hash['user_info'][:employee])
+    else
+      return false
+    end
   end
 
   ################
