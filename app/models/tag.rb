@@ -6,6 +6,8 @@ class Tag < BaseCouchDocument
   property :name
   property :type
 
+  view_by :name
+
     def self.bulk_create(names_str, cut_str = ", ")
         #this create make a Find or Create behavior
         names_str.split(cut_str).map{  |x|  self.create(:name => x)}

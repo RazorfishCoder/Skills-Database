@@ -1,7 +1,10 @@
 require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-  collection_of :skill_tags, :product_tags, :industry_tags
+  collection_of :employee_taggings
+#  collection_of :product_tags
+#  collection_of :industry_tags
+
   #############
   # Properties
   #############
@@ -13,13 +16,16 @@ class Employee < BaseCouchDocument
   property :industry
   property :linkedin_url
   property :picture_url
-  property :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
-  property :skill_tags
-  property :product_tags
+#  property :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
+#  property :skill_tags
+#  property :product_tags
+
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email
   property :resume
+
+
   timestamps!
 
   #############
@@ -30,13 +36,64 @@ class Employee < BaseCouchDocument
   view_by :linkedin_id
   view_by :latest_updates
   view_by :id
-  view_by :product_code, :map => "
-    function(doc) {
-      if (doc['couchrest-type'] == 'Product' || doc['couchrest-type'] == 'Project') {
-        emit(doc['code']);
-      }
-    }
-  "
+
+#  view_by :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
+#  view_by :product_tags
+
+  view_by :employee_taggings ,
+   :map =>
+       "function(doc) {
+         if (doc['model'] == 'Employee' && doc.employee_taggings ) {
+           doc.employee_taggings.forEach(function(tagging){
+             emit(tagging, 1);
+           });
+         }
+       }",
+
+    :reduce =>
+      "function(keys, values, rereduce) {
+        return sum(values);
+      }"
+
+
+#  view_by :skill_tags ,
+#   :map =>
+#      "function(doc) {
+#        if (doc.type == 'Employee' && doc.skill_tags) {
+#          doc.skill_tags.forEach(function(skill_tag){
+#            emit(skill_tag.name, 1);
+#          });
+#        }
+#      }",
+#    :reduce =>
+#      "function(keys, values, rereduce) {
+#        return sum(values);
+#      }"
+#  ,
+
+#    :map =>
+
+#      "function(doc) {
+
+#        if (doc.type == 'Employee' && doc.skill_tags) {
+
+#          doc.skill_tags.forEach(function(skill_tags){
+
+#            emit(skill_tags, 1);
+
+#          });
+
+#        }
+
+#      }",
+
+#    :reduce =>
+
+#      "function(keys, values, rereduce) {
+
+#        return sum(values);
+
+#      }"
 
   #############
   # Validations

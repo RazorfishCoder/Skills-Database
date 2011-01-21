@@ -19,8 +19,10 @@ class EmployeesController < ApplicationController
     if params[:resume]
       @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
     end
+    @employee.skill_tags.clear
 
-    @employee.skill_tags = SkillTag.bulk_create(params["skill_tags"] )
+    SkillTag.bulk_create(params["skill_tags"] ).each{|tag| @employee.skill_tags << tag }
+
     @employee.industry_tags = IndustryTag.bulk_create(params["industry_tags"] )
     @employee.product_tags =  ProductTag.bulk_create(params["product_tags"])
 
