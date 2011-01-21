@@ -2,52 +2,17 @@
 
 Instructions about the project here...
 
+== Installation
+
+Install GIT - http://book.git-scm.com/2_installing_git.html
+Install CouchDB - http://www.couchone.com/get
+Install Ruby/Rails/Rubygems - http://www.rubyonrails.org
+
 == Getting Started
 
 After cloning or performing a pull, run "bundle install" to ensure you have the latest gems listed in the Gemfile used in the project.  This should download and install the gems listed from the "source" gem repository listed at the top.
 
-I've added two models for initial rails3/couchdb testing: Contact and Address (maybe a rename later).  Once you've updated, run the command "rails console" to load up the development environment in an irb console.  This will allow you to play around with your models in a scripting type environment.  Type "exit" to quit the irb console.  Test out the couchdb functionality using the following irb commands:
-
-Make sure you start CouchDBX and have a database created and named "skillsdatabase".  This is defined in the Contact.rb model file.  This should eventually be refactored into a base model class.
-
---------------------- within irb console
-puts "You have #{Contact.all.size} contacts"
-# => You have 0 contacts
-
-todd = Contact.new(:first_name => 'Todd', :last_name => 'Matthews')
-
-# just showing you can edit the instance after creating it
-todd.company_name = 'Razorfish'
-
-# assigning a new address to our contact
-todd.address = Address.new(:line_1 => '730 Peachtree St.', :city => 'Atlanta', :state => 'GA')
-
-# We could have also assign each value separately like that:
-todd.address.zip_code = 30308
-
-puts "new contact to add: #{todd.inspect}"
-# => new contact to add: {"updated_at"=>nil, "company_name"=>"m|a agile", "first_name"=>"Todd", "couchrest-type"=>"Contact", "address"=>{"city"=>"Atlanta", "zip_code"=>30308, "line_1"=>"730 Peachtree St.", "state"=>"GA"}, "last_name"=>"Matthews", "created_at"=>nil}
-
-# let's save this contact into couchdb
-todd.save
-
-puts "You now have #{Contact.all.size} contact(s)"
-# => You now have 1 contact(s)
-
-# let's reload the objects from the database
-todd_from_db = Contact.first
-
-puts todd_from_db.inspect
-# => {"updated_at"=>Sat Oct 30 1:52:01 -0700 2010, "company_name"=>"Razorfish", "_id"=>"749a89203d5cb217d18295d416f9fb2b", "_rev"=>"1-2705668756", "first_name"=>"Todd", "couchrest-type"=>"Contact", "address"=>{"city"=>"Atlanta, "zip_code"=>30308, "line_1"=>"730 Peachtree St.", "state"=>"GA"}, "last_name"=>"Matthews", "created_at"=>Sat Oct 30 1:52:01 -0700 2010}
-
-# let's just output the address to see if it works as expected
-puts todd_from_db.address
-# => 730 Peachtree St.
-# => Atlanta, GA 30308
-
-# let's delete the DB since it was just a test
-DB.delete!  
---------------------- End Within irb console
+Next you'll need to populate your couch instance with seed data.  Make sure couchdb is started and run the command from the root skills-database folder: 'rake db:seed' to load it with the initial set of employees as well as the linkedin api/secret keys.
 
 == Contact Information
 
