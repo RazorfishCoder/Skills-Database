@@ -25,7 +25,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Application Specific Gems
 # Fix a bug with encoding
 gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git'
-gem 'linkedin'
+#gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
+gem 'omniauth', ">= 0.1.6"
 
 #gem "acts_as_audited", "2.0.0.rc2"
 
@@ -35,10 +36,11 @@ gem 'linkedin'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development, :test do
    gem 'rspec-rails',      ">= 2.0.0.beta"
-   gem 'ruby-debug19', :require => 'ruby-debug'
+
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))

@@ -1,11 +1,11 @@
 require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-  collection_of :skill_tags, :product_tags, :industry_tags
   #############
   # Properties
   #############
-  property :linkedin_id
+  collection_of :skill_tags, :product_tags, :industry_tags, :employees
+
   property :first_name
   property :last_name
   property :last_name, :alias => :family_name  #playing around with aliases
@@ -25,9 +25,8 @@ class Employee < BaseCouchDocument
   #############
   # Views
   #############
-  #view_by :last_name, :first_name
+  view_by :first_name, :last_name
   view_by :updated_at, :descending => true
-  view_by :linkedin_id
   view_by :latest_updates
   view_by :id
   view_by :product_code, :map => "
@@ -38,11 +37,20 @@ class Employee < BaseCouchDocument
     }
   "
 
-  #############
-  # Validations
-  #############
-  validates_uniqueness_of :linkedin_id
+  ################
+  # class Methods
+  ################
+  def self.create_from_hash!(hash)
+    if hash['user_info'][:last_job].match(/Razorfish|Globant|Selfemployed/)
+      self.create(hash['user_info'][:employee])
+    else
+      return false
+    end
+  end
 
+  ################
+  # public Methods
+  ################
   def skill_tags_names(join_str = ', ')
     tags_name_to_s(self.skill_tags,join_str)
   end
@@ -64,11 +72,13 @@ class Employee < BaseCouchDocument
     self.read_attachment(self.resume)
   end
 
+  #################
+  # private Methods
+  #################
   private
 
   def tags_name_to_s(tags_arr, join_str)
     tags_arr.map{|tag| tag["name"] }.join(join_str) unless tags_arr.blank?
   end
-
 end
 

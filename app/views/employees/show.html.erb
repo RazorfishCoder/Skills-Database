@@ -29,11 +29,13 @@
   <b>ProductTag:</b>
   <%= @employee.product_tags_names %>
 </p>
-<p>
-  <b>Resume:</b>
-  <%= link_to @employee.resume, resume_path(@employee) %>
-</p>
 
+<% if current_user.resume -%>
+  <p>
+    <b>Resume:</b>
+    <%= link_to @employee.resume, resume_path(@employee) %>
+  </p>
+<% end -%>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>

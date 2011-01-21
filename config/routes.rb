@@ -1,12 +1,10 @@
 Skillsdatabase::Application.routes.draw do
-  match '/logout', :to => "auth#logout"
-
-  match 'auth', :to => "auth#index", :as => "linkedin_auth"
-  match '/auth/callback', :to => "auth#callback"
-
   resources :employees
 
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
+
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match "/signout" => "sessions#destroy", :as => :signout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
