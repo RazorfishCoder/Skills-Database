@@ -87,7 +87,7 @@ body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
   /* set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
+  font-family: Arial, sans-serif;
 }
 
 /* headers (h1,h2,etc) have no default font-size or margin,
@@ -97,13 +97,11 @@ h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 /* always force a scrollbar in non-IE: */
 html { overflow-y: scroll; }
 
-
 /* accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
-
 
 ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
@@ -174,24 +172,58 @@ button {  width: auto; overflow: visible; }
 
 
  /* Primary Styles
-    Author:
+    Author: Razorfish
+ */
+ 
+ body {background-color:#dbdbdb;}
+ header {height:81px;padding:0 20px;border-bottom:4px solid #010101;background:#b2b3b7 url(../images/rf.logo.gif) 98% 20px no-repeat;}
+ #wrap {margin:0 auto; width:970px; background-color:#fff;}
+ #main {padding:10px 20px;}
+ .primary {float:left;width:485px;margin:0 12px 0 0;}
+ .secondary {float:left;width:433px;}
+ 
+ section {margin:0 0 20px 0;background-color:#e6e6e6;padding:10px;border-radius:10px;-moz-border-radius:10px;}
+ 
+ footer {clear:both;}
+ 
+ /* fonts (base font size is 13px)
+ FOR PIXELS (PX)	DECLARE THIS PERCENT (%)
+     10	            77
+     11	            85
+     12	            93
+     13	            100
+     14	            108
+     15	            116
+     16	            123.1
+     17	            131
+     18	            138.5
+     19	            146.5
+     20	            153.9
+     21	            161.6
+     22	            167
+     23	            174
+     24	            182
+     25	            189
+     26	            197
+ */
+ 
+ 
+ h1 {font-size:246.2%;line-height:246.2%;color:#fff;}
+ 
+ /* delete?
+ #mainContent {float:left; padding:0 10px 0 0; width:590px;}
+ #supplementContent {float:left; padding:0 0 0 10px; width:390px;}
+
+ #chart {margin:0 0 24px; position:relative;}
+ .contentContainer {border:1px solid black; margin:0 0 24px;}
+ #profileImg {float:right; padding:0 10px;}
+ .contentContainer ul {list-style-type:none; margin:0; padding:0 10px 12px;}
+ .contentContainer p {margin:0; padding:0 10px 12px;}
+ .contentContainer form {padding:0 10px 12px;}
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ /* END: Primary Styles */
+  
  /*
   * Non-semantic helper classes: please define your styles before this section.
   */

@@ -1,80 +1,117 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>  
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
+<!--[if lt IE 7 ]> <html class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
   <title>Skills Database</title>
-  <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag "jit/base", "jit/Sunburst" %>
-  <%= javascript_include_tag "example2" %>
-  <%= javascript_include_tag "jit/jit", "jit/Extras/excanvas" %>
+  <meta name="description" content="Razorfish Skills Database">
+  <meta name="author" content="">
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS : implied media="all" -->
+  <%= stylesheet_link_tag "screen" %>
+ 
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <%= javascript_include_tag "libs/modernizr-1.6.min" %>
+  
   <%= csrf_meta_tag %> 
 
 </head>
-<body onload="init();">
-	<!-- Start Wrapper -->
-	<div id="wrap">
-	  	<div id="mainContent">
-	    	<div id="chart">
-	        <div id="container">
-	        	<div id="center-container">
-	            <div id="infovis"></div>    
-	        	</div>
-	        	<div id="right-container">
-		        	<div id="inner-details"></div>
-	        	</div>
-	        	<div id="log"></div>
-	      	</div>
-	    	</div>
-	      <div class="contentContainer">
-	      	<h3>Recent Activity</h3>
-	        <ul>
-	        	<li>Todd Matthews uploaded his resume</li>
-	          	<li>Martin Jacobs added telecom to his industry experience</li>
-		        <li>Martin Jacobs added Ruby on Rails 3 to his skills</li>
-		        <li>Martin Jacobs added Git to his skills</li>
-		        <li>Todd Matthews added expert level Couch dB to his skills</li>
-		        <li>Howard Cohen registered</li>
-	        </ul>
-	        <p><a href="#">See more updates</a></p>
-	      </div>
-	    </div>
-	    <div id="supplementContent">
-	    	<div class="contentContainer">
-			<% if @employee %>
-	      		<h3>Your Profile</h3>
-                                <img src="<%= @employee.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	<ul>
-		        	<li><%= @employee.first_name %> <%= @employee.last_name %></li>
-		        	<li><%= @employee.job_title %></li>
-		        	<li>Industry: <%= @employee.industry %></li>
-		        	<li>Skills: </li>
-		        	<li>Products: </li>
-                                <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
-		        </ul>
 
-	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
-			<% else %>
-				<%= link_to "Login via LinkedIn", :controller => "auth" %>
-			<% end %>
-	      	</div>
-	      	<div class="contentContainer">
-		      	<h3>Search Skills</h3>
-		        <form name="" method="" action="">
-		          <input type="submit" />
-		        	<input type="text" name="" value="search" />
-		        </form>
-		        <p><a href="#">Browse our visual skills graph</a></p>
-	      	</div>
-	      	<div class="contentContainer">
-		      	<h3>Looking For</h3>
-		        <ul>
-		        	<li><a href="#">Sharepoint 2010</a></li>
-		        	<li><a href="#">Autonomy CRM</a></li>
-		        	<li><a href="#">iPhone Objective-C</a></li>
-		        	<li><a href="#">PhoneGap</a></li>
-		        </ul>
-	      	</div>
-	    </div>
+<body lang="en" >
+    <!-- Start Wrapper -->
+	<div id="wrap">
+	  	<header>
+	  	    <h1>Razorfish Skills Database</h1>
+	  	</header>
+	  	
+	  	<div class="clearfix" id="main">
+	  	    <div class="primary">
+	  	        <section>
+        	      	<h3>Recent Activity</h3>
+        	        <ul>
+        	        	<li>Todd Matthews uploaded his resume</li>
+        	          	<li>Martin Jacobs added telecom to his industry experience</li>
+        		        <li>Martin Jacobs added Ruby on Rails 3 to his skills</li>
+        		        <li>Martin Jacobs added Git to his skills</li>
+        		        <li>Todd Matthews added expert level Couch dB to his skills</li>
+        		        <li>Howard Cohen registered</li>
+        	        </ul>
+        	        <p><a href="#">See more updates</a></p>
+        	      </section>
+	  	    </div>
+
+            <div class="secondary">
+    	    	<section>
+    			<% if @employee %>
+    	      		<h3>Your Profile</h3>
+                                    <img src="<%= @employee.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	<ul>
+    		        	<li><%= @employee.first_name %> <%= @employee.last_name %></li>
+    		        	<li><%= @employee.job_title %></li>
+    		        	<li>Industry: <%= @employee.industry %></li>
+    		        	<li>Skills: </li>
+    		        	<li>Products: </li>
+                                    <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
+    		        </ul>
+
+    	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
+    			<% else %>
+    				<%= link_to "Login via LinkedIn", :controller => "auth" %>
+    			<% end %>
+    	      	</section>
+    	      	<section>
+    		      	<h3>Search Skills</h3>
+    		        <form name="" method="" action="">
+    		          <input type="submit" />
+    		        	<input type="text" name="" value="search" />
+    		        </form>
+    		        <p><a href="#">Browse our visual skills graph</a></p>
+    	      	</section>
+    	      	<section>
+    		      	<h3>Looking For</h3>
+    		        <ul>
+    		        	<li><a href="#">Sharepoint 2010</a></li>
+    		        	<li><a href="#">Autonomy CRM</a></li>
+    		        	<li><a href="#">iPhone Objective-C</a></li>
+    		        	<li><a href="#">PhoneGap</a></li>
+    		        </ul>
+    	      	</section>
+    	    </div>
+	  	    
+	  	</div>
+	  	
+	  	<footer>
+	  	    Footer
+	  	</footer>
+	  	
 	</div>
-	<!-- Start Wrapper -->
-	
+	<!-- END Wrapper -->
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" %>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
+  
+  
+  <!-- scripts -->
+  <%= javascript_include_tag "skills.common" %>
+  
+  
+  <!--[if lt IE 7 ]>
+    <%= javascript_include_tag "libs/dd_belatedpng" %>
+    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+  
 </body>
 </html>

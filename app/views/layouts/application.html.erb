@@ -1,15 +1,51 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>  
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
+<!--[if lt IE 7 ]> <html class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
   <title>Skills Database</title>
-  <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag "jit/base", "jit/Sunburst" %>
-  <%= javascript_include_tag "example2" %>
-  <%= javascript_include_tag "jit/jit", "jit/Extras/excanvas" %>
+  <meta name="description" content="Razorfish Skills Database">
+  <meta name="author" content="">
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS : implied media="all" -->
+  <% stylesheet_link_tag "screen" %>
+ 
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <% javascript_include_tag "libs/modernizr-1.6.min" %>
+  
   <%= csrf_meta_tag %> 
 
 </head>
-<body onload="init();">
-<%= yield %>	
+
+<body lang="en" >
+<%= yield %>
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <% javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" %>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/public/javascripts/libs/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
+  
+  
+  <!-- scripts -->
+  <% javascript_include_tag "skills.common" %>
+  
+  
+  <!--[if lt IE 7 ]>
+    <% javascript_include_tag "libs/dd_belatedpng" %>
+    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+  
 </body>
 </html>

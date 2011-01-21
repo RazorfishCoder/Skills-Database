@@ -1,8 +1,10 @@
-body, html {font-family:Arial, Helvetica, sans-serif; margin:0; padding:0;}
+body, html {font-family:Arial, Helvetica, sans-serif; margin:0; padding:0; background-color:#dbdbdb;}
 h3 {margin:0; padding:5px 10px;}
-#wrap {margin:0 auto; width:1000px; zoom:1;}
+#wrap {margin:0 auto; width:970px; zoom:1;}
+
 #mainContent {float:left; padding:0 10px 0 0; width:590px;}
 #supplementContent {float:left; padding:0 0 0 10px; width:390px;}
+
 #chart {margin:0 0 24px; position:relative;}
 .contentContainer {border:1px solid black; margin:0 0 24px;}
 #profileImg {float:right; padding:0 10px;}
