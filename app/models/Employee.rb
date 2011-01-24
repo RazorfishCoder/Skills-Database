@@ -13,31 +13,35 @@ class Employee < BaseCouchDocument
   property :industry
   property :linkedin_url
   property :picture_url
-  property :tags, [String]
-  #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
   property :email
+  property :tags, [Tag], :cast_as => 'Tag'
   timestamps!
   
   #############
   # Views
-  #############  
-  #view_by :last_name, :first_name
+  #############
   view_by :updated_at, :descending => true
   view_by :linkedin_id
   view_by :latest_updates
   view_by :id
-  view_by :product_code, :map => "
+  view_by :first_name
+  view_by :email
+   
+  view_by :tags, :map => "
     function(doc) {
-      if (doc['couchrest-type'] == 'Product' || doc['couchrest-type'] == 'Project') {
-        emit(doc['code']);
+      if(doc['couchrest-type'] == 'Employee' && doc['tags'] != null && doc.tags.length > 0){
+          for(var tag in doc.tags) {
+              emit(doc.tags[tag].name, {first_name: doc.first_name, last_name: doc.last_name});
+          }
+        } 
       }
-    }
   "
   
   #############
   # Validations
   #############
   validates_uniqueness_of :linkedin_id
+  validates_uniqueness_of :email
   
 end
