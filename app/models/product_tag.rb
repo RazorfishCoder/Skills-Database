@@ -1,3 +1,6 @@
+=begin
+No needed defined in Employee Document
+
 #require 'base_couch_document'
 
 class ProductTag < Tag
@@ -12,4 +15,5 @@ class ProductTag < Tag
 #  end
 
 end
+=end
 

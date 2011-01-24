@@ -1,3 +1,5 @@
+=begin
+No needed defined in Employee Document
 require 'base_couch_document'
 
 class Tag < BaseCouchDocument
@@ -14,4 +16,5 @@ class Tag < BaseCouchDocument
     end
 
 end
+=end
 

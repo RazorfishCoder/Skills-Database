@@ -21,10 +21,13 @@ class EmployeesController < ApplicationController
     end
     @employee.skill_tags.clear
 
-    SkillTag.bulk_create(params["skill_tags"] ).each{|tag| @employee.skill_tags << tag }
-
-    @employee.industry_tags = IndustryTag.bulk_create(params["industry_tags"] )
-    @employee.product_tags =  ProductTag.bulk_create(params["product_tags"])
+#   need refactor
+    @employee.skill_tags = []
+    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
+    @employee.industry_tags = []
+    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag } }
+    @employee.product_tags = []
+    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
 
     if @employee.update_attributes(params[:employee])
         redirect_to(@employee, :notice => 'Employee was successfully updated.')

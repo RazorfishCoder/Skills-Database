@@ -5,6 +5,10 @@ Skillsdatabase::Application.routes.draw do
   match '/auth/callback', :to => "auth#callback"
 
   resources :employees
+  match '/taggings/skill_tags_cloud/', :to => "taggings#skill_tags_cloud"
+  match '/taggings/industry_tags_cloud/', :to => "taggings#industry_tags_cloud"
+  match '/taggings/product_tags_cloud/', :to => "taggings#product_tags_cloud"
+
 
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
 

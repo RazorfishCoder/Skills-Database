@@ -1,9 +1,6 @@
 require 'base_couch_document'
 
 class Employee < BaseCouchDocument
-  collection_of :employee_taggings
-#  collection_of :product_tags
-#  collection_of :industry_tags
 
   #############
   # Properties
@@ -16,9 +13,18 @@ class Employee < BaseCouchDocument
   property :industry
   property :linkedin_url
   property :picture_url
-#  property :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
-#  property :skill_tags
-#  property :product_tags
+  property :industry_tags do |industry_tag|
+                            industry_tag.property :name, String
+                          end
+
+  property :skill_tags do |skill_tag|
+                          skill_tag.property :name, String
+                          skill_tag.property :rate, Integer
+                      end
+
+  property :product_tags do |product_tag|
+                            product_tag.property :name, String
+                         end
 
   #property :address, :cast_as => 'Address'    #playing around with associations
   property :phone_number
@@ -37,63 +43,57 @@ class Employee < BaseCouchDocument
   view_by :latest_updates
   view_by :id
 
-#  view_by :industry_tags #the collection_of extend the [industry_tag], declare array its no needed
-#  view_by :product_tags
+# Get all employee that have ruby Skills
+# Employee.by_skill_tags( :key => 'ruby')
+# Get all count of ruby Skills_tag
+# Employee.by_skill_tags(:reduce => true, :key => 'ruby')
+# Get the count of each Skill tag (Tag Cloud)
+# Employee.by_skill_tags(  :reduce => true, :group => true)
 
-  view_by :employee_taggings ,
-   :map =>
-       "function(doc) {
-         if (doc['model'] == 'Employee' && doc.employee_taggings ) {
-           doc.employee_taggings.forEach(function(tagging){
-             emit(tagging, 1);
-           });
-         }
-       }",
-
+  view_by :skill_tags, :map =>
+    "function(doc){
+      if (doc['couchrest-type'] == 'Employee' && doc['skill_tags']){
+        doc.skill_tags.forEach(
+          function(skill_tag){
+            emit(skill_tag.name, 1);
+          }
+        );
+      }
+    };",
     :reduce =>
-      "function(keys, values, rereduce) {
-        return sum(values);
-      }"
+    "function(keys, values, rereduce){
+       return sum(values);
+     };"
 
+  view_by :industry_tags, :map =>
+    "function(doc){
+      if (doc['couchrest-type'] == 'Employee' && doc['industry_tags']){
+        doc.industry_tags.forEach(
+          function(industry_tag){
+            emit(industry_tag.name, 1);
+          }
+        );
+      }
+    };",
+    :reduce =>
+    "function(keys, values, rereduce){
+       return sum(values);
+     };"
 
-#  view_by :skill_tags ,
-#   :map =>
-#      "function(doc) {
-#        if (doc.type == 'Employee' && doc.skill_tags) {
-#          doc.skill_tags.forEach(function(skill_tag){
-#            emit(skill_tag.name, 1);
-#          });
-#        }
-#      }",
-#    :reduce =>
-#      "function(keys, values, rereduce) {
-#        return sum(values);
-#      }"
-#  ,
-
-#    :map =>
-
-#      "function(doc) {
-
-#        if (doc.type == 'Employee' && doc.skill_tags) {
-
-#          doc.skill_tags.forEach(function(skill_tags){
-
-#            emit(skill_tags, 1);
-
-#          });
-
-#        }
-
-#      }",
-
-#    :reduce =>
-
-#      "function(keys, values, rereduce) {
-
-#        return sum(values);
-
-#      }"
+  view_by :product_tags, :map =>
+    "function(doc){
+      if (doc['couchrest-type'] == 'Employee' && doc['product_tags']){
+        doc.product_tags.forEach(
+          function(product_tag){
+            emit(product_tag.name, 1);
+          }
+        );
+      }
+    };",
+    :reduce =>
+    "function(keys, values, rereduce){
+       return sum(values);
+     };"
 
   #############
   # Validations

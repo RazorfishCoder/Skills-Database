@@ -1,3 +1,5 @@
+=begin
+No needed defined in Employee Document
 #require 'base_couch_document'
 
 class IndustryTag < Tag
@@ -15,4 +17,5 @@ class IndustryTag < Tag
 #  end
 
 end
+=end
 
