@@ -19,7 +19,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS : implied media="all" -->
-  <%= stylesheet_link_tag "screen" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Arvo:regular,italic,bold,bolditalic" %>
  
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <%= javascript_include_tag "libs/modernizr-1.6.min" %>
@@ -38,60 +39,75 @@
 	  	<div class="clearfix" id="main">
 	  	    <div class="primary">
 	  	        <section>
-        	      	<h3>Recent Activity</h3>
-        	        <ul>
-        	        	<li>Todd Matthews uploaded his resume</li>
-        	          	<li>Martin Jacobs added telecom to his industry experience</li>
-        		        <li>Martin Jacobs added Ruby on Rails 3 to his skills</li>
-        		        <li>Martin Jacobs added Git to his skills</li>
-        		        <li>Todd Matthews added expert level Couch dB to his skills</li>
-        		        <li>Howard Cohen registered</li>
-        	        </ul>
-        	        <p><a href="#">See more updates</a></p>
-        	      </section>
+	  	        <h2>All Skills</h2>
+	  	        
+	  	        <div id="skills-graph"></div>
+	  	        </section>
 	  	    </div>
 
             <div class="secondary">
-    	    	<section>
+    	    	<section class="profile clearfix">                    
     			<% if @employee %>
-    	      		<h3>Your Profile</h3>
-                                    <img src="<%= @employee.picture_url %>" width="80" height="80" id="profileImg" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	<ul>
-    		        	<li><%= @employee.first_name %> <%= @employee.last_name %></li>
-    		        	<li><%= @employee.job_title %></li>
-    		        	<li>Industry: <%= @employee.industry %></li>
-    		        	<li>Skills: </li>
-    		        	<li>Products: </li>
-                                    <li><%= link_to 'Edit', edit_employee_path(@employee.id) %></li>
-    		        </ul>
+    	      		<h2>Your Profile</h2>
+                        <img src="<%= @employee.picture_url %>" width="80" height="80" id="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />	       	 	
+                        <ul>
+    		        	    <li><h3><%= @employee.first_name %> <%= @employee.last_name %> // <%= @employee.job_title %></h3></li>
+        		        	<li>Industry: <%= @employee.industry %></li>
+        		        	<li>Skills: </li>
+        		        	<li>Products: </li>
+                            <!--<li>
+                                <%= link_to 'Edit', edit_employee_path(@employee.id) %></li>-->
+    		            </ul>
 
-    	        	<p><%=link_to 'Update your linkedin profile', @employee.linkedin_url %></p>
+    	        	    <p class="update-profile"><%=link_to 'Update your Profile', @employee.linkedin_url %></p>
     			<% else %>
     				<%= link_to "Login via LinkedIn", :controller => "auth" %>
     			<% end %>
     	      	</section>
-    	      	<section>
-    		      	<h3>Search Skills</h3>
-    		        <form name="" method="" action="">
-    		          <input type="submit" />
-    		        	<input type="text" name="" value="search" />
-    		        </form>
-    		        <p><a href="#">Browse our visual skills graph</a></p>
-    	      	</section>
-    	      	<section>
-    		      	<h3>Looking For</h3>
+    	      	
+    	      	<div class="clearfix">
+    	      	<section class="twoup">
+    	      	    <h2>Looking For...</h2>
+                    
     		        <ul>
-    		        	<li><a href="#">Sharepoint 2010</a></li>
-    		        	<li><a href="#">Autonomy CRM</a></li>
-    		        	<li><a href="#">iPhone Objective-C</a></li>
-    		        	<li><a href="#">PhoneGap</a></li>
+    		            <li><a href="#">Sharepoint 2010</a></li>
+    		            <li><a href="#">Autonomy CRM</a></li>
+                        <li><a href="#">IPhone Objective-C development</a></li>
+                        <li><a href="#">PhoneGap Development</a></li>
+                        <li><a href="#">Sharepoint 2010</a></li>
+                        <li><a href="#">Autonomy CRM</a></li>
+                        <li><a href="#">IPhone Objective-C development</a></li>
     		        </ul>
     	      	</section>
+    	      	
+    	      	<section class="twoup last">
+    	      	    <h2>Search</h2>
+    		        <form id="searchform" name="" method="" action="">
+    		            <div class="searchbox">
+    		                <input type="text" value="">
+    		        	    <input id="search-btn" type="image" src="/images/btn.search.gif">
+    		        	</div>
+    		        </form>
+    		        <p class="browse-link arvo"><a href="#">Browse our visual<br/>skills graph</a></p>
+    	      	</section>
+    	      	</div>
+    	      	<section>
+    	      	    <h2>Recent updates...</h2>
+                    
+        	        <ul>
+        	        	<li><a href="#">Todd Matthews uploaded his resume</a></li>
+        	          	<li><a href="#">Martin Jacobs added telecom to his industry experience</a></li>
+        		        <li><a href="#">Martin Jacobs added Ruby on Rails 3 to his skills</a></li>
+        		        <li><a href="#">Martin Jacobs added Git to his skills</a></li>
+        	        </ul>
+        	        
+        	      </section>
     	    </div>
 	  	    
 	  	</div>
 	  	
 	  	<footer>
-	  	    Footer
+	  	    
 	  	</footer>
 	  	
 	</div>
@@ -103,6 +119,8 @@
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" %>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
   
+  <!-- libs -->
+  <%= javascript_include_tag "libs/raphael-min" %>
   
   <!-- scripts -->
   <%= javascript_include_tag "skills.common" %>
