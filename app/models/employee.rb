@@ -4,7 +4,6 @@ class Employee < BaseCouchDocument
   #############
   # Properties
   #############
-  collection_of :skill_tags, :product_tags, :industry_tags, :employees
 
   property :first_name
   property :last_name
