@@ -5,8 +5,9 @@ Skillsdatabase::Application.routes.draw do
   match '/taggings/industry_tags_cloud/', :to => "taggings#industry_tags_cloud"
   match '/taggings/product_tags_cloud/', :to => "taggings#product_tags_cloud"
 
-  match '/taggings/industry_tags/:tag_name', :to => "taggings#industry_tags"
-  match '/taggings/skill_tags/:tag_name', :to => "taggings#skill_tags"
+#  match '/taggings/industry_tags/:tag_name', :to => "taggings#industry_tags"
+#match ':controller(/:action(/:id(.:format)))'
+  match '/taggings/:tags_type/:tag_name' , :to => "taggings#tag_query"
 #def industry_tags(tag_name)
 #def product_tags(tag_name)
 #def skill_tags(tag_name)
@@ -71,6 +72,6 @@ Skillsdatabase::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-   match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id(.:format)))'
 end
 
