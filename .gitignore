@@ -4,4 +4,5 @@ log/*.log
 tmp/**/*
 Gemfile.lock
 CustomGemfile
+/initializers/globant_custom.rb
 
