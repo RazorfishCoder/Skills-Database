@@ -17,57 +17,90 @@ skills.common = (function() {
     // private
     function init() {
         //initialize common code
-        //initSkillsGraph();
-        initTest();
+        initSkillsGraph();
     }
 
     function initSkillsGraph(){
         if (!Raphael) return;
+        // ----- Start Create Canvas For Drawing Our Graph
         var r = Raphael("skills-graph", 450, 450),
-            posY = 225, startingRadius = 200, offset = 10,
-            attrs = {'stroke-width':offset, 'stroke':'#990'};
-        
-        // rx, ry, large_arc_flag, sweep_flag, x, y, angle
-        // var b = r.path('M10,225 a200,200 0,1,1 200,200').attr(attrs);
-        //         attrs.stroke = '#970';
-        //         var a = r.path('M20,225 a190,190 0,1,1 190,190').attr(attrs);
-        //         
-        
-        r.path().attr(attrs);
-        
-        var skills = [];        
-        
-        function drawCircle (radius,posX){
+            R = 200,
+            step = 16,
+            init = true,
+            param = {stroke: "#fff", "stroke-width": 15},
+            hash = document.location.hash,
+            marksAttr = {fill: hash || "#444", stroke: "none"};
+		// ----- End Create Canvas For Drawing Our Graph
+
+
+        // ----- Start Create Custom Attribute For A Dynamic Arc
+        r.customAttributes.arc = function (value, total, R) {
+            var alpha = 360 / total * value,
+                a = (90 - alpha) * Math.PI / 180,
+                x = 225 + R * Math.cos(a),
+                y = 225 - R * Math.sin(a),
+                color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+                path;
+            if (total == value) {
+                path = [["M", 225, 225 - R], ["A", R, R, 0, 1, 1, 224.99, 225 - R]];
+            } else {
+                path = [["M", 225, 225 - R], ["A", R, R, 0, +(alpha > 180), 1, x, y]];
+            }
+            return {path: path, stroke: color};
+        };
+		// ----- End Create Custom Attribute For A Dynamic Arc
+			
+		/**
+		 * animateArc()
+		 * Function to animate along the path setup by our top 10 skills.
+		 * @param value
+		 * @param total 
+		 * @param R
+		 * @param hand - 
+		 * @param id - html element id that we're using to hold the animation
+		 */	
+		function drawArc(value, total, R, hand, id) {
+            if (total == 31) { // month
+                var d = new Date;
+                d.setDate(1);
+                d.setMonth(d.getMonth() + 1);
+                d.setDate(-1);
+                total = d.getDate();
+            }
+            var color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)");
+            if (init) {
+                hand.animate({arc: [value, total, R]}, 900, ">");
+            } else {
+                if (!value || value == total) {
+                    value = total;
+                    hand.animate({arc: [value, total, R]}, 750, "bounce", function () {
+                        hand.attr({arc: [0, total, R]});
+                    });
+                } else {
+                    hand.animate({arc: [value, total, R]}, 750, "elastic");
+                }
+            }
+        }	
+		// ----- drawArc()
+
+		// ----- Start Create Shells Of Arc's For Each Top 10 Skill (used in animation)
+		// ----- Start onLoad() function
+        (function () {
+            var skills = [.50,.75,.25,.20,.80,.95,.5,.20,.65,.12],
+                variables = [];
             
-        }
-        // in case I need these functions
-        /*
-        function circlePath(x,y,r){
-            var s = "M" + x + "," + (y-r) + "A"+r+","+r+",0,1,1,"+(x-0.1)+","+(y-r)+" z";   
-              return s;
-        }
-        
-        Raphael.fn.circlePath = function(x , y, r) {      
-          var s = "M" + x + "," + (y-r) + "A"+r+","+r+",0,1,1,"+(x-0.1)+","+(y-r)+" z";   
-          return s; 
-        }
-        */
-    }
-    
-    function initTest(){
-        var paper = Raphael("skills-graph",450,450); 
-        var R = 200, 
-            value = 50,                     // value you want to arc to 
-            total = 100,                    // total possible 
-            alpha = 360 / total * value, 
-            a = (90 - alpha) * Math.PI / 180, 
-            x = 300 + R * Math.cos(a), 
-            y = 300 - R * Math.sin(a), 
-            param = {stroke: "#FF0000", "stroke-width": 10}; 
+            for(var i=0,len=skills.length; i<len; i++) {
+            	var l = 360 * skills[i],
+            	    cnt = i + 1;
+            	variables[i] =  r.path().attr(param).attr({arc: [0, 360, R]});
+            	R -= 16;
+            	drawArc(l, 360, R, variables[i], cnt);
+            }
             
-            //console.log(alpha);
-            
-        //paper.path('M10,225').attr(param).arcTo(R, R, (alpha > 180 ? 0 : 1), 1,0, x, y);
+			init = false;
+
+        })();
+		// ----- End onLoad() function
     }
     
     return {
