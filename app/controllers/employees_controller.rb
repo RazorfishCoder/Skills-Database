@@ -19,7 +19,6 @@ class EmployeesController < ApplicationController
     if params[:resume]
       @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
     end
-    @employee.skill_tags.clear
 
 #   need refactor
     @employee.skill_tags = []
