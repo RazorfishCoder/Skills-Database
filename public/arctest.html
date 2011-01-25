@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Raphaël · Polar Clock</title>
+        <link rel="stylesheet" href="demo.css" media="screen">
+        <script src="/javascripts/libs/raphael-min.js"></script>
+        <script>
+            window.onload = function () {	
+	
+				// ----- Start Create Canvas For Drawing Our Graph
+                var r = Raphael("holder", 450, 450),
+                    R = 200,
+                    init = true,
+                    param = {stroke: "#fff", "stroke-width": 15},
+                    hash = document.location.hash,
+                    marksAttr = {fill: hash || "#444", stroke: "none"};
+				// ----- End Create Canvas For Drawing Our Graph
+
+
+                // ----- Start Create Custom Attribute For A Dynamic Arc
+                r.customAttributes.arc = function (value, total, R) {
+                    var alpha = 360 / total * value,
+                        a = (90 - alpha) * Math.PI / 180,
+                        x = 225 + R * Math.cos(a),
+                        y = 225 - R * Math.sin(a),
+                        color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+                        path;
+                    if (total == value) {
+                        path = [["M", 225, 225 - R], ["A", R, R, 0, 1, 1, 224.99, 225 - R]];
+                    } else {
+                        path = [["M", 225, 225 - R], ["A", R, R, 0, +(alpha > 180), 1, x, y]];
+                    }
+                    return {path: path, stroke: color};
+                };
+				// ----- End Create Custom Attribute For A Dynamic Arc
+					
+				/**
+				 * animateArc()
+				 * Function to animate along the path setup by our top 10 skills.
+				 * @param value
+				 * @param total 
+				 * @param R
+				 * @param hand - 
+				 * @param id - html element id that we're using to hold the animation
+				 */	
+				function drawArc(value, total, R, hand, id) {
+                    if (total == 31) { // month
+                        var d = new Date;
+                        d.setDate(1);
+                        d.setMonth(d.getMonth() + 1);
+                        d.setDate(-1);
+                        total = d.getDate();
+                    }
+                    var color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)");
+                    if (init) {
+                        hand.animate({arc: [value, total, R]}, 900, ">");
+                    } else {
+                        if (!value || value == total) {
+                            value = total;
+                            hand.animate({arc: [value, total, R]}, 750, "bounce", function () {
+                                hand.attr({arc: [0, total, R]});
+                            });
+                        } else {
+                            hand.animate({arc: [value, total, R]}, 750, "elastic");
+                        }
+                    }
+                }	
+				// ----- drawArc()
+
+				// ----- Start Create Shells Of Arc's For Each Top 10 Skill (used in animation)
+				// ----- These should be dynamic based on number of skills displayed.
+				var skill1 = r.path().attr(param).attr({arc: [0, 360, R]});
+				R -= 16;
+				var skill2 = r.path().attr(param).attr({arc: [0, 360, R]});
+				R -= 16;
+				var skill3 = r.path().attr(param).attr({arc: [0, 360, R]});
+				// ----- End Create Shells Of Arc's For Each Top 10 Skill (used in animation)
+				              
+				// ----- Start onLoad() function
+                (function () {
+	
+					//Should be dynamic based on the top ten skills returned.
+					drawArc(180, 360, 200, skill1, 1);
+                    drawArc(90, 360, 184, skill2, 2);
+					drawArc(270, 360, 168, skill3, 3);						
+                    init = false;
+
+                })();
+				// ----- End onLoad() function
+            };
+        </script>
+
+        <style media="screen">
+            #holder {
+                height: 450px;
+                margin: 0 0 0 0;
+                width: 450px;
+				-moz-transform:rotate(-90deg);
+            }
+            #time {
+                text-align: center;
+                font: 100 3em "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="holder"></div>
+    </body>
+</html>
