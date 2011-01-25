@@ -1,0 +1,18 @@
+    <!-- Javascript at the bottom for fast page loading -->
+
+    <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" %>
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
+
+    <!-- libs -->
+    <%= javascript_include_tag "libs/raphael-min" %>
+
+    <!-- scripts -->
+    <%= javascript_include_tag "skills.common" %>
+
+
+    <!--[if lt IE 7 ]>
+    <%= javascript_include_tag "libs/dd_belatedpng" %>
+    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+    <![endif]-->
+    
