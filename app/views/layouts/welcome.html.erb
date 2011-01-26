@@ -25,12 +25,10 @@
 	    	</div>
 	      <div class="contentContainer">
 	      	<h3>Recent Activity</h3>
-	        <ul>
-	        	<li>Todd Matthews uploaded his resume</li>
-		        <li>Martin Jacobs added Ruby on Rails 3 to his skills</li>
-		        <li>Martin Jacobs added Git to his skills</li>
-		        <li>Todd Matthews added expert level Couch dB to his skills</li>
-		        <li>Howard Cohen registered</li>
+	        <ul class="list">
+	          <% @events.each do |event| -%>
+	            <%= render :partial => "/events/#{event.event_type}", :locals => {:event => event} %>
+            <% end -%>
 	        </ul>
 	        <p><a href="#">See more updates</a></p>
 	      </div>
