@@ -39,7 +39,6 @@ class Employee < BaseCouchDocument
   #############
   view_by :first_name, :last_name
   view_by :updated_at, :descending => true
-  view_by :latest_updates
   view_by :id
 
 # Get all employee that have ruby Skills

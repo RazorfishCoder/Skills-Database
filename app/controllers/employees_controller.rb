@@ -12,7 +12,6 @@ class EmployeesController < ApplicationController
     @skill_tags_names = @employee.skill_tags_names
     @industry_tags_names = @employee.industry_tags_names
     @product_tags_names = @employee.product_tags_names
-
   end
 
   def update
@@ -29,10 +28,10 @@ class EmployeesController < ApplicationController
     params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
 
     if @employee.update_attributes(params[:employee])
-        redirect_to(@employee, :notice => 'Employee was successfully updated.')
-      else
-        render :action => "edit"
-      end
+      redirect_to(@employee, :notice => 'Employee was successfully updated.')
+    else
+      render :action => "edit"
+    end
   end
 
   def resume
