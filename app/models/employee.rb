@@ -1,4 +1,5 @@
 class Employee < BaseCouchDocument
+  include Memories
 
   #############
   # Properties
@@ -14,6 +15,7 @@ class Employee < BaseCouchDocument
   property :email
   property :tags, [Tag], :cast_as => 'Tag'
   property :resume
+
   timestamps!
 
   #############
@@ -33,6 +35,29 @@ class Employee < BaseCouchDocument
       }"
 
   ################
+  # Observers
+  ################
+
+  after_save :extract_differences
+
+  def extract_differences
+    useless_properties = ['created_at', 'updated_at']
+
+    if self.current_version == 1
+      EmployeeEvent.create(:employee => self, :event_type => 'new_employee')
+    else
+      previous_instance = self.versions[self.previous_version].instance
+      changes = []
+
+      self.properties.reject{|property| useless_properties.include? property.to_s}.each do |property|
+        changes << property unless self[property] == previous_instance[property]
+      end
+
+      EmployeeEvent.create(:employee => self, :changes => changes, :event_type => 'update_profile')
+    end
+  end
+
+  ################
   # class Methods
   ################
   def self.create_from_hash!(hash)
@@ -46,9 +71,8 @@ class Employee < BaseCouchDocument
   ################
   # public Methods
   ################
-
-  def resume_data
-    self.read_attachment(self.resume)
+  def full_name
+    "#{self.first_name} #{self.last_name}".strip
   end
 
   def store_resume(file, filename)
@@ -56,5 +80,8 @@ class Employee < BaseCouchDocument
     self.resume = filename
   end
 
+  def resume_data
+    self.read_attachment(self.resume)
+  end
 end
 

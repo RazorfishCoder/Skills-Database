@@ -21,6 +21,7 @@ class OmniAuth::Strategies::LinkedIn
         'job_title' => person.xpath('headline').text,
         'linkedin_url' => person.xpath('site-standard-profile-request').text
       },
+      'id' => person.xpath('id').text,
       :last_job => positions.first.xpath('company').xpath('name').text
     }
     hash
