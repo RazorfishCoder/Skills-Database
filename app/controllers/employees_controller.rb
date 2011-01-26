@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Employee.find(params[:id])
+
   end
 
   def update
@@ -31,7 +31,7 @@ class EmployeesController < ApplicationController
   private
 
   def find_employee
-    @employee = Employee.find(params[:id])
+    @employee = Employee.find_by_permalink(params[:id])
   end
 end
 
