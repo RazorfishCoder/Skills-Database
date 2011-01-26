@@ -8,7 +8,6 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Employee.find(params[:id])
     @skill_tags_names = @employee.skill_tags_names
     @industry_tags_names = @employee.industry_tags_names
     @product_tags_names = @employee.product_tags_names
@@ -41,7 +40,7 @@ class EmployeesController < ApplicationController
   private
 
   def find_employee
-    @employee = Employee.find(params[:id])
+    @employee = Employee.find_by_permalink(params[:id])
   end
 end
 

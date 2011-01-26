@@ -31,6 +31,7 @@ class Employee < BaseCouchDocument
   property :phone_number
   property :email
   property :resume
+  property :permalink
 
   timestamps!
 
@@ -40,6 +41,7 @@ class Employee < BaseCouchDocument
   view_by :first_name, :last_name
   view_by :updated_at, :descending => true
   view_by :id
+  view_by :permalink
 
 # Get all employee that have ruby Skills
 # Employee.by_skill_tags( :key => 'ruby')
@@ -96,6 +98,11 @@ class Employee < BaseCouchDocument
   ################
   # Observers
   ################
+  before_save :generate_permalink
+
+  def generate_permalink
+    self.permalink ||= self.full_name.parameterize
+  end
 
   after_save :extract_differences
 
@@ -130,6 +137,11 @@ class Employee < BaseCouchDocument
   ################
   # public Methods
   ################
+
+  def to_param
+    self.permalink
+  end
+
   def full_name
     "#{self.first_name} #{self.last_name}".strip
   end

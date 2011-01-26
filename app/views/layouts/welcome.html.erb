@@ -46,7 +46,7 @@
 		        	<% if current_user.resume -%>
   		        	<li>Resume: <%= link_to current_user.resume, resume_path(current_user) %></li>
 		        	<% end -%>
-              <li><%= link_to 'Edit', edit_employee_path(current_user.id) %></li>
+              <li><%= link_to 'Edit', edit_employee_path(current_user) %></li>
 		        </ul>
 
 	        	<p><%=link_to 'Update your linkedin profile', current_user.linkedin_url %></p>
