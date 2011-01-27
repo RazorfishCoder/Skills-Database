@@ -1,3 +1,6 @@
+ <%= javascript_include_tag "autocomplete" %>
+
+
 <%= form_for(@employee, :html => {:multipart => true}) do |f| %>
   <% if @employee.errors.any? %>
     <div id="error_explanation">
@@ -18,6 +21,18 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :skill_tags %><br />
+    <%= text_field_tag :skill_tags , @skill_tags_names, :class => "tagautocomplete" %>
+  </div>
+  <div class="field">
+    <%= f.label :industry_tags %><br />
+    <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
+  </div>
+  <div class="field">
+    <%= f.label :product_tags %><br />
+    <%= text_field_tag :product_tags , @product_tags_names, :class => "tagautocomplete" %>
   </div>
   <div class="field">
     <%= file_field_tag :resume %>

@@ -4,6 +4,7 @@ Skillsdatabase::Application.routes.draw do
   match '/taggings/skill_tags_cloud/', :to => "taggings#skill_tags_cloud"
   match '/taggings/industry_tags_cloud/', :to => "taggings#industry_tags_cloud"
   match '/taggings/product_tags_cloud/', :to => "taggings#product_tags_cloud"
+  match '/taggings/autocomplete', :to => "taggings#autocomplete"
 
 #  match '/taggings/industry_tags/:tag_name', :to => "taggings#industry_tags"
 #match ':controller(/:action(/:id(.:format)))'
