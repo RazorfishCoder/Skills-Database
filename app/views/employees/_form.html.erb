@@ -1,4 +1,7 @@
-<%= form_for(@employee) do |f| %>
+ <%= javascript_include_tag "autocomplete" %>
+
+
+<%= form_for(@employee, :html => {:multipart => true}) do |f| %>
   <% if @employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -19,7 +22,23 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :skill_tags %><br />
+    <%= text_field_tag :skill_tags , @skill_tags_names, :class => "tagautocomplete" %>
+  </div>
+  <div class="field">
+    <%= f.label :industry_tags %><br />
+    <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
+  </div>
+  <div class="field">
+    <%= f.label :product_tags %><br />
+    <%= text_field_tag :product_tags , @product_tags_names, :class => "tagautocomplete" %>
+  </div>
+  <div class="field">
+    <%= file_field_tag :resume %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

@@ -2,3 +2,8 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
+*.swp
+Gemfile.lock
+CustomGemfile
+config/initializers/globant_custom.rb
+
