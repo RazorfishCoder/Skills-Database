@@ -21,7 +21,7 @@ class Authorization < BaseCouchDocument
   # Class Methods
   ###############
   def self.find_from_hash(hash)
-    by_provider_and_uid :provider => [hash['provider']], :uid => [hash['uid']]
+    find_by_provider_and_uid [hash['provider'], hash['uid']]
   end
 
   def self.create_from_hash(hash, user = nil)
