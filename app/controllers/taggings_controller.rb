@@ -1,9 +1,9 @@
 class TaggingsController < ApplicationController
 
     #params skill_tags
-    #e.g /taggings/product_tags/ruby
-    #    /taggings/product_tags/ruby.json
-    #    /taggings/product_tags/ruby.xml
+    #e.g /taggings/skills_tags/ruby
+    #    /taggings/skills_tags/ruby.json
+    #    /taggings/skills_tags/ruby.xml
 
 
     #params product_tags
@@ -36,23 +36,27 @@ class TaggingsController < ApplicationController
   end
 
   def skill_tags_cloud
-    @tag_cloud = Employee.by_skill_tags(  :reduce => true, :group => true)
+    #this method resolve the data needed in our skills tag graphic representation
+
+    @tag_cloud = Employee.by_skill_tags(  :reduce => true, :group => true, :limit => 10)
+
+    total_employee = Employee.count.to_f
+    @tag_cloud['rows'].each{ |x| x['value'] = x['value'] / total_employee }
     respond_to do |format|
       format.json {render :json => @tag_cloud.to_json}
     end
   end
 
-  def product_tags_cloud
-    @tag_cloud = Employee.by_product_tags(  :reduce => true, :group => true)
-    respond_to do |format|
-      format.json {render :json => @tag_cloud.to_json}
-    end
-  end
+    #params
+    #e.g /taggings/count/skill_tags
+    #e.g /taggings/count/industry_tags
+    #e.g /taggings/count/product_tags
 
-  def industry_tags_cloud
-    @tag_cloud = Employee.by_industry_tags(  :reduce => true, :group => true)
+  def tags_count
+    #is the flat count of tags
+    @tag_group = Employee.send('by_' + params[:tags_type],   :reduce => true, :group => true)
     respond_to do |format|
-      format.json {render :json => @tag_cloud.to_json}
+      format.json {render :json => @tag_group.to_json}
     end
   end
 
