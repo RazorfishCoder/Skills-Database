@@ -1,2 +1,2 @@
-<li><%= event.employee.full_name %> registered <%= distance_of_time_in_words_to_now(event.created_at) %> ago</li>
+<li><%= link_to event.employee.full_name, event.employee %> registered <%= distance_of_time_in_words_to_now(event.created_at) %> ago</li>
 

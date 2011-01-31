@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_filter :authenticate_user!, :only => [:create]
+
   def create
     auth = request.env['rack.auth']
     unless @auth = Authorization.find_from_hash(auth)

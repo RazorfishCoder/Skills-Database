@@ -18,12 +18,21 @@
   <%= render "shared/head" %>
 
 </head>
-
 <body lang="en" >
-    <%= yield %>
+    <!-- Start Wrapper -->
+	<div id="wrap">
+	  	<header>
+	  	    <h1>Razorfish Skills Database</h1>
+	  	</header>
 
-    <%= render "shared/scripts" %>
+	  	<div class="clearfix" id="main">
+	    	<%= yield %>
+      </div>
+	  	<footer>
 
+	  	</footer>
+      <%= render "shared/scripts" %>
+  </div>
 </body>
 </html>
 

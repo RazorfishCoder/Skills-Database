@@ -35,6 +35,19 @@
     <%= text_field_tag :product_tags , @product_tags_names, :class => "tagautocomplete" %>
   </div>
   <div class="field">
+    <%= f.label :professional_information %><br />
+    <%= f.text_area :professional_info %>
+  </div>
+  <div class="field">
+    <%= f.label 'Give / Gets' %><br />
+    <%= f.text_area :give_gets %>
+  </div>
+  <div class="field">
+    <%= f.label :interesting_facts %><br />
+    <%= f.text_area :interesting_facts %>
+  </div>
+  <div class="field">
+    <%= f.label "Upload your resume" %>
     <%= file_field_tag :resume %>
   </div>
   <div class="actions">
