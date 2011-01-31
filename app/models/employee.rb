@@ -33,6 +33,7 @@ class Employee < BaseCouchDocument
   property :professional_info
   property :give_gets
   property :interesting_facts
+  property :location
 
   timestamps!
 
