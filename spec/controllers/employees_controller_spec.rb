@@ -4,10 +4,15 @@ describe EmployeesController do
 
 	describe "GET 'index'" do
 		it "should be successful" do
-			get 'index'
-			response.should be_success
+  		pending
+		end
+
+		describe "with non loged in user" do
+  		it "should redirect to linkedin login page" do
+        get 'index'
+        response.should redirect_to('/auth/linked_in')
+  		end
 		end
 	end
 end
-
 
