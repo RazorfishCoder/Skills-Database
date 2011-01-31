@@ -37,10 +37,10 @@ gem 'omniauth', ">= 0.1.6"
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development, :test do
    gem 'rspec-rails',      ">= 2.0.0.beta"
+   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
