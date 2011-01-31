@@ -30,6 +30,9 @@ class Employee < BaseCouchDocument
 
   property :resume
   property :permalink
+  property :professional_info
+  property :give_gets
+  property :interesting_facts
 
   timestamps!
 
