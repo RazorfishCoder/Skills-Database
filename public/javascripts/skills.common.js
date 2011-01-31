@@ -2,7 +2,7 @@
 skills=window.skills || {};
 
 skills.common = (function() {
-    
+
     // private
     function init() {
         //initialize common code
@@ -38,16 +38,16 @@ skills.common = (function() {
             return {path: path, stroke: color};
         };
 		// ----- End Create Custom Attribute For A Dynamic Arc
-			
+
 		/**
 		 * animateArc()
 		 * Function to animate along the path setup by our top 10 skills.
 		 * @param value
-		 * @param total 
+		 * @param total
 		 * @param R
-		 * @param hand - 
+		 * @param hand -
 		 * @param id - html element id that we're using to hold the animation
-		 */	
+		 */
 		function drawArc(value, total, R, hand, id) {
             if (total == 31) { // month
                 var d = new Date;
@@ -69,29 +69,42 @@ skills.common = (function() {
                     hand.animate({arc: [value, total, R]}, 750, "elastic");
                 }
             }
-        }	
+        }
 		// ----- drawArc()
 
 		// ----- Start Create Shells Of Arc's For Each Top 10 Skill (used in animation)
 		// ----- Start onLoad() function
+		// Sorry i screwed your code just for test the server real response
         (function () {
             var skills = [.50,.75,.25,.20,.80,.95,.5,.20,.65,.12],
                 variables = [];
-            
-            for(var i=0,len=skills.length; i<len; i++) {
-            	var l = 360 * skills[i],
-            	    cnt = i + 1;
-            	variables[i] =  r.path().attr(param).attr({arc: [0, 360, R]});
-            	R -= 16;
-            	drawArc(l, 360, R, variables[i], cnt);
-            }
-            
+                var skills = $.ajax({
+                  type: 'POST',
+                  url: '/taggings/skill_tags_cloud',
+                  data: 'JSON',
+                  success: function(result){
+                    var _skills = [];
+                    for(var i=0;i < result.rows.length; i++) {
+                         _skills[i] = result.rows[i].value;
+                    }
+                    skills = _skills;
+                    for(var i=0,len=skills.length; i<len; i++) {
+            	        var l = 270 * skills[i],
+            	        cnt = i + 1;
+            	        variables[i] =  r.path().attr(param).attr({arc: [0, 360, R]});
+            	        R -= 16;
+            	        drawArc(l, 360, R, variables[i], cnt);
+                    }
 			init = false;
+
+                  }
+                });
+
 
         })();
 		// ----- End onLoad() function
     }
-    
+
     return {
         // public
         init: init
@@ -99,3 +112,4 @@ skills.common = (function() {
 })();
 
 jQuery(document).ready(skills.common.init);
+

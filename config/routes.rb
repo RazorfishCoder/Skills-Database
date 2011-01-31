@@ -2,16 +2,10 @@ Skillsdatabase::Application.routes.draw do
   resources :employees
 
   match '/taggings/skill_tags_cloud/', :to => "taggings#skill_tags_cloud"
-  match '/taggings/industry_tags_cloud/', :to => "taggings#industry_tags_cloud"
-  match '/taggings/product_tags_cloud/', :to => "taggings#product_tags_cloud"
+  match '/taggings/count/:tags_type', :to => "taggings#tags_count"
   match '/taggings/autocomplete', :to => "taggings#autocomplete"
 
-#  match '/taggings/industry_tags/:tag_name', :to => "taggings#industry_tags"
-#match ':controller(/:action(/:id(.:format)))'
   match '/taggings/:tags_type/:tag_name' , :to => "taggings#tag_query"
-#def industry_tags(tag_name)
-#def product_tags(tag_name)
-#def skill_tags(tag_name)
 
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
 
