@@ -76,7 +76,7 @@ skills.common = (function() {
 		// ----- Start onLoad() function
 		// Sorry i screwed your code just for test the server real response
         (function () {
-            var skills = [.50,.75,.25,.20,.80,.95,.5,.20,.65,.12],
+            var skillsArray = [.50,.75,.25,.20,.80,.95,.5,.20,.65,.12],
                 variables = [];
                 var skills = $.ajax({
                   type: 'POST',
@@ -87,15 +87,17 @@ skills.common = (function() {
                     for(var i=0;i < result.rows.length; i++) {
                          _skills[i] = result.rows[i].value;
                     }
-                    skills = _skills;
+                    skills = (_skills.length > 0) ? _skills : skillsArray;
                     for(var i=0,len=skills.length; i<len; i++) {
             	        var l = 270 * skills[i],
             	        cnt = i + 1;
             	        variables[i] =  r.path().attr(param).attr({arc: [0, 360, R]});
+            	        var xAxis = R - 14;
+            	        var txt = r.text(220,xAxis,"skill (" + (100*skills[i]) + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'});
             	        R -= 16;
             	        drawArc(l, 360, R, variables[i], cnt);
                     }
-			init = false;
+			        init = false;
 
                   }
                 });

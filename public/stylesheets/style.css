@@ -233,18 +233,6 @@ button {  width: auto; overflow: visible; }
  h1, h2, h3, h4, h5, h6 {font-family: 'Arvo', serif;color:#667078;font-weight:normal;margin-bottom:0.5em;}
  h1 {font-size:246.2%;line-height:246.2%;color:#fff;}
  h2 {font-size:138.5%;}
- 
- /* delete?
- #mainContent {float:left; padding:0 10px 0 0; width:590px;}
- #supplementContent {float:left; padding:0 0 0 10px; width:390px;}
-
- #chart {margin:0 0 24px; position:relative;}
- .contentContainer {border:1px solid black; margin:0 0 24px;}
- #profileImg {float:right; padding:0 10px;}
- .contentContainer ul {list-style-type:none; margin:0; padding:0 10px 12px;}
- .contentContainer p {margin:0; padding:0 10px 12px;}
- .contentContainer form {padding:0 10px 12px;}
- */
 
  /* END: Primary Styles */
   

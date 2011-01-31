@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Skills Database</title>
+  <title><%= @title %></title>
 
   <%= render "shared/head" %>
 
@@ -20,74 +20,7 @@
 	  	</header>
 
 	  	<div class="clearfix" id="main">
-	  	    <div class="primary">
-	  	        <section>
-	  	        <h2>All Skills</h2>
-
-	  	        <div id="skills-graph"></div>
-	  	        </section>
-	  	    </div>
-
-            <div class="secondary">
-    	    	<section class="profile clearfix">
-    			<% if current_user %>
-    	      		<h2>Your Profile</h2>
-                      <img src="<%= current_user.picture_url %>" width="80" height="80" id="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
-                        <ul>
-    		        	    <li><h3><%= current_user.first_name %> <%= current_user.last_name %> // <%= current_user.job_title %></h3></li>
-        		        	<li>Industry: <%= current_user.industry %></li>
-        		        	<li>Skills: </li>
-        		        	<li>Products: </li>
-      			        	<% if current_user.resume -%>
-		                  	<li>Resume: <%= link_to current_user.resume, resume_path(current_user) %></li>
-	                  	<% end -%>
-                      <li>
-                        <%= link_to 'Edit', edit_employee_path(current_user) %></li>
-    		            </ul>
-
-    	        	    <p class="update-profile"><%=link_to 'Update your Profile', current_user.linkedin_url %></p>
-    			<% else %>
-    				<%= link_to "Login via LinkedIn", '/auth/linked_in' %>
-    			<% end %>
-    	      	</section>
-
-    	      	<div class="clearfix">
-    	      	<section class="twoup">
-    	      	    <h2>Looking For...</h2>
-
-    		        <ul>
-    		            <li><a href="#">Sharepoint 2010</a></li>
-    		            <li><a href="#">Autonomy CRM</a></li>
-                        <li><a href="#">IPhone Objective-C development</a></li>
-                        <li><a href="#">PhoneGap Development</a></li>
-                        <li><a href="#">Sharepoint 2010</a></li>
-                        <li><a href="#">Autonomy CRM</a></li>
-                        <li><a href="#">IPhone Objective-C development</a></li>
-    		        </ul>
-    	      	</section>
-
-    	      	<section class="twoup last">
-    	      	    <h2>Search</h2>
-    		        <form id="searchform" name="" method="" action="">
-    		            <div class="searchbox">
-    		                <input type="text" value="">
-    		        	    <input id="search-btn" type="image" src="/images/btn.search.gif">
-    		        	</div>
-    		        </form>
-    		        <p class="browse-link arvo"><a href="#">Browse our visual<br/>skills graph</a></p>
-    	      	</section>
-    	      	</div>
-    	      	<section>
-    	      	    <h2>Recent updates...</h2>
-
-	                <ul class="list">
-	                  <% @events.each do |event| -%>
-	                    <%= render :partial => "/events/#{event.event_type}", :locals => {:event => event} %>
-                    <% end -%>
-	                </ul>
-
-        	      </section>
-    	    </div>
+	  	    <%= yield %>
 
 	  	</div>
 
