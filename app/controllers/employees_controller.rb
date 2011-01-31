@@ -30,7 +30,7 @@ class EmployeesController < ApplicationController
     params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
 
     if @employee.update_attributes(params[:employee])
-      redirect_to(@employee, :notice => 'Employee was successfully updated.')
+      redirect_to(root_path, :notice => 'Employee was successfully updated.')
     else
       render :action => "edit"
     end
