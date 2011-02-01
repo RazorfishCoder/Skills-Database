@@ -1,15 +1,12 @@
 class EmployeesController < ApplicationController
   before_filter :find_employee, :only => [:show, :edit, :update, :resume]
-
-  def index
-    @employees = Employee.all
-  end
+  before_filter :validate_current_user, :only => [:edit, :update]
 
   def show
   end
 
   def edit
- 
+
     @skill_tags_names = @employee.skill_tags_names
     @industry_tags_names = @employee.industry_tags_names
     @product_tags_names = @employee.product_tags_names
@@ -21,7 +18,7 @@ class EmployeesController < ApplicationController
       @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
     end
 
-#   need refactor
+    #TODO need refactor
     @employee.skill_tags = []
     params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
     @employee.industry_tags = []
@@ -44,6 +41,10 @@ class EmployeesController < ApplicationController
 
   def find_employee
     @employee = Employee.find_by_permalink(params[:id])
+  end
+
+  def validate_current_user
+    redirect_to root_path, :notice => "You don't have permission to complete this task" unless @employee == current_user
   end
 end
 
