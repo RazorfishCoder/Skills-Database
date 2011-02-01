@@ -1,5 +1,5 @@
 Skillsdatabase::Application.routes.draw do
-  resources :employees
+  resources :employees, :except => ['index']
 
   match '/taggings/skill_tags_cloud/', :to => "taggings#skill_tags_cloud"
   match '/taggings/count/:tags_type', :to => "taggings#tags_count"
