@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
- 
+
     @skill_tags_names = @employee.skill_tags_names
     @industry_tags_names = @employee.industry_tags_names
     @product_tags_names = @employee.product_tags_names
@@ -23,11 +23,11 @@ class EmployeesController < ApplicationController
 
 #   need refactor
     @employee.skill_tags = []
-    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
+    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag.downcase } }
     @employee.industry_tags = []
-    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag } }
+    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag.downcase } }
     @employee.product_tags = []
-    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
+    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag.downcase } }
 
     if @employee.update_attributes(params[:employee])
       redirect_to(root_path, :notice => 'Employee was successfully updated.')
