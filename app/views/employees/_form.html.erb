@@ -22,10 +22,14 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :skill_tags %><br />
-    <%= text_field_tag :skill_tags , @skill_tags_names, :class => "tagautocomplete" %>
-  </div>
+ <% for skill_tag in @employee.skill_tags %>
+    <%= fields_for "employee[skill_tags][]", skill_tag do |skill_tag_form| %>
+      <p>
+        name: <%= skill_tag_form.text_field :name, :name => "employee[skill_tags][#{skill_tag.name}][name]" %>
+        rate: <%= skill_tag_form.text_field :rate,:name => "employee[skill_tags][#{skill_tag.name}][rate]" %>
+      </p>
+    <% end %>
+  <% end %>
   <div class="field">
     <%= f.label :industry_tags %><br />
     <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
