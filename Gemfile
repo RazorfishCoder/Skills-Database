@@ -28,6 +28,7 @@ gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git
 gem 'memories'
 #gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
 gem 'omniauth', ">= 0.1.6"
+gem 'indextank'
 
 #gem "acts_as_audited", "2.0.0.rc2"
 
@@ -37,9 +38,9 @@ gem 'omniauth', ">= 0.1.6"
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development, :test do
+   gem 'ruby-debug19', :require => 'ruby-debug'
    gem 'rspec-rails',      ">= 2.0.0.beta"
 end
 
