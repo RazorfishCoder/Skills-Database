@@ -75,37 +75,36 @@ skills.common = (function() {
 		// ----- Start Create Shells Of Arc's For Each Top 10 Skill (used in animation)
 		// ----- Start onLoad() function
         (function () {
-            var skillsArray = [.50,.75,.25,.20,.80,.95,.5,.20,.65,.12],
-                colorArray = ['#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900','#EEF2F5'],
-                variables = [], data = [];
+            var colorArray = ['#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900','#EEF2F5'],
+                json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.6666666666666666},{"key":"ruby","value":1.0},{"key":"sql","value":0.3333333333333333}]};
                 var skills = $.ajax({
                   type: 'POST',
                   url: '/taggings/skill_tags_cloud',
                   data: 'JSON',
                   success: function(result){
-                    var _skills = [];
-                    for(var i=0;i < result.rows.length; i++) {
-                         _skills[i] = result.rows[i].value;
-                    }
-                    skillsFinal = (_skills.length > 0) ? _skills : skillsArray;
-                    for(var i=0,len=skillsFinal.length; i<len; i++) {
-            	        var l = 360 * skillsFinal[i],
-            	            percentage = 100*skillsFinal[i],
-            	            cnt = i + 1;
-            	        variables[i] =  r.path().attr(param).attr({arc: [0, 360, R]}).attr({dataStore: percentage}).click(function(){
-            	                //alert(this.attr('dataStore'));
-            	            });
-            	        // data for use on events
-            	        data.push(percentage);
-            	        // text labels. we start from the outermost circle and work in (subtracting for text size)
-            	        var yAxis = outerCoord - 8;
-            	        var txt = r.text(220,yAxis,"skill (" + percentage + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'}).toFront();
-            	        // make adjustments
-            	        R -= step;
-            	        outerCoord += step;
-            	        // animate the arc
-            	        drawArc(l, 360, R, variables[i], cnt);
-                    }
+                      var result = ($(result.rows).size() > 0) ? result : json; // use sample json for testing
+                      $.each(result.rows,function(i,val){
+                          var label = this.key,
+                              percentageRaw = this.value,
+                              percentage = parseInt(100 * percentageRaw),
+                              circleLength = 360 * percentageRaw,
+                  	          cnt = i + 1,
+                  	          data = [],variables = [];
+                  	    
+                  	       variables[label] =  r.path().attr(param).attr({arc: [0, 360, R]}).attr({dataStore: percentage}).click(function(){
+                  	                //alert(this.attr('dataStore'));
+                  	            });
+                  	        // data for use on events
+                  	        data.push(percentage);
+                  	        // text labels. we start from the outermost circle and work in (subtracting for text size)
+                  	        var yAxis = outerCoord - 8;
+                  	        var txt = r.text(220,yAxis, label + " (" + percentage + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'}).toFront();
+                  	        // make adjustments
+                  	        R -= step;
+                  	        outerCoord += step;
+                  	        // animate the arc
+                  	        drawArc(circleLength, 360, R, variables[label], cnt);
+                      });
 			        init = false;
                   }
                 });
