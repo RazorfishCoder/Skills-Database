@@ -14,6 +14,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -22,7 +23,8 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
- <% for skill_tag in @employee.skill_tags %>
+    <h3>Skills</h3>
+  <% for skill_tag in @employee.skill_tags %>
     <%= fields_for "employee[skill_tags][]", skill_tag do |skill_tag_form| %>
       <p>
         name: <%= skill_tag_form.text_field :name, :name => "employee[skill_tags][#{skill_tag.name}][name]" %>
@@ -30,6 +32,9 @@
       </p>
     <% end %>
   <% end %>
+  <p><%= add_child_link "New skill", :skill_tag %></p>
+  <%= new_child_fields_template(f, :skill_tag)%>
+
   <div class="field">
     <%= f.label :industry_tags %><br />
     <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
