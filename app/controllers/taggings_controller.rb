@@ -1,9 +1,9 @@
 class TaggingsController < ApplicationController
 
     #params skill_tags
-    #e.g /taggings/skills_tags/ruby
-    #    /taggings/skills_tags/ruby.json
-    #    /taggings/skills_tags/ruby.xml
+    #e.g /taggings/skill_tags/ruby
+    #    /taggings/skill_tags/ruby.json
+    #    /taggings/skill_tags/ruby.xml
 
 
     #params product_tags
