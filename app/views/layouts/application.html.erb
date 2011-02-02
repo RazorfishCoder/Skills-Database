@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Skills Database</title>
+  <title>Skills Database <%= @title %></title>
   <%= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag "jit/base", "jit/Sunburst" %>
   <%= javascript_include_tag(:defaults) %>
@@ -18,12 +18,21 @@
   <%= render "shared/head" %>
 
 </head>
-
 <body lang="en" >
-    <%= yield %>
+    <!-- Start Wrapper -->
+	<div id="wrap">
+	  	<header>
+	  	    <h1>Razorfish Skills Database</h1>
+	  	</header>
 
-    <%= render "shared/scripts" %>
+	  	<div class="clearfix" id="main">
+	    	<%= yield %>
+      </div>
+	  	<footer>
 
+	  	</footer>
+      <%= render "shared/scripts" %>
+  </div>
 </body>
 </html>
 

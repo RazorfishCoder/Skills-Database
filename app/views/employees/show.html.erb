@@ -30,6 +30,18 @@
   <%= @employee.product_tags_names %>
 </p>
 
+<p><b>Professional Info</b>
+  <%= @employee.professional_info %>
+</p>
+
+<p><b>Give / Gets</b>
+  <%= @employee.give_gets %>
+</p>
+
+<p><b>Interesting Facts</b>
+  <%= @employee.interesting_facts %>
+</p>
+
 <% if current_user.resume -%>
   <p>
     <b>Resume:</b>
@@ -37,6 +49,7 @@
   </p>
 <% end -%>
 
+
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Back', root_path %>
 
