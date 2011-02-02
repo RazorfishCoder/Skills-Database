@@ -17,6 +17,7 @@ class TaggingsController < ApplicationController
     #    /taggings/industry_tags/chemicals.xml
   def tag_query
     @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name])
+    @tag = params[:tag_name]
     respond_to do |format|
       format.json {render :json => @employees.to_json}
       format.xml {render :xml => @employees.to_xml}
