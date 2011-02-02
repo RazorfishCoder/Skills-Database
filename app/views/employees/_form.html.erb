@@ -23,18 +23,22 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-    <h3>Skills</h3>
-  <% for skill_tag in @employee.skill_tags %>
-    <%= fields_for "employee[skill_tags][]", skill_tag do |skill_tag_form| %>
-      <p>
-        name: <%= skill_tag_form.text_field :name, :name => "employee[skill_tags][#{skill_tag.name}][name]" %>
-        rate: <%= skill_tag_form.text_field :rate,:name => "employee[skill_tags][#{skill_tag.name}][rate]" %>
-      </p>
-    <% end %>
-  <% end %>
-  <p><%= add_child_link "New skill", :skill_tag %></p>
-  <%= new_child_fields_template(f, :skill_tag)%>
 
+  <h3>Skills</h3>
+  <div id="skill_tags">
+    <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
+  </div>
+
+  <%= link_to 'add skills','', :id => 'add_skill' %>
+  <div id="_skill_tags">
+  <div id="skill_tag_fields_template">
+    AGREGADO
+    <p>
+      name: <input type="text" value="" name="run_time_name" id="employee_skill_tags_ruby_name">
+      rate: <input type="text" value="" name="run_time_name" id="employee_skill_tags_ruby_rate">
+    </p>
+
+  </div>
   <div class="field">
     <%= f.label :industry_tags %><br />
     <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
