@@ -30,15 +30,6 @@
   </div>
 
   <%= link_to 'add skills','', :id => 'add_skill' %>
-  <div id="_skill_tags">
-  <div id="skill_tag_fields_template">
-    AGREGADO
-    <p>
-      name: <input type="text" value="" name="run_time_name" id="employee_skill_tags_ruby_name">
-      rate: <input type="text" value="" name="run_time_name" id="employee_skill_tags_ruby_rate">
-    </p>
-
-  </div>
   <div class="field">
     <%= f.label :industry_tags %><br />
     <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>

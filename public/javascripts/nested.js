@@ -3,9 +3,18 @@ $(document).ready(function(){
     var content = $('#skill_tag_fields_template').html();
     var new_id  = new Date().getTime();
     $('#skill_tags').before(content.replace('run_time_name', new_id));
-        alert('so siome');
+
       return false;
   });
+
+//  var skill_nested = '<div id="skill_tag_fields_template">
+//  AGREGADO
+//  <p>
+//    name: <input type="text" value="" name="employee[skill_tags][run_time_name][name]" id="employee_skill_tags_run_time_name_name">
+//    rate: <input type="text" value="" name="employee[skill_tags][run_time_name][rate]" id="employee_skill_tags_run_time_name_rate">
+//  </p>
+
+//</div>'
 
 //  $('form a.add_child').click(function() {
 //    var assoc   = $(this).attr('data-association');

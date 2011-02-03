@@ -1,7 +1,7 @@
 <%= fields_for "employee[skill_tags]", skill_tag do |skill_tag_form| %>
   <p>
-    name: <%= text_field_tag "employee[skill_tags][#{skill_tag['name']}][name]", skill_tag['name'] %>
-    rate: <%= text_field_tag "employee[skill_tags][#{skill_tag['name']}][rate]", skill_tag['rate'] %>
+    name: <%= text_field_tag "employee[skill_tags]['#{Time.current.to_f.to_s.sub('.','')}'][name]", skill_tag['name'] %>
+    rate: <%= text_field_tag "employee[skill_tags]['#{Time.current.to_f.to_s.sub('.','')}'][rate]", skill_tag['rate'] %>
   </p>
 <% end %>
 
