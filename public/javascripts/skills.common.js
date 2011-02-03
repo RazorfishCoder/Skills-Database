@@ -38,7 +38,7 @@ skills.common = (function() {
             return {path: path, stroke: color};
         };
 		// ----- End Create Custom Attribute For A Dynamic Arc
-		
+
 		// ----- Start Create Custom Attribute For Data Storage
         r.customAttributes.dataStore = function (value) {
             value = value;
@@ -75,7 +75,7 @@ skills.common = (function() {
 		// ----- Start Create Shells Of Arc's For Each Top 10 Skill (used in animation)
 		// ----- Start onLoad() function
         (function () {
-            var colorArray = ['#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900','#EEF2F5'],
+            var colorArray = ['#EEF2F5','#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900'],
                 json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.6666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333}]};
                 var skills = $.ajax({
                   type: 'POST',
@@ -87,10 +87,10 @@ skills.common = (function() {
                           var label = this.key,
                               percentageRaw = this.value,
                               percentage = parseInt(100 * percentageRaw),
-                              circleLength = 360 * percentageRaw,
+                              circleLength = 270 * percentageRaw,
                   	          cnt = i + 1,
                   	          data = [],variables = [];
-                  	    
+
                   	       variables[label] =  r.path().attr(param).attr({arc: [0, 360, R]}).attr({dataStore: percentage}).click(function(){
                   	                //alert(this.attr('dataStore'));
                   	            });
