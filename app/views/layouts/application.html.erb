@@ -14,16 +14,14 @@
 <body lang="en" >
     <!-- Start Wrapper -->
 	<div id="wrap">
-	  	<header>
-	  	    <%= render "shared/header" %>
-	  	</header>
+	    <%= render "shared/header" %>
 
-	  	<div class="clearfix" id="main">
+	  	<div id="main">
 	    	<%= yield %>
-      </div>
-	  	<footer>
-
-	  	</footer>
+        </div>
+	  
+	    <%= render "shared/footer" %>
+	  
       <%= render "shared/scripts" %>
   </div>
 </body>

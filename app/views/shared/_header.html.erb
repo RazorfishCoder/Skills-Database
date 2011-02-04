@@ -1,1 +1,7 @@
-<h1><%= link_to "Razorfish Skills Database", root_path %></h1>
+<header>
+
+<%= link_to("Sign Out", signout_url, :class => 'signout-link') if current_user %>
+
+<h1><%= link_to("Razorfish Skills Database", root_path) %></h1>
+
+</header>

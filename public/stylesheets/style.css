@@ -177,18 +177,24 @@ button {  width: auto; overflow: visible; }
  */
  
  body {background-color:#dbdbdb;min-height:100%;}
- header {height:81px;padding:0 20px;border-bottom:4px solid #010101;background:#b2b3b7 url(../images/rf.logo.gif) 98% 20px no-repeat;}
+ header {height:81px;padding:0 20px;border-bottom:4px solid #010101;background:#b2b3b7 url(../images/rf.logo.gif) 98% 15px no-repeat;}
  #wrap {margin:0 auto; width:970px; background-color:#fff;min-height:100%;}
  #main {padding:10px 0 10px 20px;}
- .primary {float:left;width:485px;margin:0 12px 0 0;}
- .secondary {float:left;width:437px;}
  
- section {margin:30px 0 20px 0;position:relative;background-color:#e6e6e6;padding:10px;clear:both;border-radius:10px;-moz-border-radius:10px;}
- section.twoup {float:left;clear:none;width:193px;min-height:120px;margin-right:10px;}
- section.last {margin-right:0;}
- section h2 {position:absolute;top:-30px;}
+ header h1 {padding-top:20px;color:#fff;}
+ header h1 a {text-decoration:none;}
+ header a.signout-link {float:right;margin:50px 5px 0 0;}
  
- .primary section {min-height:442px;}
+ article .primary {float:left;width:485px;margin:0 12px 0 0;}
+ article .secondary {float:left;width:437px;}
+ article.wide-right .primary {float:right;width:725px;margin:0;}
+ article.wide-right .secondary {float:left;width:213px;margin:0 10px 0 0;}
+ 
+ article section {margin:0 0 20px 0;position:relative;background-color:#e6e6e6;padding:10px;clear:both;border-radius:10px;-moz-border-radius:10px;}
+ article .twoup {float:left;clear:none;width:213px;min-height:140px;margin-right:10px;}
+ article .last {margin-right:0;}
+ 
+ section.skills-graph-container {min-height:442px;}
  
  footer {clear:both;height:31px;background:#b2b3b7 url(../images/logo.copyright.small.gif) center right no-repeat;}
  
@@ -200,15 +206,21 @@ button {  width: auto; overflow: visible; }
  #profile-img {float:left;margin:0 10px 10px 0;}
  section.profile h3 {font-family:Arial,sans-serif;font-size:123.1%;font-weight:bold;}
  section.profile .update-profile {float:right;font-family: 'Arvo', serif;}
+ /* section variants */
+ section.callout {margin:0 0 20px 0;background-color:#6d4d26;color:#fffcef;}
+ section.callout h2 {position:static;top:0;}
  
  /* search box */
- .searchbox {position:relative;}
+ .searchbox {position:relative;min-height:120px;width:193px;}
  .searchbox input[type=text] {width:169px;height:24px;padding-right:24px;border:0 none;background-color:#fff;}
  .searchbox input[type=image] {position:absolute;top:2px;right:1px;}
  .browse-link {position:absolute;bottom:7px;right:7px;}
  
  /* skills graph */
  #skills-graph {height:450px;width:450px;margin:0;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);}
+ 
+ /* skill summary page */
+ article.skill-summary section.profile {float:left;clear:none;margin:0 10px 20px 0;width:330px;height:90px;}
  
  /* fonts (base font size is 13px)
  FOR PIXELS (PX)	DECLARE THIS PERCENT (%)
@@ -232,9 +244,8 @@ button {  width: auto; overflow: visible; }
  */
  
  h1, h2, h3, h4, h5, h6 {font-family: 'Arvo', serif;color:#667078;font-weight:normal;margin-bottom:0.5em;}
- h1 {font-size:246.2%;line-height:246.2%;color:#fff;}
+ h1 {font-size:246.2%;}
  h2 {font-size:138.5%;}
- header h1 a {text-decoration:none;}
 
  /* END: Primary Styles */
   
