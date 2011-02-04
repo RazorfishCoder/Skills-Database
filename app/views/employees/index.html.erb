@@ -12,12 +12,15 @@
             </ul>
   	</section>
   	<% end %>
+  	<div class="pagination">
+  	    Page: 1 2 3 4 5 6 7 8 9 10 next >>
+  	</div>
 </div>
 <div class="secondary">
     <h2>Skills / <%= @tag.upcase %></h2>
 
     <section class="callout">
-        <h2><%= @tag.upcase %></h2>
+        <h2><%= link_to(@tag.upcase, "#") %></h2>
         <ul>
             <li>100 - 80 % (15)</li>
             <li>80 - 60 % (20)</li>
@@ -29,7 +32,7 @@
 
     <h3>Interesting Facts</h3>
     <section>
-        <h4>Skills</h4>
+        <h4><%= link_to("Skills","#") %></h4>
         <ul>
             <li>100% ruby - 90% java</li>
             <li>80% ruby - 10% .net</li>

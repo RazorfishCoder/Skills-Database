@@ -207,8 +207,9 @@ button {  width: auto; overflow: visible; }
  section.profile h3 {font-family:Arial,sans-serif;font-size:123.1%;font-weight:bold;}
  section.profile .update-profile {float:right;font-family: 'Arvo', serif;}
  /* section variants */
- section.callout {margin:0 0 20px 0;background-color:#6d4d26;color:#fffcef;}
- section.callout h2 {position:static;top:0;}
+ section.callout {margin:0 0 20px 0;background-color:#6d4d26;color:#fffcef !important;}
+ section.callout h2 {font-size:108%;}
+ section.callout h2 a {color:#fffcef;}
  
  /* search box */
  .searchbox {position:relative;min-height:120px;width:193px;}
@@ -220,7 +221,12 @@ button {  width: auto; overflow: visible; }
  #skills-graph {height:450px;width:450px;margin:0;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);}
  
  /* skill summary page */
+ /* skill page */
+ article.skill-summary .secondary section {padding:20px;color:#667078;}
  article.skill-summary section.profile {float:left;clear:none;margin:0 10px 20px 0;width:330px;height:90px;}
+ 
+ /* pagination controls */
+ .pagination {float:right;margin:0 10px 0 0;}
  
  /* fonts (base font size is 13px)
  FOR PIXELS (PX)	DECLARE THIS PERCENT (%)
@@ -246,6 +252,9 @@ button {  width: auto; overflow: visible; }
  h1, h2, h3, h4, h5, h6 {font-family: 'Arvo', serif;color:#667078;font-weight:normal;margin-bottom:0.5em;}
  h1 {font-size:246.2%;}
  h2 {font-size:138.5%;}
+ h3 {font-size:123.1%;}
+ h2, h3, h4 {text-indent:12px;}
+ section h2, section h3, section h4 {text-indent:0;}
 
  /* END: Primary Styles */
   
