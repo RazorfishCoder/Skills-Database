@@ -15,17 +15,13 @@
 <body lang="en" >
     <!-- Start Wrapper -->
 	<div id="wrap">
-	  	<header>
-	  	    <h1>Razorfish Skills Database</h1>
-	  	</header>
+	    <%= render "shared/header" %>
 
-	  	<div class="clearfix" id="main">
+	  	<div id="main">
 	  	    <%= yield %>
 	  	</div>
 
-	  	<footer>
-
-	  	</footer>
+	  	<%= render "shared/footer" %>
 	</div>
 	<!-- END Wrapper -->
 
