@@ -1,0 +1,47 @@
+<article class="wide-right skill-summary clearfix">
+<div class="primary">
+    <h2>Top <%= @tag.upcase %></h2>
+    <% for i in 0..7 #faking this for now %>    
+    <section class="profile">
+	    <img src="<%= current_user.picture_url %>" width="80" height="80" id="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
+            <ul>
+        	    <li><h3><%= current_user.first_name %> <%= current_user.last_name %> // <%= current_user.job_title %></h3></li>
+	        	<li>Skills: </li>
+	        	<li>Products: </li>
+	        	<li>Industry: <%= current_user.industry %></li>
+            </ul>
+  	</section>
+  	<% end %>
+  	<div class="pagination">
+  	    Page: 1 2 3 4 5 6 7 8 9 10 next >>
+  	</div>
+</div>
+<div class="secondary">
+    <h2>Skills / <%= @tag.upcase %></h2>
+
+    <section class="callout">
+        <h2><%= link_to(@tag.upcase, "#") %></h2>
+        <ul>
+            <li>100 - 80 % (15)</li>
+            <li>80 - 60 % (20)</li>
+            <li>60 - 40 % (10)</li>
+            <li>40 - 20 % (5)</li>
+            <li>20 - 0 % (5)</li>
+        </ul>
+    </section>
+
+    <h3>Interesting Facts</h3>
+    <section>
+        <h4><%= link_to("Skills","#") %></h4>
+        <ul>
+            <li>100% ruby - 90% java</li>
+            <li>80% ruby - 10% .net</li>
+            <li>70% ruby - 1% C#</li>
+            <li>60% ruby - 5% flash</li>
+            <li>50% ruby - 90% SQL</li>
+            <li>40% ruby - 90% php</li>
+            <li>10% ruby - 90% php</li>
+        </ul>
+    </section>
+</div>
+</article>
