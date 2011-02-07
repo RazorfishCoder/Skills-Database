@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
 
     #TODO need refactor
     @employee.skill_tags = []
-#    params[employee"skill_tags"].each{|tag| @employee.skill_tags << {:name => tag.name.downcase, :rate => tag.rate } }
+#    params[:employee]["skill_tags"].each{|tag| @employee.skill_tags << {:name => tag.name.downcase, :rate => tag.rate } }
     @employee.industry_tags = []
     params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag.downcase } }
     @employee.product_tags = []
