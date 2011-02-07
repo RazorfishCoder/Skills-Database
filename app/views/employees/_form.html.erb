@@ -14,6 +14,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -22,10 +23,13 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :skill_tags %><br />
-    <%= text_field_tag :skill_tags , @skill_tags_names, :class => "tagautocomplete" %>
+
+  <h3>Skills</h3>
+  <div id="skill_tags">
+    <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
   </div>
+
+  <%= link_to 'add skills','', :id => 'add_skill' %>
   <div class="field">
     <%= f.label :industry_tags %><br />
     <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>

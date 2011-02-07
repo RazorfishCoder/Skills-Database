@@ -19,11 +19,11 @@ class EmployeesController < ApplicationController
 
     #TODO need refactor
     @employee.skill_tags = []
-    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
+#    params[:employee]["skill_tags"].each{|tag| @employee.skill_tags << {:name => tag.name.downcase, :rate => tag.rate } }
     @employee.industry_tags = []
-    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag } }
+    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag.downcase } }
     @employee.product_tags = []
-    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
+    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag.downcase } }
 
     if @employee.update_attributes(params[:employee])
       redirect_to(root_path, :notice => 'Employee was successfully updated.')
