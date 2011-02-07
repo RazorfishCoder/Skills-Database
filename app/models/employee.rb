@@ -153,7 +153,7 @@ class Employee < BaseCouchDocument
   # public Methods
   ################
   def validate_skill_tags
-    debugger
+
     self.skill_tags.map!{|x| x  unless  x.name.blank? }.compact!
   end
 
