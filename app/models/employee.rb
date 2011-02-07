@@ -112,7 +112,7 @@ class Employee < BaseCouchDocument
   ################
   # Observers
   ################
-  before_save :generate_permalink
+  before_save :generate_permalink, :validate_skill_tags
 
 
   def generate_permalink
@@ -152,6 +152,10 @@ class Employee < BaseCouchDocument
   ################
   # public Methods
   ################
+  def validate_skill_tags
+    debugger
+    self.skill_tags.map!{|x| x  unless  x.name.blank? }.compact!
+  end
 
   def to_param
     self.permalink
