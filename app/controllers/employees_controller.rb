@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_filter :find_employee, :only => [:show, :edit, :update, :resume]
+  before_filter :find_employee, :only => [:show, :edit, :update, :resume, :bio]
   before_filter :validate_current_user, :only => [:edit, :update]
 
   def show
@@ -14,9 +14,8 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    if params[:resume]
-      @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
-    end
+    @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename) if params[:resume]
+    @employee.store_bio(params[:bio].tempfile, params[:bio].original_filename) if params[:bio]
 
     #TODO need refactor
     @employee.skill_tags = []
@@ -35,6 +34,10 @@ class EmployeesController < ApplicationController
 
   def resume
     send_data(@employee.resume_data, :filename => @employee.resume)
+  end
+
+  def bio
+    send_data(@employee.bio_data, :filename => @employee.bio)
   end
 
   private

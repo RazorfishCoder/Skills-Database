@@ -18,7 +18,7 @@ class Employee < BaseCouchDocument
   property :skill_tags do |skill_tag|
                           skill_tag.property :name, String
                           skill_tag.property :rate, Integer
-                      end
+                       end
 
   property :product_tags do |product_tag|
                             product_tag.property :name, String
@@ -29,6 +29,7 @@ class Employee < BaseCouchDocument
   property :email
 
   property :resume
+  property :bio
   property :permalink
   property :professional_info
   property :give_gets
@@ -173,13 +174,23 @@ class Employee < BaseCouchDocument
     "#{self.first_name} #{self.last_name}".strip
   end
 
+  #TODO dry attachments code
   def store_resume(file, filename)
     self.create_attachment({:file => file , :name => filename})
     self.resume = filename
   end
 
+  def store_bio(file, filename)
+    self.create_attachment({:file => file , :name => filename})
+    self.bio = filename
+  end
+
   def resume_data
     self.read_attachment(self.resume)
+  end
+
+  def bio_data
+    self.read_attachment(self.bio)
   end
 
   #################
