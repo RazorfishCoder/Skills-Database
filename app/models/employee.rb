@@ -119,7 +119,7 @@ class Employee < BaseCouchDocument
     self.permalink ||= self.full_name.parameterize
   end
 
-  after_save :extract_differences
+  after_save :extract_differences, :save_index
 
   def extract_differences
     useless_properties = ['created_at', 'updated_at']
@@ -136,6 +136,10 @@ class Employee < BaseCouchDocument
 
       EmployeeEvent.create(:employee => self, :changes => changes, :event_type => 'update_profile')
     end
+  end
+
+  def save_index
+     EmployeeIndexer.add_document(self)
   end
 
   ################

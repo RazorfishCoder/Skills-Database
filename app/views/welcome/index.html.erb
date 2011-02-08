@@ -32,41 +32,39 @@
   	</section>
 
   	<div class="clearfix">
-  	     <div class="twoup">
-  	     <h2>Looking For...</h2>
-  	     <section>
-            <ul>
-                <li><a href="#">Sharepoint 2010</a></li>
-                <li><a href="#">Autonomy CRM</a></li>
-                <li><a href="#">IPhone Objective-C development</a></li>
-                <li><a href="#">PhoneGap Development</a></li>
-                <li><a href="#">Sharepoint 2010</a></li>
-                <li><a href="#">Autonomy CRM</a></li>
-                <li><a href="#">IPhone Objective-C development</a></li>
-            </ul>
-      	</section>
-        </div>
-        <div class="twoup last">
-        <h2>Search</h2>        
-  	    <section>
-      	    <form id="searchform" name="" method="" action="">
-                <div class="searchbox">
-                    <input type="text" value="">
-            	    <input id="search-btn" type="image" src="/images/btn.search.gif">
-            	</div>
-            </form>
-            <p class="browse-link arvo"><a href="#">Browse our visual<br/>skills graph</a></p>
-      	</section>
-      	</div>
+  	<section class="twoup">
+  	    <h2>Looking For...</h2>
+
+        <ul>
+            <li><a href="#">Sharepoint 2010</a></li>
+            <li><a href="#">Autonomy CRM</a></li>
+            <li><a href="#">IPhone Objective-C development</a></li>
+            <li><a href="#">PhoneGap Development</a></li>
+            <li><a href="#">Sharepoint 2010</a></li>
+            <li><a href="#">Autonomy CRM</a></li>
+            <li><a href="#">IPhone Objective-C development</a></li>
+        </ul>
+  	</section>
+
+  	<section class="twoup last">
+  	    <h2>Search</h2>
+        <%= form_tag search_path, :method => :get do %>
+            <div class="searchbox">
+              <%= text_field_tag :query %>
+              <button type="submit">Search</button>
+        	    <input id="search-btn" type="image" src="/images/btn.search.gif">
+        	</div>
+        <% end %>
+        <p class="browse-link arvo"><a href="#">Browse our visual<br/>skills graph</a></p>
+  	</section>
   	</div>
         <h2>Recent updates...</h2>
-        
   	    <section> 	    
         <ul class="list">
-          <% @events.each do |event| -%>
+        <% @events.each do |event| -%>
             <%= render :partial => "/events/#{event.event_type}", :locals => {:event => event} %>
         <% end -%>
         </ul>
         </section>
-</div>
+    </div>
 </article>

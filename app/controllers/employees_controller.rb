@@ -37,6 +37,18 @@ class EmployeesController < ApplicationController
     send_data(@employee.resume_data, :filename => @employee.resume)
   end
 
+  def search
+    if params[:query]
+      #Search index based on query
+      @index_results = EmployeeIndexer.search(params[:query])
+    end 
+    # Search DB based on index results.
+    @ids = []
+    @index_results['results'].each {|doc| @ids << doc['docid'] }
+    debugger
+    @results = Employee.find(@ids.join(""))
+  end
+
   private
 
   def find_employee

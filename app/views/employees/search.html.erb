@@ -1,0 +1,10 @@
+<% if @results %>
+    <p id="result-count">Your search for "<%= params[:query] %>" returned <%= pluralize @index_results['matches'], 'result' %></p>
+    <ul id="results">
+          <li>
+           <%= @results['first_name'] %> -
+           <%= @results['last_name'] %> -
+           <%= image_tag @results['picture_url'] %>
+          </li>
+    </ul>
+<% end %>
