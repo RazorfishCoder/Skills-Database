@@ -3,3 +3,15 @@
 
 en:
   hello: "Hello world"
+
+  skill_tags: skills
+  industry_tags: industries
+  product_tags: products
+  email: email
+  professional_info: professional info
+  give_gets: give/gets
+  interesting_facts: interesting facts
+  first_name: first name
+  bio: biography
+  resume: resume
+
