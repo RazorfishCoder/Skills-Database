@@ -67,3 +67,4 @@ Raphael.el.addRoundedCorner = function (r, dir) {
 Raphael.el.andClose = function () {
     return this.attr({path: this.attrs.path + "z"});
 };
+

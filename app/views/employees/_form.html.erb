@@ -3,7 +3,7 @@
 
 <%= form_for(@employee, :html => {:multipart => true}) do |f| %>
   <% if @employee.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation_skil">
       <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
       <ul>
@@ -14,6 +14,7 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -22,17 +23,20 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :skill_tags %><br />
-    <%= text_field_tag :skill_tags , @skill_tags_names, :class => "tagautocomplete" %>
+
+  <h3>Skills</h3>
+  <div id="skill_tags">
+    <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
   </div>
+
+  <%= link_to 'add skills','', :id => 'add_skill' %>
   <div class="field">
     <%= f.label :industry_tags %><br />
-    <%= text_field_tag :industry_tags , @industry_tags_names, :class => "tagautocomplete" %>
+    <%= text_field_tag :industry_tags , @industry_tags_names, :class => "industry_tags tagautocomplete" %>
   </div>
   <div class="field">
     <%= f.label :product_tags %><br />
-    <%= text_field_tag :product_tags , @product_tags_names, :class => "tagautocomplete" %>
+    <%= text_field_tag :product_tags , @product_tags_names, :class => "product_tags tagautocomplete" %>
   </div>
   <div class="field">
     <%= f.label :professional_information %><br />
@@ -49,6 +53,10 @@
   <div class="field">
     <%= f.label "Upload your resume" %>
     <%= file_field_tag :resume %>
+  </div>
+  <div class="field">
+    <%= f.label "Upload your bio" %>
+    <%= file_field_tag :bio %>
   </div>
   <div class="actions">
     <%= f.submit %>

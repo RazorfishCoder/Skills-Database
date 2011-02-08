@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_filter :find_employee, :only => [:show, :edit, :update, :resume]
+  before_filter :find_employee, :only => [:show, :edit, :update, :resume, :bio]
   before_filter :validate_current_user, :only => [:edit, :update]
 
   def show
@@ -14,17 +14,16 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    if params[:resume]
-      @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
-    end
+    @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename) if params[:resume]
+    @employee.store_bio(params[:bio].tempfile, params[:bio].original_filename) if params[:bio]
 
     #TODO need refactor
     @employee.skill_tags = []
-    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
+#    params[:employee]["skill_tags"].each{|tag| @employee.skill_tags << {:name => tag.name.downcase, :rate => tag.rate } }
     @employee.industry_tags = []
-    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag } }
+    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag.downcase } }
     @employee.product_tags = []
-    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
+    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag.downcase } }
 
     if @employee.update_attributes(params[:employee])
       redirect_to(root_path, :notice => 'Employee was successfully updated.')
@@ -47,6 +46,10 @@ class EmployeesController < ApplicationController
     @index_results['results'].each {|doc| @ids << doc['docid'] }
     debugger
     @results = Employee.find(@ids.join(""))
+  end
+
+  def bio
+    send_data(@employee.bio_data, :filename => @employee.bio)
   end
 
   private
