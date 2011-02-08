@@ -191,7 +191,7 @@ button {  width: auto; overflow: visible; }
  article.wide-right .secondary {float:left;width:213px;margin:0 10px 0 0;}
  
  article section {margin:0 0 20px 0;position:relative;background-color:#e6e6e6;padding:10px;clear:both;border-radius:10px;-moz-border-radius:10px;}
- article .twoup {float:left;clear:none;width:213px;min-height:140px;margin-right:10px;}
+ article .twoup {float:left;clear:none;width:193px;min-height:140px;margin-right:10px;}
  article .last {margin-right:0;}
  
  section.skills-graph-container {min-height:442px;}
