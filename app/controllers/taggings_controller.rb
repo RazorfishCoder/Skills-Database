@@ -18,11 +18,14 @@ class TaggingsController < ApplicationController
   def tag_query
     @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name])
     @tag = params[:tag_name]
+
     respond_to do |format|
       format.json {render :json => @employees.to_json}
       format.xml {render :xml => @employees.to_xml}
-      format.html {render 'employees/index'}
+      format.html {render 'skill_tag_show'}
+
     end
+
   end
 
   def autocomplete
