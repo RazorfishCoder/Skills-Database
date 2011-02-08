@@ -43,9 +43,12 @@ class EmployeesController < ApplicationController
     end 
     # Search DB based on index results.
     @ids = []
-    @index_results['results'].each {|doc| @ids << doc['docid'] }
-    debugger
-    @results = Employee.find(@ids.join(""))
+    @index_results['results'].each { |doc| @ids << doc['docid'] }
+    @results = []
+    #by now I'm hitting the DB one by one. I haven't found a better way yet.
+    @ids.each do |id| 
+      @results << Employee.find(id)
+    end
   end
 
   def bio

@@ -95,6 +95,7 @@ class Employee < BaseCouchDocument
     "function(keys, values, rereduce){
        return sum(values);
      };"
+
   view_by :product_tags, :map =>
     "function(doc){
       if (doc['couchrest-type'] == 'Employee' && doc['product_tags']){
