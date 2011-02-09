@@ -8,9 +8,11 @@ Skillsdatabase::Application.routes.draw do
   match '/taggings/:tags_type/:tag_name' , :to => "taggings#tag_query"
 
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
+  match '/employees/bio/:id', :to => "employees#bio", :as => 'bio'
 
   match '/auth/:provider/callback', :to => 'sessions#create'
   match "/signout" => "sessions#destroy", :as => :signout
+  match '/search', :to => 'employees#search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

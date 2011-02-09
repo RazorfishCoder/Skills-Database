@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_filter :find_employee, :only => [:show, :edit, :update, :resume]
+  before_filter :find_employee, :only => [:show, :edit, :update, :resume, :bio]
   before_filter :validate_current_user, :only => [:edit, :update]
 
   def show
@@ -14,17 +14,16 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    if params[:resume]
-      @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename)
-    end
+    @employee.store_resume(params[:resume].tempfile, params[:resume].original_filename) if params[:resume]
+    @employee.store_bio(params[:bio].tempfile, params[:bio].original_filename) if params[:bio]
 
     #TODO need refactor
     @employee.skill_tags = []
-    params["skill_tags"].split(", ").each{|tag| @employee.skill_tags << {:name => tag } }
+#    params[:employee]["skill_tags"].each{|tag| @employee.skill_tags << {:name => tag.name.downcase, :rate => tag.rate } }
     @employee.industry_tags = []
-    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag } }
+    params["industry_tags"].split(", ").each{|tag| @employee.industry_tags << {:name => tag.downcase } }
     @employee.product_tags = []
-    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag } }
+    params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag.downcase } }
 
     if @employee.update_attributes(params[:employee])
       redirect_to(root_path, :notice => 'Employee was successfully updated.')
@@ -35,6 +34,25 @@ class EmployeesController < ApplicationController
 
   def resume
     send_data(@employee.resume_data, :filename => @employee.resume)
+  end
+
+  def search
+    if params[:query]
+      #Search index based on query
+      @index_results = EmployeeIndexer.search(params[:query])
+    end 
+    # Search DB based on index results.
+    @ids = []
+    @index_results['results'].each { |doc| @ids << doc['docid'] }
+    @results = []
+    #by now I'm hitting the DB one by one. I haven't found a better way yet.
+    @ids.each do |id| 
+      @results << Employee.find(id)
+    end
+  end
+
+  def bio
+    send_data(@employee.bio_data, :filename => @employee.bio)
   end
 
   private
