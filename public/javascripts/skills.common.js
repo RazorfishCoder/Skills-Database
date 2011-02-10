@@ -74,7 +74,7 @@ skills.common = (function() {
 		// ----- Start onLoad() function
         (function () {
             var colorArray = ['#EEF2F5','#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900'],
-                json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.6666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333}]};
+                json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333}]};
                 var skills = $.ajax({
                   type: 'POST',
                   url: '/taggings/skill_tags_cloud',
@@ -85,49 +85,23 @@ skills.common = (function() {
                           var label = this.key,
                               percentageRaw = this.value,
                               percentage = parseInt(100 * percentageRaw),
-                              circleLength = 270 * percentageRaw,
+                              circleLength = 360 * percentageRaw,
                   	          cnt = i + 1,
                   	          arc;
 
                   	        arc =  r.path().attr(param).attr({arc: [0, 360, R], href: '/taggings/skill_tags/'+label});
                             // text labels. we start from the outermost circle and work in (subtracting for text size)
                   	        var yAxis = outerCoord - 9;
-                  	        //var txt = r.text(220,yAxis, label + " (" + percentage + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'}).toFront();
-                  	        var txtPrint = r.print(227,yAxis,label, r.getFont("Arvo"), 11).attr({fill: "#fff"});
-                            
+                  	        var txt = r.text(220,yAxis, label + " (" + percentage + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'});
+                  	        var rect = r.rect(220 - txt.getBBox().width - 3, yAxis - 8, txt.getBBox().width + 8, 15).attr({"fill":"#fff","stroke":"transparent","opacity":0.7}).toFront();
+                  	        txt.toFront();
+                  	        
                   	        // make adjustments
                   	        R -= step;
                   	        outerCoord += step;
                   	        // animate the arc
                   	        drawArc(circleLength, 360, R, arc, cnt);
                   	        
-                  	        // DON'T DELETE. PLAYING AROUND WITH TEXT ON A PATH (WHICH IS SUPER HARD)
-                  	        //$(arc.node).attr('id',label+'Arc').parent().wrap('defs');
-                  	        //$(txt.node).find('tspan').wrap('textPath');//.attr({'xlink:href':label+'Arc', 'xmlns:xlink': 'http://www.w3.org/1999/xlink'});
-                  	        //                               console.log(txt.node);
-                  	        //                               
-                  	        //var text = '<text x="220" y="'+yAxis+'" font-family="arial" font-size="11pt" fill="#fff"><textPath xlink:href="#phpArc">The quick brown fox jumped over the lazy dog.</textPath></text>';
-                  	        //$(text).insertAfter($(arc.node).parents('defs'));                  	        
-                  	        // var tLen = txtPrint.length, startX = 0, startY = 0,
-                  	        //                                   thePath = arc.getAttr("d"),
-                  	        //                                   samplePath = r.path(thePath);
-                  	        //                                   console.log(arc.node);
-                  	        
-                  	        // Position each character
-                            //for (j = 0; j < tLen; j++) {
-                                
-                                //txtPrint[j].translate(startX,startY);    
-                                //txtPrint[j].rotate(10);       
-                                // Get x,y of the path to follow
-                                
-                                //var box = txtPrint[j].getBBox();
-                                
-                                //startX += 3;
-                                //startY += 1.5;
-                                // Move the letter
-                                // txtPrint[j].translate((j * oneL)-newP.x, newP.y); 
-                                //                                 txtPrint[j].attr("fill", Raphael.getColor());
-                            //}
                       });
 			        init = false;
                   }
