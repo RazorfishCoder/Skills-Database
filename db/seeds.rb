@@ -15,6 +15,7 @@ Employee.create(:linkedin_id => 'h8Q48tjfpC',
                 :last_name => 'Fletcher',
                 :job_title => 'Presentation Layer Architect at Razorfish',
                 :industry => 'Internet',
+                :skill_tags  => [{:name  => 'html', :rate => 9}, {:name => 'css', :rate => 9}, {:name => 'javascript', :rate => 7}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=45607&authToken=E-rl&authType=name&trk=api*a113222*s121717*')
 
 Employee.create(:linkedin_id => 'ZekjEIF-XL',
@@ -22,6 +23,7 @@ Employee.create(:linkedin_id => 'ZekjEIF-XL',
                 :last_name => 'Ebrahimi',
                 :job_title => 'Senior Technical Architect and Center of Excellence Lead at Razorfish',
                 :industry => 'Internet',
+                :skill_tags  => [{:name  => 'java', :rate => 3}, {:name => 'ruby', :rate => 4}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=5597359&authToken=vXjL&authType=name&trk=api*a113222*s121717*')
 
 Employee.create(:linkedin_id => 'Tzb-cLr90-',
@@ -29,6 +31,7 @@ Employee.create(:linkedin_id => 'Tzb-cLr90-',
                 :last_name => 'Mirchandani',
                 :job_title => 'Razorfish - Microsoft',
                 :industry => 'Information Technology and Services',
+                :skill_tags  => [{:name  => 'java', :rate => 9}, {:name => '.net', :rate => 6}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=30963358&authToken=NXO5&authType=name&trk=api*a113222*s121717*')
 
 Employee.create(:linkedin_id => 'iY7PJGFcyp',
@@ -36,6 +39,7 @@ Employee.create(:linkedin_id => 'iY7PJGFcyp',
                 :last_name => 'Matthews',
                 :job_title => 'Technical Architect for Razorfish and Software Consultant',
                 :industry => 'Computer Software',
+                :skill_tags  => [{:name  => 'java', :rate => 10}, {:name => 'ruby', :rate => 7}, {:name => 'css', :rate => 3}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=4921540&authToken=gTEc&authType=name&trk=api*a113222*s121717*')
 
 Employee.create(:linkedin_id => 'kFIzlSsMz3',
@@ -43,6 +47,7 @@ Employee.create(:linkedin_id => 'kFIzlSsMz3',
                 :last_name => 'Jacobs',
                 :job_title => 'Group VP, Technology at Razorfish',
                 :industry => 'Information Technology and Services',
+                :skill_tags  => [{:name  => 'java', :rate => 8}, {:name => 'php', :rate => 4}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=2653005&authToken=nFPA&authType=name&trk=api*a113222*s121717*')
 
 Employee.create(:linkedin_id => 'NWd9FrVH2R',
@@ -50,4 +55,5 @@ Employee.create(:linkedin_id => 'NWd9FrVH2R',
                 :last_name => 'Zane',
                 :job_title => 'Self-Promoter at Hollywood',
                 :industry => 'Entertainment',
+                :skill_tags  => [{:name  => 'drinking', :rate => 8}, {:name => 'starlets', :rate => 9}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=95652846&authToken=PSJP&authType=name&trk=api*a113222*s121717*')
