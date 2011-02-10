@@ -220,7 +220,7 @@ button {  width: auto; overflow: visible; }
  .browse-link {position:absolute;bottom:7px;right:7px;}
  
  /* skills graph */
- #skills-graph {height:450px;width:450px;margin:0;-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);}
+ #skills-graph {height:450px;width:450px;margin:0;}
  
  /* skill summary page */
  /* skill page */

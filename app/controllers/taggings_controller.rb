@@ -21,7 +21,7 @@ class TaggingsController < ApplicationController
     respond_to do |format|
       format.json {render :json => @employees.to_json}
       format.xml {render :xml => @employees.to_xml}
-      format.html {render 'employees/index'}
+      format.html {render 'employees/skill'}
     end
   end
 
@@ -46,6 +46,7 @@ class TaggingsController < ApplicationController
     @tag_cloud['rows'].each{ |x| x['value'] = x['value'] / total_employee }
     respond_to do |format|
       format.json {render :json => @tag_cloud.to_json}
+      format.html {render "employees/skills"}
     end
   end
 
