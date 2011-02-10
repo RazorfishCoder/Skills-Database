@@ -176,7 +176,7 @@ button {  width: auto; overflow: visible; }
     Author: Razorfish
  */
  
- body {background-color:#dbdbdb;min-height:100%;}
+ body {background-color:#dbdbdb; color:#667078; min-height:100%;}
  header {height:81px;padding:0 20px;border-bottom:4px solid #010101;background:#b2b3b7 url(../images/rf.logo.gif) 98% 15px no-repeat;}
  #wrap {margin:0 auto; width:970px; background-color:#fff;min-height:100%;}
  #main {padding:10px 0 10px 20px;}
@@ -203,9 +203,11 @@ button {  width: auto; overflow: visible; }
  .arvo {font-family:'Arvo',serif; ;}
  
  /* profile section */
- #profile-img {float:left;margin:0 10px 10px 0;}
+ .profile-img {float:left;margin:0 10px 10px 0;}
  section.profile h3 {font-family:Arial,sans-serif;font-size:123.1%;font-weight:bold;}
  section.profile .update-profile {float:right;font-family: 'Arvo', serif;}
+ .attach {background:transparent url(images/icoPaperClip.gif) no-repeat 0 center; display:inline-block; margin:5px 0 10px; padding:0 0 0 15px;}
+ 
  /* section variants */
  section.callout {margin:0 0 20px 0;background-color:#6d4d26;color:#fffcef !important;}
  section.callout h2 {font-size:108%;}
@@ -253,6 +255,7 @@ button {  width: auto; overflow: visible; }
  h1 {font-size:246.2%;}
  h2 {font-size:138.5%;}
  h3 {font-size:123.1%;}
+ h4 {color:#000; font-size:138.5%; margin-bottom:0; padding:12px 0 0;}
  h2, h3, h4 {text-indent:12px;}
  section h2, section h3, section h4 {text-indent:0;}
 
