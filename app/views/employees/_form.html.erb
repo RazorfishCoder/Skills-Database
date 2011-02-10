@@ -1,19 +1,19 @@
 <%= javascript_include_tag "autocomplete" %>
-
 <!-- TinyMCE -->
 <script type="text/javascript" src="/javascripts/libs/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 	tinyMCE.init({
 		mode : "textareas",
-		theme : "simple"
+		theme : "simple",
+		width: "500",
+		height: "150"
 	});
 </script>
 <!-- /TinyMCE -->
-
 <%= form_for(@employee, :html => {:multipart => true}) do |f| %>
   <% if @employee.errors.any? %>
     <div id="error_explanation_skil">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>	
 
       <ul>
       <% @employee.errors.full_messages.each do |msg| %>
@@ -22,53 +22,35 @@
       </ul>
     </div>
   <% end %>
-
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-
-  <h3>Skills</h3>
-  <div id="skill_tags">
-    <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
-  </div>
-
+<article class="wide-left clearfix">
+<section class="primary">
+  <h4>Personal Information</h4>
+  <%= f.label :first_name %> <%= f.text_field :first_name %>
+  <%= f.label :last_name %> <%= f.text_field :last_name %>
+  <%= f.label :job_title %> <%= f.text_field :job_title %>
+  <%= f.label :email %> <%= f.text_field :email %>
+  <h4>Skills</h4>
+  <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
   <%= link_to 'add skills','', :id => 'add_skill' %>
-  <div class="field">
-    <%= f.label :industry_tags %><br />
-    <%= text_field_tag :industry_tags , @industry_tags_names, :class => "industry_tags tagautocomplete" %>
-  </div>
-  <div class="field">
-    <%= f.label :product_tags %><br />
-    <%= text_field_tag :product_tags , @product_tags_names, :class => "product_tags tagautocomplete" %>
-  </div>
-  <div class="field">
-    <%= f.label :professional_information %><br />
-    <%= f.text_area :professional_info %>
-  </div>
-  <div class="field">
-    <%= f.label 'Give / Gets' %><br />
-    <%= f.text_area :give_gets %>
-  </div>
-  <div class="field">
-    <%= f.label :interesting_facts %><br />
-    <%= f.text_area :interesting_facts %>
-  </div>
-  <div class="field">
-    <%= f.label "Upload your resume" %>
-    <%= file_field_tag :resume %>
-  </div>
-  <div class="field">
-    <%= f.label "Upload your bio" %>
-    <%= file_field_tag :bio %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </section>
+  <section class="secondary">
+  <h4><%= f.label :industry_tags %></h4>
+  <%= text_field_tag :industry_tags , @industry_tags_names, :class => "industry_tags tagautocomplete" %>
+  <h4><%= f.label :product_tags %></h4>
+  <%= text_field_tag :product_tags , @product_tags_names, :class => "product_tags tagautocomplete" %>
+  <h4><%= f.label :professional_information %></h4>
+  <%= f.text_area :professional_info %>
+  <h4><%= f.label 'Give / Gets' %></h4>
+  <%= f.text_area :give_gets %>
+  <h4><%= f.label :interesting_facts %></h4>
+  <%= f.text_area :interesting_facts %>
+  <hr />
+  <%= f.label "Upload your resume" %>
+  <%= file_field_tag :resume %>
+  <%= f.label "Upload your bio" %>
+  <%= file_field_tag :bio %>
+  <hr />
+  <%= f.submit %>
 <% end %>
-
+</section>
+</article>
