@@ -1,1 +1,2 @@
-INDEXTANK_API_URL = "http://:zSuGo4JKeSoWix@2d1pr.api.indextank.com/"
+API_URL = 'http://:BK8XxZ1ZvPU0dQ@dgnh8.api.indextank.com'
+INDEX_NAME = 'idx'

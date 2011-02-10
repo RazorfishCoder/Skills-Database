@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def signed_in?
     !!current_user
   end
-
+  
   helper_method :current_user, :signed_in?
 
   def current_user=(user)
@@ -21,7 +21,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to('/auth/linked_in') unless signed_in?
+    if Linkedin.first.nil?
+      # redirect to error page
+      render :status => 500, :file => File.join(Rails.root, 'public', '500.html')
+    else
+      redirect_to('/auth/linked_in') unless signed_in?
+    end
+    
   end
 
   def handle_unverified_request

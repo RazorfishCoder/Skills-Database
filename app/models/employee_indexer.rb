@@ -1,8 +1,8 @@
 class EmployeeIndexer
   @@keys_to_index = ['first_name', 'last_name', 'job_title', 'industry', 'industry_tags', 'skill_tags', 'product_tags', 'email', 'professional_info', 'give_gets', 'interesting_facts', 'location', 'description' ]
   def self.index
-     @api ||= IndexTank::Client.new(INDEXTANK_API_URL)
-     @index ||= @api.indexes('test')
+     @api ||= IndexTank::Client.new(API_URL)
+     @index ||= @api.indexes(INDEX_NAME)
      #create_index unless @index.exists?
 
      @index
