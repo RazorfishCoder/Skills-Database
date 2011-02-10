@@ -1,54 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @employee.first_name %>
-</p>
+<article class='clearfix'>
+  <div class='primary'>
+    <section class='profile'>
 
-<p>
-  <b>Name:</b>
-  <%= @employee.last_name %>
-</p>
+      <%= image_tag @employee.picture_url, :id => "profile-img" %>
 
-<p>
-  <b>Email:</b>
-  <%= @employee.email %>
-</p>
+      <ul>
+        <li><h3><%= current_user.full_name %> // <%= current_user.job_title %></h3></li>
+        <li>Industry: <%= current_user.industry %></li>
+        <li>Skills: <%= current_user.skill_tags_names %></li>
+        <li>Products: <%= current_user.product_tags_names %></li>
+      </ul>
 
-<p>
-  <b>SkillTag:</b>
-  <%= @employee.skill_tags_names %>
-</p>
+      <h2>Professional Information</h2>
+      <%= @employee.professional_info.html_safe if @employee.professional_info %>
 
-<p>
-  <b>IndustryTag:</b>
-  <%= @employee.industry_tags_names %>
-</p>
+      <h2>Give / Gets</h2>
+      <%= @employee.give_gets.html_safe if @employee.give_gets %>
 
-<p>
-  <b>ProductTag:</b>
-  <%= @employee.product_tags_names %>
-</p>
+      <h2>Interesting Facts</h2>
+      <%= @employee.interesting_facts.html_safe if @employee.interesting_facts %>
 
-<p><b>Professional Info</b>
-  <%= @employee.professional_info %>
-</p>
-
-<p><b>Give / Gets</b>
-  <%= @employee.give_gets %>
-</p>
-
-<p><b>Interesting Facts</b>
-  <%= @employee.interesting_facts %>
-</p>
-
-<% if current_user.resume -%>
-  <p>
-    <b>Resume:</b>
-    <%= link_to @employee.resume, resume_path(@employee) %>
-  </p>
-<% end -%>
-
+      <% if current_user.resume -%>
+        <p>
+          <b>Resume:</b>
+          <%= link_to @employee.resume, resume_path(@employee) %>
+        </p>
+      <% end -%>
+    </section>
+  </div>
+</article>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', root_path %>
