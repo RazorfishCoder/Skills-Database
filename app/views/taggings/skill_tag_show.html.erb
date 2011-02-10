@@ -5,15 +5,17 @@
       <section class="profile">
 	      <img src="<%= employee.picture_url %>" width="80" height="80" id="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
               <ul>
-          	    <li><h3><%= employee.first_name %> <%= employee.last_name %> // <%= employee.job_title %></h3></li>
+          	  <li><h3><%= employee.first_name %> <%= employee.last_name %> // <%= employee.job_title %></h3></li>
 	          	<li>Skills: <%= employee.skill_tags_names %>  </li>
 	          	<li>Products: <%= employee.product_tags_names %> </li>
 	          	<li>Industry: <%= employee.industry_tags_names %></li>
+
+	          	<li> <%=  @tag.upcase %> : <%= employee.skill_tags.select{|t|   t[:name] == @tag  }.first[:rate] %> </li>
               </ul>
     	</section>
   	<% end %>
   	<div class="pagination">
-  	    Page: 1 2 3 4 5 6 7 8 9 10 next >>
+  	    <%= will_paginate @employees %>
   	</div>
 </div>
 <div class="secondary">

@@ -178,6 +178,12 @@ class Employee < BaseCouchDocument
     "#{self.first_name} #{self.last_name}".strip
   end
 
+  def skill_tags_cloud
+
+    tag_cloud = self.skill_tags.select{|x| !x['rate'].blank? }
+    tag_cloud.each{ |x| x['rate'] = x['rate'] / 10.0 }
+
+  end
   #TODO dry attachments code
   def store_resume(file, filename)
     self.create_attachment({:file => file , :name => filename})

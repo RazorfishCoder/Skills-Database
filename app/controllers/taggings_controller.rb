@@ -15,11 +15,33 @@ class TaggingsController < ApplicationController
     #e.g /taggings/industry_tags/chemicals
     #    /taggings/industry_tags/chemicals.json
     #    /taggings/industry_tags/chemicals.xml
-  def tag_query
+
+  def skills_tag_query_by_rate
+    #bad behavior on will_paginate, its works but needs a review
     @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name])
+
+#    @employees = @employees.paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 6
     @tag = params[:tag_name]
 
     respond_to do |format|
+
+      format.json {render :json => @employees.to_json}
+      format.xml {render :xml => @employees.to_xml}
+
+    end
+
+  end
+
+
+  def tag_query
+    #bad behavior on will_paginate, its works but needs a review
+    @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name]).paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 36
+
+#    @employees = @employees.paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 6
+    @tag = params[:tag_name]
+
+    respond_to do |format|
+
       format.json {render :json => @employees.to_json}
       format.xml {render :xml => @employees.to_xml}
       format.html {render 'skill_tag_show'}
@@ -29,10 +51,11 @@ class TaggingsController < ApplicationController
   end
 
   def autocomplete
+
     #By now i haven't found how wildcard works on couch_db then we try with start and end_key
     #Employee.by_skill_tags( :startkey => 'ru' , :endkey => 'ruzzz',  :reduce => true, :group => true)
 
-#    @employees =  Employee.send('by_' + params[:tags_type], {:startkey => params[:term] , :endkey => params[:term] + 'ZZZ',  :reduce => true, :group => true}).map{|t|  t.last}.flatten.map{ |t| t['key']}
+    #@employees =  Employee.send('by_' + params[:tags_type], {:startkey => params[:term] , :endkey => params[:term] + 'ZZZ',  :reduce => true, :group => true}).map{|t|  t.last}.flatten.map{ |t| t['key']}
     @tags =  Employee.send('by_' + params[:tags_type], { :reduce => true, :group => true}).map{|t|  t.last}.flatten.map{ |t| t['key']}
 
     respond_to do |format|
