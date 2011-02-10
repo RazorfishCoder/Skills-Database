@@ -67,20 +67,7 @@ class Employee < BaseCouchDocument
     "function(keys, values, rereduce){
        return sum(values);
      };"
- view_by :industry_tags, :map =>
-    "function(doc){
-      if (doc['couchrest-type'] == 'Employee' && doc['industry_tags']){
-        doc.industry_tags.forEach(
-          function(industry_tag){
-            emit(industry_tag.name, 1);
-          }
-        );
-      }
-    };",
-    :reduce =>
-    "function(keys, values, rereduce){
-       return sum(values);
-     };"
+
   view_by :industry_tags, :map =>
     "function(doc){
       if (doc['couchrest-type'] == 'Employee' && doc['industry_tags']){
@@ -115,7 +102,6 @@ class Employee < BaseCouchDocument
   # Observers
   ################
   before_save :generate_permalink, :validate_skill_tags
-
 
   def generate_permalink
     self.permalink ||= self.full_name.parameterize
@@ -159,7 +145,6 @@ class Employee < BaseCouchDocument
   # public Methods
   ################
   def validate_skill_tags
-
     self.skill_tags.map!{|x| x  unless  x.name.blank? }.compact!
   end
 

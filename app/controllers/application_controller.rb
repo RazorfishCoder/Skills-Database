@@ -21,7 +21,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to '/auth/linked_in' unless current_user
+    redirect_to('/auth/linked_in') unless signed_in?
+  end
+
+  def handle_unverified_request
+    #TODO save the user_id stored on the session after call super
+    #super
   end
 end
 

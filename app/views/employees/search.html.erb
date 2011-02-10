@@ -9,4 +9,6 @@
           </li>
         <% end %>
     </ul>
-<% end %>
+  <% else %>
+    <p id="result-count">Your search for "<%= params[:query] %>" returned no results"</p>
+  <% end %>

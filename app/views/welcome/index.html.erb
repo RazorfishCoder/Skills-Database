@@ -14,10 +14,10 @@
   		
           <img src="<%= current_user.picture_url %>" width="80" height="80" class="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
             <ul>
-        	    <li><h3><%= current_user.first_name %> <%= current_user.last_name %> // <%= current_user.job_title %></h3></li>
+        	    <li><h3><%= current_user.full_name %> // <%= current_user.job_title %></h3></li>
 	        	<li>Industry: <%= current_user.industry %></li>
-	        	<li>Skills: </li>
-	        	<li>Products: </li>
+	        	<li>Skills: <%= current_user.skill_tags_names %></li>
+	        	<li>Products: <%= current_user.product_tags_names %></li>
 	        	<% if current_user.resume -%>
               	<li>Resume: <%= link_to current_user.resume, resume_path(current_user) %></li>
           	<% end -%>
@@ -58,7 +58,7 @@
   	</section>
   	</div>
         <h2>Recent updates...</h2>
-  	    <section> 	    
+  	    <section>
         <ul class="list">
         <% @events.each do |event| -%>
             <%= render :partial => "/events/#{event.event_type}", :locals => {:event => event} %>
