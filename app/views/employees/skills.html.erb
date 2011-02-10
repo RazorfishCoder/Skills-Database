@@ -1,49 +1,11 @@
 <article class="">
-
 <ul id="skills-cloud">
-    <%
-       @tag_cloud.each do |tag| 
-           print "yo"
-       end
+    <% @tag_cloud['rows'].each do |tag|
+        percent = tag['value'] * 100 * 5
+        styleString = 'width: ' + percent.to_s + 'px; height: ' + percent.to_s + 'px; border-radius: ' + percent.to_s + 'px; line-height: ' + percent.to_s + 'px;' 
     %>
-    
-    
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="one">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="one">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
-    <li id="one">1</li>
-    <li id="two">2</li>
-    <li id="three">3</li>
+        <li style='<%=styleString%>'><a href="/taggings/skill_tags/<%=h tag['key'] %>"><%=h tag['key'] %></a></li>       
+    <% end %>
 </ul>
-
-<style>
-    #skills-cloud li {width:25px;height:25px;margin:5px;background-color:red;border-radius:25px;text-align:center;line-height:25px;}
-    
-    #skills-cloud #one {width:100px;height:100px;border-radius:100px;}
-</style>
 
 </article>

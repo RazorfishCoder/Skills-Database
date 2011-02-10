@@ -78,7 +78,7 @@ skills.common = (function() {
                 json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333}]};
                 var skills = $.ajax({
                   type: 'POST',
-                  url: '/taggings/skill_tags_cloud',
+                  url: '/taggings/skill_tags_cloud/10',
                   data: 'JSON',
                   success: function(result){
                       var result = ($(result.rows).size() > 0) ? result : json; // use sample json for testing
@@ -169,9 +169,14 @@ skills.common = (function() {
     function initSkillsCloud(){
         if(!$('#skills-cloud').size()) return;
         
-        $('#skills-cloud').isotope({
-            
-        });
+        var colorArray = ['#EEF2F5','#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900'],
+            cnt = 0;
+         $('#skills-cloud li').each(function(el,i){
+             $(this).css('background-color',colorArray[cnt]);
+             cnt = (cnt == 9) ? 0 : ++cnt;
+         });
+        
+        $('#skills-cloud').isotope();
     }
 
     return {

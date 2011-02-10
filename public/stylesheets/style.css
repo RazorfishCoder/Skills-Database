@@ -222,6 +222,10 @@ button {  width: auto; overflow: visible; }
  /* skills graph */
  #skills-graph {height:450px;width:450px;margin:0;}
  
+ /* skills cloud */
+ #skills-cloud li {margin:10px;text-align:center;}
+ #skills-cloud li a {display:block;height:100%;font-color:#fff;font-family:"Arvo";font-weight:bold;}
+ 
  /* skill summary page */
  /* skill page */
  article.skill-summary .secondary section {padding:20px;color:#667078;}
