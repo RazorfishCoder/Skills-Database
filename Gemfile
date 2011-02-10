@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '~> 3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -42,7 +42,6 @@ gem 'indextank'
 group :development, :test do
    gem 'ruby-debug19', :require => 'ruby-debug'
    gem 'rspec-rails',      ">= 2.0.0.beta"
-   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
