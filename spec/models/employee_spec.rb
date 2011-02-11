@@ -1,13 +1,13 @@
-require File.expand_path("../../spec_helper", __FILE__)
+require 'spec_helper'
 require File.join(FIXTURE_PATH, 'base_fixture')
 
 describe Employee do
-  
+
   before(:each) do
     @obj = WithDefaultValues.new
   end
-  
-  # This was an initial test to see how couchrest model was working...can probably be removed.  
+
+  # This was an initial test to see how couchrest model was working...can probably be removed.
   describe "instance database connection" do
       it "should use the default database" do
         @obj.database.name.should == "skillsdb-#{Rails.env}"
@@ -19,7 +19,7 @@ describe Employee do
         @obj.database.delete!
       end
   end
-  
+
   describe "a new model" do
       it "should be a new document" do
         @obj.rev.should be_nil
@@ -33,5 +33,6 @@ describe Employee do
         @obj.should_not be_nil
       end
     end
-    
+
 end
+

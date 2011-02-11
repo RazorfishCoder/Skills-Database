@@ -39,9 +39,9 @@ gem 'indextank'
 #   gem 'webrat'
 # end
 
-group :development, :test do
+group :test, :development do
    gem 'ruby-debug19', :require => 'ruby-debug'
-   gem 'rspec-rails',      ">= 2.0.0.beta"
+   gem 'rspec-rails', "~> 2.4"
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
