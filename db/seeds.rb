@@ -55,5 +55,5 @@ Employee.create(:linkedin_id => 'NWd9FrVH2R',
                 :last_name => 'Zane',
                 :job_title => 'Self-Promoter at Hollywood',
                 :industry => 'Entertainment',
-                :skill_tags  => [{:name  => 'drinking', :rate => 8}, {:name => 'starlets', :rate => 9}],
+                :skill_tags  => [{:name  => 'c#', :rate => 8}, {:name => 'iOS', :rate => 9}],
                 :linkedin_url => 'http://www.linkedin.com/profile?viewProfile=&key=95652846&authToken=PSJP&authType=name&trk=api*a113222*s121717*')
