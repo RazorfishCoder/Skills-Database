@@ -169,7 +169,7 @@ skills.common = (function() {
     function initSkillsCloud(){
         if(!$('#skills-cloud').size()) return;
         
-        var colorArray = ['#EEF2F5','#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900'],
+        var colorArray = ['#aea268','#4f5205','#d5c884','#677079','#f99c1b','#9b1f3b','#e0d114','#7f1835','#b2b3b7','#aeb213'],
             cnt = 0;
          $('#skills-cloud li').each(function(el,i){
              $(this).css('background-color',colorArray[cnt]);
