@@ -12,8 +12,11 @@
     <h2>Your Profile</h2>
 	<section class="profile clearfix">
 	<% if current_user %>
-  		
-          <img src="<%= current_user.picture_url %>" width="80" height="80" class="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
+  		<%if current_user.picture_url -%>
+            <img src="<%= current_user.picture_url %>" width="80" height="80" class="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
+        <% else -%>
+            <img src="/images/generic.profile.gif" width="80" height="80" class="profile-img" alt="No Image Found" />
+        <% end -%>
             <ul>
         	    <li><h3><%= current_user.full_name %> // <%= current_user.job_title %></h3></li>
 	        	<li>Industry: <%= current_user.industry %></li>

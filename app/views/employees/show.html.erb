@@ -2,7 +2,13 @@
   <p id="notice"><%= notice %></p>
   <div class="primary">
     <h2>Your Profile</h2>
-    <section class="profile clearfix"> <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
+    <section class="profile clearfix"> 
+        <%if @employee.picture_url -%>
+            <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
+        <% else -%>
+            <img src="/images/generic.profile.gif" width="80" height="80" class="profile-img" alt="No Image Found" />
+        <% end -%>
+        
       <h3><%= @employee.full_name %> // <%= @employee.job_title %></h3>
       <ul>
         <li><strong>Industry:</strong> <%= @employee.industry_tags_names %></li>
