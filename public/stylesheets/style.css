@@ -222,6 +222,8 @@ button {  width: auto; overflow: visible; }
  .browse-link {position:absolute;bottom:7px;right:7px;}
  
  /* skills graph */
+ .skills-graph-container {position:relative;}
+ .skills-graph-container h3 {position:absolute;top:20px;right:250px;text-align:right;}
  #skills-graph {height:450px;width:450px;margin:0;}
  
  /* skills cloud */
