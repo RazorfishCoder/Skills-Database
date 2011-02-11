@@ -189,6 +189,8 @@ button {  width: auto; overflow: visible; }
  article .secondary {float:left;width:437px;}
  article.wide-right .primary {float:right;width:725px;margin:0;}
  article.wide-right .secondary {float:left;width:213px;margin:0 10px 0 0;}
+ article.wide-left .primary {clear:none; float:left;width:213px;margin:0;}
+ article.wide-left .secondary {clear:none; float:left;width:670px;margin:0 0 0 10px;}
  
  article section {margin:0 0 20px 0;position:relative;background-color:#e6e6e6;padding:10px;clear:both;border-radius:10px;-moz-border-radius:10px;}
  article .twoup {float:left;clear:none;width:193px;min-height:140px;margin-right:10px;}
@@ -271,6 +273,9 @@ button {  width: auto; overflow: visible; }
  h4 {color:#000; font-size:138.5%; margin-bottom:0; padding:12px 0 0;}
  h2, h3, h4 {text-indent:12px;}
  section h2, section h3, section h4 {text-indent:0;}
+
+label {display:block; margin:6px 0 0;}
+h4 label {margin:0;}
 
  /* END: Primary Styles */
   

@@ -3,7 +3,7 @@
   <div class="primary">
     <h2>Your Profile</h2>
     <section class="profile clearfix"> <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
-      <h3><%= @employee.first_name %> <%= @employee.last_name %> // <%= @employee.job_title %></h3>
+      <h3><%= @employee.full_name %> // <%= @employee.job_title %></h3>
       <ul>
         <li><strong>Industry:</strong> <%= @employee.industry_tags_names %></li>
         <li><strong>Skills:</strong> <%= @employee.skill_tags_names %></li>
@@ -15,11 +15,11 @@
         <li><a href="#" class="attach">Attach file (ppt, doc)</a></li>
       </ul>
       <h4>Professional Information</h4>
-      <p><%= @employee.professional_info.html_safe %></p>
+      <p><%= @employee.professional_info.html_safe if @employee.professional_info %></p>
       <h4>Give / Gets</h4>
-      <p><%= @employee.give_gets %></p>
+      <p><%= @employee.give_gets.html_safe if @employee.give_gets %></p>
       <h4>Interesting Facts</h4>
-      <p><%= @employee.interesting_facts %></p>
+      <p><%= @employee.interesting_facts.html_safe if @employee.interesting_facts %></p>
       <%= link_to 'Edit', edit_employee_path(@employee) %> | <%= link_to 'Back', root_path %> </section>
   </div>
   <div class="secondary">
@@ -32,12 +32,12 @@
       <section class="twoup">
         <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
         <p><strong><%= @employee.first_name %> <%= @employee.last_name %></strong></p>
-        <p>Technical Architect</p>
+        <p><%= @employee.job_title %></p>
       </section>
       <section class="twoup last">
         <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
         <p><strong><%= @employee.first_name %> <%= @employee.last_name %></strong></p>
-        <p>Technical Architect</p>
+        <p><%= @employee.job_title %></p>
       </section>
     </div>
   </div>
