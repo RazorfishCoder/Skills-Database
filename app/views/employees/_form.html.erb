@@ -5,7 +5,7 @@
 	tinyMCE.init({
 		mode : "textareas",
 		theme : "simple",
-		width: "500",
+		width: "400",
 		height: "150"
 	});
 </script>
@@ -22,35 +22,40 @@
       </ul>
     </div>
   <% end %>
-<article class="wide-left clearfix">
-<section class="primary">
+<article class="clearfix">
+<div class="primary">
+<section>
   <h4>Personal Information</h4>
   <%= f.label :first_name %> <%= f.text_field :first_name %>
   <%= f.label :last_name %> <%= f.text_field :last_name %>
   <%= f.label :job_title %> <%= f.text_field :job_title %>
   <%= f.label :email %> <%= f.text_field :email %>
   <h4>Skills</h4>
-  <%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
-  <%= link_to 'add skills','', :id => 'add_skill' %>
-  </section>
-  <section class="secondary">
+  <div id="skill_tags">
+  	<%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
+  </div>
+ 	<%= link_to 'add skills','', :id => 'add_skill' %>
   <h4><%= f.label :industry_tags %></h4>
   <%= text_field_tag :industry_tags , @industry_tags_names, :class => "industry_tags tagautocomplete" %>
   <h4><%= f.label :product_tags %></h4>
   <%= text_field_tag :product_tags , @product_tags_names, :class => "product_tags tagautocomplete" %>
-  <h4><%= f.label :professional_information %></h4>
-  <%= f.text_area :professional_info %>
-  <h4><%= f.label 'Give / Gets' %></h4>
-  <%= f.text_area :give_gets %>
-  <h4><%= f.label :interesting_facts %></h4>
-  <%= f.text_area :interesting_facts %>
   <hr />
   <%= f.label "Upload your resume" %>
   <%= file_field_tag :resume %>
   <%= f.label "Upload your bio" %>
   <%= file_field_tag :bio %>
-  <hr />
+  </section>
+  </div>
+  <div class="secondary">
+  <section>
+  <h4><%= f.label :professional_information %></h4>
+  <%= f.text_area :professional_info %>
+  <h4><%= f.label 'Give / Gets' %></h4>
+  <%= f.text_area :give_gets %>
+  <h4><%= f.label :interesting_facts %></h4>
+  <%= f.text_area :interesting_facts %><br />
   <%= f.submit %>
 <% end %>
 </section>
+</div>
 </article>
