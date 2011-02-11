@@ -11,9 +11,11 @@
         <li><strong>Email:</strong> <%= @employee.email %></li>
         <li><strong>Location:</strong> <%= @employee.location %></li>
         <% if @employee.resume -%>
-        <li><strong>Resume:</strong> <%= link_to @employee.resume, resume_path(@employee) %></li>
+        <li><strong>Resume:</strong> <%= link_to @employee.resume, resume_path(@employee), :class => 'attach' %></li>
         <% end -%>
-        <li><a href="#" class="attach">Attach file (ppt, doc)</a></li>
+        <% if @employee.bio -%>
+        <li><strong>Bio:</strong> <%= link_to @employee.bio, bio_path(@employee), :class => 'attach' %></li>
+        <% end -%>
       </ul>
       <h4>Professional Information</h4>
       <p><%= @employee.professional_info.html_safe if @employee.professional_info %></p>
