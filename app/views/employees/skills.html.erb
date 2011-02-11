@@ -1,0 +1,11 @@
+<article class="">
+<ul id="skills-cloud">
+    <% @tag_cloud['rows'].each do |tag|
+        percent = tag['value'] * 100 * 5
+        styleString = 'width: ' + percent.to_s + 'px; height: ' + percent.to_s + 'px; border-radius: ' + percent.to_s + 'px; line-height: ' + percent.to_s + 'px;' 
+    %>
+        <li style='<%=styleString%>'><a href="/taggings/skill_tags/<%=h tag['key'] %>"><%=h tag['key'] %></a></li>       
+    <% end %>
+</ul>
+
+</article>

@@ -21,7 +21,7 @@ class TaggingsController < ApplicationController
     respond_to do |format|
       format.json {render :json => @employees.to_json}
       format.xml {render :xml => @employees.to_xml}
-      format.html {render 'employees/index'}
+      format.html {render 'employees/skill'}
     end
   end
 
@@ -39,15 +39,17 @@ class TaggingsController < ApplicationController
 
   def skill_tags_cloud
     #this method resolve the data needed in our skills tag graphic representation
-
-    @tag_cloud = Employee.by_skill_tags(  :reduce => true, :group => true, :limit => 10)
+    limit = params[:limit] || 100
+    @tag_cloud = Employee.by_skill_tags(  :reduce => true, :group => true, :limit => limit)
 
     total_employee = Employee.count.to_f
     @tag_cloud['rows'].each{ |x| x['value'] = x['value'] / total_employee }
     respond_to do |format|
       format.json {render :json => @tag_cloud.to_json}
+      format.html {render "employees/skills"}
     end
-  end
+  end  
+  
 
     #params
     #e.g /taggings/count/skill_tags
