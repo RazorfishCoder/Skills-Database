@@ -10,7 +10,7 @@
 Linkedin.create(:api_key => 'eA_Uz2aQ8XlzEmiQv5zEcvcM3HYm-PYUghlJTir3FSC9L_Wbq8At_9kSpnj1lZQx', :secret_key => 'g2n_LE5xH3Mr1Repvki_imIO7LqvrIfcqwCOCdQRxBJ3JTto434BC3SR8fgijIrT')
 
 # Some sample initial Linkedin Profiles from Razorfish
-@employee = Employee.create(:linkedin_id => 'h8Q48tjfpC',
+@employee = Employee.create(:id => 'h8Q48tjfpC',
                 :first_name => 'Brian',
                 :last_name => 'Fletcher',
                 :job_title => 'Presentation Layer Architect at Razorfish',
@@ -20,7 +20,7 @@ Linkedin.create(:api_key => 'eA_Uz2aQ8XlzEmiQv5zEcvcM3HYm-PYUghlJTir3FSC9L_Wbq8A
 
 Authorization.create(:provider => 'linked_in', :uid => 'h8Q48tjfpC', :employee_id => @employee.id)
 
-@employee = Employee.create(:linkedin_id => 'ZekjEIF-XL',
+@employee = Employee.create(:id => 'ZekjEIF-XL',
                 :first_name => 'Steve',
                 :last_name => 'Ebrahimi',
                 :job_title => 'Senior Technical Architect and Center of Excellence Lead at Razorfish',
@@ -30,7 +30,7 @@ Authorization.create(:provider => 'linked_in', :uid => 'h8Q48tjfpC', :employee_i
                 
 Authorization.create(:provider => 'linked_in', :uid => 'ZekjEIF-XL', :employee_id => @employee.id)                
 
-@employee = Employee.create(:linkedin_id => 'Tzb-cLr90-',
+@employee = Employee.create(:id => 'Tzb-cLr90-',
                 :first_name => 'Anil',
                 :last_name => 'Mirchandani',
                 :job_title => 'Razorfish - Microsoft',
@@ -40,7 +40,7 @@ Authorization.create(:provider => 'linked_in', :uid => 'ZekjEIF-XL', :employee_i
 
 Authorization.create(:provider => 'linked_in', :uid => 'Tzb-cLr90-', :employee_id => @employee.id)
 
-@employee = Employee.create(:linkedin_id => 'iY7PJGFcyp',
+@employee = Employee.create(:id => 'iY7PJGFcyp',
                 :first_name => 'Todd',
                 :last_name => 'Matthews',
                 :job_title => 'Technical Architect for Razorfish and Software Consultant',
@@ -50,7 +50,7 @@ Authorization.create(:provider => 'linked_in', :uid => 'Tzb-cLr90-', :employee_i
 
 Authorization.create(:provider => 'linked_in', :uid => 'iY7PJGFcyp', :employee_id => @employee.id)
 
-@employee = Employee.create(:linkedin_id => 'kFIzlSsMz3',
+@employee = Employee.create(:id => 'kFIzlSsMz3',
                 :first_name => 'Martin',
                 :last_name => 'Jacobs',
                 :job_title => 'Group VP, Technology at Razorfish',
@@ -60,7 +60,7 @@ Authorization.create(:provider => 'linked_in', :uid => 'iY7PJGFcyp', :employee_i
 
 Authorization.create(:provider => 'linked_in', :uid => 'kFIzlSsMz3', :employee_id => @employee.id)
 
-@employee = Employee.create(:linkedin_id => 'NWd9FrVH2R',
+@employee = Employee.create(:id => 'NWd9FrVH2R',
                 :first_name => 'Billy',
                 :last_name => 'Zane',
                 :job_title => 'Self-Promoter at Hollywood',
