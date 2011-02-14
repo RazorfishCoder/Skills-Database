@@ -6,8 +6,9 @@ describe Employee do
   before(:each) do
     @obj = WithDefaultValues.new
   end
-
-  # This was an initial test to see how couchrest model was working...can probably be removed.
+  
+  # TODO: This was an initial test to see how couchrest model was working...can probably be removed or 
+  # moved into the base_spec class
   describe "instance database connection" do
       it "should use the default database" do
         @obj.database.name.should == "skillsdb-#{Rails.env}"
@@ -19,7 +20,9 @@ describe Employee do
         @obj.database.delete!
       end
   end
-
+  
+  # TODO: This was an initial test to see how couchrest model was working...can probably be removed or 
+  # moved into the base_spec class
   describe "a new model" do
       it "should be a new document" do
         @obj.rev.should be_nil
