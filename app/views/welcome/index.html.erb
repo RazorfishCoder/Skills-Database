@@ -34,16 +34,13 @@
 
   	<div class="clearfix">
   	<section class="twoup">
-  	    <h2>Looking For...</h2>
-
+  	    <h2>Recent Searches</h2>
         <ul>
-            <li><a href="#">Sharepoint 2010</a></li>
-            <li><a href="#">Autonomy CRM</a></li>
-            <li><a href="#">IPhone Objective-C development</a></li>
-            <li><a href="#">PhoneGap Development</a></li>
-            <li><a href="#">Sharepoint 2010</a></li>
-            <li><a href="#">Autonomy CRM</a></li>
-            <li><a href="#">IPhone Objective-C development</a></li>
+          <% if @recent_searches %>
+            <% @recent_searches.each do |recent| %>
+              <li><%= link_to recent.search, search_path(:query => recent.search) %></li>
+            <% end %>
+          <% end %>
         </ul>
   	</section>
 
@@ -55,7 +52,7 @@
               <%= image_submit_tag 'btn.search.gif' %>
         	</div>
         <% end %>
-        <p class="browse-link arvo"><a href="/taggings/skill_tags_cloud">Browse our visual<br/>skills graph</a></p>
+        <p class="browse-link arvo"><a href="/taggings/skill_tags_cloud">Browse our visual skills graph</a></p>
   	</section>
   	</div>
         <h2>Recent updates...</h2>
