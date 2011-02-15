@@ -146,6 +146,7 @@ class Employee < BaseCouchDocument
   ################
   def validate_skill_tags
     self.skill_tags.map!{|x| x  unless  x.name.blank? }.compact!
+
   end
 
   def to_param
@@ -166,6 +167,23 @@ class Employee < BaseCouchDocument
 
   def full_name
     "#{self.first_name} #{self.last_name}".strip
+  end
+
+  def skill_tags_cloud
+
+    tag_cloud = self.skill_tags.select{|x| !x['rate'].blank? }
+    tag_cloud.each{ |x| x['rate'] = x['rate'] / 10.0 }
+
+  end
+  def self.skill_rate_groups(skill_name)
+
+    result = [0,0,0,0,0]
+    Employee.by_skill_tags( :key => skill_name).map{|e| e.skill_tags.select{|t| t[:name] == skill_name }}.flatten.each{|x| x[:rate] = (x[:rate] - 1) /2}.group_by{|x| x[:rate]}.each{|k,v| result[k] = v.count }
+    result
+
+  end
+  def self.skill_names_group(skill_name)
+    self.by_skill_tags( :key => skill_name).map{|e| e.skill_tags.reject{|t| t[:name] == skill_name }}.flatten.group_by{|x| x[:name]}.map{|k,v| {:name => k,:count => v.count}}.sort{|x,y| y[:count] <=> x[:count]}
   end
 
   #TODO dry attachments code
