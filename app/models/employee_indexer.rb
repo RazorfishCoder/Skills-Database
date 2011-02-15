@@ -3,7 +3,7 @@ class EmployeeIndexer
   def self.index
      @api ||= IndexTank::Client.new(API_URL)
      @index ||= @api.indexes(INDEX_NAME)
-     #create_index unless @index.exists?
+     #@index.add unless @index.exists?
 
      @index
   end

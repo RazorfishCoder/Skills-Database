@@ -6,7 +6,7 @@
           <li>              
            <%= doc['first_name'] %> -
            <%= doc['last_name'] %> -
-           <%= image_tag doc['picture_url'] %>
+           <%= image_tag doc['picture_url'] unless doc['picture_url'].nil? %>
           </li>
           <% end %>
         <% end %>
