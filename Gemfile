@@ -42,6 +42,7 @@ gem 'indextank'
 group :test, :development do
    gem 'ruby-debug19', :require => 'ruby-debug'
    gem 'rspec-rails', "~> 2.4"
+   gem 'rr'
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
