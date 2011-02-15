@@ -1,16 +1,51 @@
-<% if @results %>
-    <p id="result-count">Your search for "<%= params[:query] %>" returned <%= pluralize @index_results['matches'], 'result' %></p>
-    <ul id="results">
-        <% @results.each do |doc| %>
-          <% if doc %>
-          <li>              
-           <%= doc['first_name'] %> -
-           <%= doc['last_name'] %> -
-           <%= image_tag doc['picture_url'] unless doc['picture_url'].nil? %>
-          </li>
-          <% end %>
-        <% end %>
-    </ul>
-  <% else %>
-    <p id="result-count">Your search for "<%= params[:query] %>" returned no results"</p>
-  <% end %>
+<article class="clearfix">
+<div class="primary">
+    <h2>Search</h2>
+    
+    <section>
+        SEARCH FORM
+    </section>
+    
+    <h2>Refine Search</h2>
+    <section>
+        Skills Checkboxes
+    </section>
+</div>
+
+<div class="secondary">
+    <h2>Search Results</h2>
+	<% if @results %>
+        <!-- <p id="result-count">Your search for "<%= params[:query] %>" returned <%= pluralize @index_results['matches'], 'result' %></p> -->
+        <ul id="results">
+            <% @results.each do |doc| %>
+              <% if doc %>
+              <li>  
+                  <section class="profile clearfix">        
+                      <%if doc['picture_url'] -%>
+                          <%= image_tag doc['picture_url'], :class => 'profile-img' %>
+                      <% else -%>
+                          <img src="/images/generic.profile.gif" width="80" height="80" class="profile-img" alt="No Image Found" />
+                      <% end -%>
+                        <ul>
+                  	        <li><h3><%= employee_link(doc) %></h3></li>
+          	        	    <% if doc['skill_tags'] %>
+          	        	    <li>
+          	        	        <%= doc['skill_tags'].map { |tag| tag.name }.join(', ') %>
+          	        	    </li>
+          	        	    <% end %>
+                        </ul>
+                    </section>
+              </li>
+              <% end %>
+            <% end %>
+        </ul>
+      <% else %>
+        <p id="result-count">Your search for "<%= params[:query] %>" returned no results"</p>
+      <% end %>
+</div>
+</article>
+
+
+
+
+
