@@ -193,7 +193,7 @@ button {  width: auto; overflow: visible; }
  article.wide-left .secondary {clear:none; float:left;width:670px;margin:0 0 0 10px;}
  
  article section {margin:0 0 20px 0;position:relative;background-color:#e6e6e6;padding:10px;clear:both;border-radius:10px;-moz-border-radius:10px;}
- article .twoup {float:left;clear:none;width:193px;min-height:140px;margin-right:10px;}
+ article .twoup {float:left;clear:none;width:193px;min-height:151px;margin-right:10px;}
  article .last {margin-right:0;}
  
  section.skills-graph-container {min-height:442px;}
@@ -219,7 +219,7 @@ button {  width: auto; overflow: visible; }
  .searchbox {position:relative;min-height:120px;width:193px;}
  .searchbox input[type=text] {width:169px;height:24px;padding-right:24px;border:0 none;background-color:#fff;}
  .searchbox input[type=image] {position:absolute;top:2px;right:1px;}
- .browse-link {position:absolute;bottom:7px;right:7px;}
+ .browse-link {position:absolute;bottom:7px;}
  
  /* skills graph */
  .skills-graph-container {position:relative;}

@@ -1,0 +1,46 @@
+<article class="wide-right skill-summary clearfix">
+<div class="primary">
+    <h2>Top <%= @tag.upcase %></h2>
+    <% for employee in @employees   %>
+      <section class="profile">
+	      <img src="<%= employee.picture_url %>" width="80" height="80" id="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
+              <ul>
+          	  <li><h3><%= employee.first_name %> <%= employee.last_name %> // <%= employee.job_title %></h3></li>
+	          	<li>Skills: <%= employee.skill_tags_names %>  </li>
+	          	<li>Products: <%= employee.product_tags_names %> </li>
+	          	<li>Industry: <%= employee.industry_tags_names %></li>
+
+	          	<li> <%=  @tag.upcase %> : <%= employee.skill_tags.select{|t|   t[:name] == @tag  }.first[:rate] %> </li>
+              </ul>
+    	</section>
+  	<% end %>
+  	<div class="pagination">
+  	    <%= will_paginate @employees %>
+  	</div>
+</div>
+<div class="secondary">
+    <h2>Skills / <%= @tag.upcase %></h2>
+
+    <section class="callout">
+        <h2><%= link_to(@tag.upcase, "#") %></h2>
+        <ul>
+            <li>100 - 80 % (<%= @skills_rate_groups[4] %>)</li>
+            <li>80 - 60 % (<%= @skills_rate_groups[3] %>)</li>
+            <li>60 - 40 % (<%= @skills_rate_groups[2] %>)</li>
+            <li>40 - 20 % (<%= @skills_rate_groups[1] %>)</li>
+            <li>20 - 0 % (<%= @skills_rate_groups[0] %>)</li>
+        </ul>
+    </section>
+
+    <h3>Interesting Facts</h3>
+    <section>
+        <h4><%= link_to("Skills","#") %></h4>
+        <ul>
+        <% for skill in @skills_name_groups %>
+            <li><%= skill[:name] %> - <%= skill[:count] %> </li>
+        <% end %>
+        </ul>
+    </section>
+</div>
+</article>
+

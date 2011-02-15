@@ -2,7 +2,13 @@
 ENV["RAILS_ENV"] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
+require 'rr'
 require 'rspec/rails'
+
+require 'rspec/core'
+require 'rspec/expectations'
+
+require 'indextank'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -14,7 +20,7 @@ TESTDBNAME = "skillsdb-#{Rails.env}"
 # RSpec configuration for setup and tear-down after each spec run through.  This just ensures our
 # CouchDB test database is created before we run our tests and deleted when it's done.
 RSpec.configure do |config|
-  config.mock_with :rspec
+  config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -32,5 +38,14 @@ RSpec.configure do |config|
       cr.database(db).recreate! rescue nil
     end
   end
+end
+
+def stub_setup_connection
+    stub(IndexTank).setup_connection(anything) do |url|
+      Faraday::Connection.new(:url => url) do |builder|
+         builder.adapter :test, stubs
+         builder.use Faraday::Response::Yajl
+      end
+    end
 end
 

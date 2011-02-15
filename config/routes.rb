@@ -3,6 +3,9 @@ Skillsdatabase::Application.routes.draw do
 
   match '/taggings/skill_tags_cloud', :to => "taggings#skill_tags_cloud"
   match '/taggings/skill_tags_cloud/:limit', :to => "taggings#skill_tags_cloud"
+
+  match '/taggings/skill_tags_gourp_by_rate/:tag_name', :to => "taggings#skill_tags_group_by_rate"
+
   match '/taggings/count/:tags_type', :to => "taggings#tags_count"
   match '/taggings/autocomplete', :to => "taggings#autocomplete"
 

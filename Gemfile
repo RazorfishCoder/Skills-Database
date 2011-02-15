@@ -6,7 +6,7 @@ gem 'rails', '~> 3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-
+gem 'will_paginate', '3.0.pre2'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -42,6 +42,7 @@ gem 'indextank'
 group :test, :development do
    gem 'ruby-debug19', :require => 'ruby-debug'
    gem 'rspec-rails', "~> 2.4"
+   gem 'rr'
 end
 
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
