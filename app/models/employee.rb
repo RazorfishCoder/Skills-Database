@@ -156,6 +156,7 @@ class Employee < BaseCouchDocument
   def validate_skill_tags
 
     self.skill_tags.map!{|x| x  unless  x.name.blank? }.compact!
+
   end
 
   def to_param

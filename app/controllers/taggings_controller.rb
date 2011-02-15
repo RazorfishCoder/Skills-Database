@@ -1,5 +1,6 @@
 class TaggingsController < ApplicationController
 
+
     #params skill_tags
     #e.g /taggings/skill_tags/ruby
     #    /taggings/skill_tags/ruby.json
@@ -16,28 +17,20 @@ class TaggingsController < ApplicationController
     #    /taggings/industry_tags/chemicals.json
     #    /taggings/industry_tags/chemicals.xml
 
-  def skills_tag_query_by_rate
-    #bad behavior on will_paginate, its works but needs a review
-    @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name])
-
-#    @employees = @employees.paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 6
-    @tag = params[:tag_name]
-
-    respond_to do |format|
-
-      format.json {render :json => @employees.to_json}
-      format.xml {render :xml => @employees.to_xml}
-
-    end
-
-  end
-
-
   def tag_query
     #bad behavior on will_paginate, its works but needs a review
     @employees = Employee.send('by_' + params[:tags_type], :key => params[:tag_name]).paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 36
 
-#    @employees = @employees.paginate :page => params[:page], :order => 'updated_at DESC',:per_page => 6
+#    the position in the array indicates the group_by
+#    @skills_groups[4] 80 - 100
+#    @skills_groups[3] 60 - 80
+#    @skills_groups[2] 40 - 60
+#    @skills_groups[1] 20 - 40
+#    @skills_groups[0] 0 - 20
+
+    @skills_groups = [0,0,0,0,0]
+    Employee.by_skill_tags( :key => params[:tag_name]).map{|e| e.skill_tags.select{|t| t[:name] == params[:tag_name] }}.flatten.each{|x| x[:rate] = (x[:rate] - 1) /2}.group_by{|x| x[:rate]}.each{|k,v| @skills_groups[k] = v.count }
+
     @tag = params[:tag_name]
 
     respond_to do |format|

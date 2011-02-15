@@ -24,11 +24,11 @@
     <section class="callout">
         <h2><%= link_to(@tag.upcase, "#") %></h2>
         <ul>
-            <li>100 - 80 % (15)</li>
-            <li>80 - 60 % (20)</li>
-            <li>60 - 40 % (10)</li>
-            <li>40 - 20 % (5)</li>
-            <li>20 - 0 % (5)</li>
+            <li>100 - 80 % (<%= @skills_groups[4] %>)</li>
+            <li>80 - 60 % (<%= @skills_groups[3] %>)</li>
+            <li>60 - 40 % (<%= @skills_groups[2] %>)</li>
+            <li>40 - 20 % (<%= @skills_groups[1] %>)</li>
+            <li>20 - 0 % (<%= @skills_groups[0] %>)</li>
         </ul>
     </section>
 
