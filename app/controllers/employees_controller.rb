@@ -37,10 +37,13 @@ class EmployeesController < ApplicationController
   end
 
   def search
-    if params[:query]
-      #Search index based on query
-      @index_results = EmployeeIndexer.search(params[:query])
-    end 
+    #Search index based on query
+    @index_results = EmployeeIndexer.search(params[:query]) if params[:query]
+    @search = Search.new(:employee => self.current_user, :search => params[:query])
+    if !@search.save
+      raise "Error saving search"
+    end
+
     # Search DB based on index results.
     @ids = []
     @index_results['results'].each { |doc| @ids << doc['docid'] }
