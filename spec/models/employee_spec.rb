@@ -8,9 +8,6 @@ describe Employee do
     @obj = EmployeeWithDefaultValues.new
   end
   
-  describe "creating" do
-  end
-  
   
 =begin
   
