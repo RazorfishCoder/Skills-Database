@@ -98,6 +98,27 @@ class Employee < BaseCouchDocument
        return sum(values);
      };"
 
+  view_by :skill_group_tags, :map =>
+    "function(doc){
+      if (doc['couchrest-type'] == 'Employee' && doc['skill_tags']){
+        doc.skill_tags.forEach(
+          function(skill_tag){
+            switch (rate)
+            {
+              case 5:
+                emit(1, skill_tag.name, 1);
+              case 1:
+                emit(2, skill_tag.name, 1);
+            }
+          }
+        );
+      }
+    };",
+    :reduce =>
+    "function(keys, values, rereduce){
+       return sum(values);
+     };"
+
   ################
   # Observers
   ################
