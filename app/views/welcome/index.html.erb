@@ -29,7 +29,7 @@
             <%= link_to 'Edit', edit_employee_path(current_user) %></li>
             </ul>
 
-    	    <p class="update-profile"><%=link_to 'Update your Profile', current_user.linkedin_url %></p>
+    	    <p class="update-profile"><%=link_to 'View your Linkedin profile', current_user.linkedin_url, {:target => "_blank"} %></p>
 	<% else %>
 		<%= link_to "Login via LinkedIn", '/auth/linked_in' %>
 	<% end %>
