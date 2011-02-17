@@ -41,19 +41,23 @@
     <section class="skills-graph-container">
       <div id="skills-graph"></div>
     </section>
-    <h2>People alike</h2>
-    <div class="clearfix">
-      <section class="twoup">
-        <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
-        <p><strong><%= @employee.first_name %> <%= @employee.last_name %></strong></p>
-        <p><%= @employee.job_title %></p>
-      </section>
-      <section class="twoup last">
-        <img src="<%= @employee.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @employee.first_name %> <%= @employee.last_name %>" />
-        <p><strong><%= @employee.first_name %> <%= @employee.last_name %></strong></p>
-        <p><%= @employee.job_title %></p>
-      </section>
-    </div>
+    <% if (!@similar_employees.empty?) %>
+    	<h2>People alike</h2>
+	    <div class="clearfix">
+	      <section class="twoup">	    
+	        <img src="<%= @similar_employees.first.picture_url %>" width="80" height="80" class="profile-img" alt="<%= @similar_employees.first.first_name %> <%= @similar_employees.first.last_name %>" />
+	        <p><strong><%= @similar_employees.first.first_name %> <%= @similar_employees.first.last_name %></strong></p>
+	        <p><%= @similar_employees.first.job_title %></p>
+	      </section>
+	      <% if (@similar_employees[1]) %>
+	      <section class="twoup last">
+	        <img src="<%= @similar_employees[1].picture_url %>" width="80" height="80" class="profile-img" alt="<%= @similar_employees[1].first_name %> <%= @similar_employees[1].last_name %>" />
+	        <p><strong><%= @similar_employees[1].first_name %> <%= @similar_employees[1].last_name %></strong></p>
+	        <p><%= @similar_employees[1].job_title %></p>
+	      </section>
+		  <% end %>
+	    </div>
+    <% end %>
   </div>
 </article>
 

@@ -53,7 +53,7 @@ class EmployeesController < ApplicationController
       @results << Employee.find(id)
     end
   end
-
+  
   def bio
     send_data(@employee.bio_data, :filename => @employee.bio)
   end
@@ -62,6 +62,28 @@ class EmployeesController < ApplicationController
 
   def find_employee
     @employee = Employee.find_by_permalink(params[:id])
+    
+    # find similar employees to the one we're viewing
+    if (@employee && @employee.skill_tags)
+      @skill_tag_query = ""
+      @employee.skill_tags.each_with_index do |tag, index| 
+        @skill_tag_query << tag.name
+        if (index < @employee.skill_tags.length - 1)
+          @skill_tag_query << " OR "
+        end
+      end
+      
+      # Copied from the search method above...there's gotta be a better way to pull these folks.
+      @similar_employees_results = EmployeeIndexer.search(@skill_tag_query) if @skill_tag_query
+      @ids = []
+      @similar_employees_results['results'].each { |doc| @ids << doc['docid'] }
+      @similar_employees = []
+      @ids.each do |id| 
+        @similar_employees << Employee.find(id) unless (id == @employee.id)
+      end
+      @similar_employees = @similar_employees.compact
+    end
+    
   end
 
   def validate_current_user
