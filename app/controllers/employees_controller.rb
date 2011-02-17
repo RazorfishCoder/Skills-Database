@@ -64,7 +64,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by_permalink(params[:id])
     
     # find similar employees to the one we're viewing
-    if (@employee && @employee.skill_tags)
+    if (@employee && @employee.skill_tags && !@employee.skill_tags.empty?)
       @skill_tag_query = ""
       @employee.skill_tags.each_with_index do |tag, index| 
         @skill_tag_query << tag.name
