@@ -30,6 +30,7 @@
   <%= f.label :last_name %> <%= f.text_field :last_name %>
   <%= f.label :job_title %> <%= f.text_field :job_title %>
   <%= f.label :email %> <%= f.text_field :email %>
+  <%= f.label :location %> <%= f.text_field :location %>	
   <h4>Skills</h4>
   <div id="skill_tags">
   	<%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
