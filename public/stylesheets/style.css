@@ -207,7 +207,8 @@ button {  width: auto; overflow: visible; }
  /* profile section */
  .profile-img {float:left;margin:0 10px 10px 0;}
  section.profile h3 {font-family:Arial,sans-serif;font-size:123.1%;font-weight:bold;}
- section.profile .update-profile {float:right;font-family: 'Arvo', serif;}
+ section.profile .update-profile {float:left; font-family: 'Arvo', serif;}
+ section.profile .update-profile.float-right {float:right}
  .attach {background:transparent url(images/icoPaperClip.gif) no-repeat 0 center; display:inline-block; margin:5px 0 10px; padding:0 0 0 15px;}
  
  /* section variants */

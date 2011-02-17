@@ -19,17 +19,15 @@
         <% end -%>
             <ul>
         	    <li><h3><%= current_user.full_name %> // <%= current_user.job_title %></h3></li>
-	        	<li>Industry: <%= current_user.industry %></li>
-	        	<li>Skills: <%= current_user.skill_tags_names %></li>
-	        	<li>Products: <%= current_user.product_tags_names %></li>
+	        	<li><strong>Industry:</strong> <%= current_user.industry %></li>
+	        	<li><strong>Skills:</strong> <%= current_user.skill_tags_names %></li>
+	        	<li><strong>Products:</strong> <%= current_user.product_tags_names %></li>
 	        	<% if current_user.resume -%>
-              	<li>Resume: <%= link_to current_user.resume, resume_path(current_user) %></li>
-          	<% end -%>
-          <li>
-            <%= link_to 'Edit', edit_employee_path(current_user) %></li>
+              		<li><strong>Resume:</strong> <%= link_to "View Resume", resume_path(current_user), :class => 'attach' %></li>
+          		<% end -%>
             </ul>
-
-    	    <p class="update-profile"><%=link_to 'View your Linkedin profile', current_user.linkedin_url, {:target => "_blank"} %></p>
+			<p class="update-profile"><%= link_to 'Edit My Profile', edit_employee_path(current_user) %></p>
+    	    <p class="update-profile float-right"><%= link_to 'View your Linkedin profile', current_user.linkedin_url, {:target => "_blank"} %></p>
 	<% else %>
 		<%= link_to "Login via LinkedIn", '/auth/linked_in' %>
 	<% end %>
