@@ -98,6 +98,47 @@ class Employee < BaseCouchDocument
        return sum(values);
      };"
 
+#Employee.by_skill_group_tags(:raw => true)
+
+  view_by :skill_group_tags, :map =>
+    "function(doc){
+      if (doc['couchrest-type'] == 'Employee' && doc['skill_tags']){
+        doc.skill_tags.forEach(
+          function(skill_tag){
+            rate = skill_tag.rate;
+            tag = skill_tag.name;
+            if (rate <= 2)
+              {
+              rate = 'vlow';
+              }
+            else if (rate >=2 && rate<4)
+              {
+              rate = 'low';
+              }
+            else if (rate>=4 && rate<6)
+              {
+              rate = 'med';
+              }
+            else if (rate>=6 && rate<8)
+              {
+              rate = 'high';
+              }
+            else
+              {
+              rate = 'vhigh';
+              }
+
+          emit([tag,rate], 1);
+          }
+        );
+      }
+    };",
+    :reduce =>
+    "function(keys, values, rereduce){
+       return sum(values);
+     };"
+
+
   ################
   # Observers
   ################
@@ -177,9 +218,17 @@ class Employee < BaseCouchDocument
   end
   def self.skill_rate_groups(skill_name)
 
-    result = [0,0,0,0,0]
-    Employee.by_skill_tags( :key => skill_name).map{|e| e.skill_tags.select{|t| t[:name] == skill_name }}.flatten.each{|x| x[:rate] = (x[:rate] - 1) /2}.group_by{|x| x[:rate]}.each{|k,v| result[k] = v.count }
-    result
+    vhigh = Employee.by_skill_group_tags(:raw => true, :key => [skill_name,'vhigh'],:reduce => true)
+    high = Employee.by_skill_group_tags(:raw => true, :key => [skill_name,'high'],:reduce => true)
+    med = Employee.by_skill_group_tags(:raw => true, :key => [skill_name,'med'],:reduce => true)
+    low = Employee.by_skill_group_tags(:raw => true, :key => [skill_name,'low'],:reduce => true)
+    vlow = Employee.by_skill_group_tags(:raw => true, :key => [skill_name,'vlow'],:reduce => true)
+
+    result = [vlow,low,med,high,vhigh]
+
+    result.map! do |elem|
+      !(elem["rows"].empty?)? elem = elem["rows"].first["value"] : elem = 0;
+    end
 
   end
   def self.skill_names_group(skill_name)
