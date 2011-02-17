@@ -17,7 +17,7 @@
         <li><strong>Email:</strong> <%= @employee.email %></li>
         <li><strong>Location:</strong> <%= @employee.location %></li>
         <% if @employee.resume -%>
-        <li><strong>Resume:</strong> <%= link_to @employee.resume, resume_path(@employee), :class => 'attach' %></li>
+        <li><strong>Resume:</strong> <%= link_to "View Resume", resume_path(@employee), :class => 'attach' %></li>
         <% end -%>
         <% if @employee.bio -%>
         <li><strong>Bio:</strong> <%= link_to @employee.bio, bio_path(@employee), :class => 'attach' %></li>
