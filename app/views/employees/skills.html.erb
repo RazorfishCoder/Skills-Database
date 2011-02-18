@@ -3,7 +3,7 @@
     <% @tag_cloud['rows'].each do |tag|
         percent = tag['value'] * 100 * 3
         p = percent.to_s
-        styleString = 'width: ' + p + 'px; height: ' + p + 'px; -webkit-border-radius: ' + 'px; -moz-border-radius: ' + 'px; border-radius: ' + p + 'px; line-height: ' + p + 'px;' 
+        styleString = 'width: ' + p + 'px; height: ' + p + 'px; -webkit-border-radius: ' + p + 'px; -moz-border-radius: ' + p + 'px; border-radius: ' + p + 'px; line-height: ' + p + 'px;' 
     %>
         <li style='<%=styleString%>'><a href="/taggings/skill_tags/<%=h tag['key'] %>"><%=h tag['key'] %></a></li>       
     <% end %>
