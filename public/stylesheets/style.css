@@ -220,7 +220,12 @@ button {  width: auto; overflow: visible; }
  .searchbox {position:relative;min-height:120px;width:193px;}
  .searchbox input[type=text] {width:169px;height:24px;padding-right:24px;border:0 none;background-color:#fff;}
  .searchbox input[type=image] {position:absolute;top:2px;right:1px;}
- .browse-link {position:absolute;bottom:7px;}
+ .browse-link {position:absolute;bottom:7px;left:0;}
+ 
+ /* search results page */
+ .searchresults .searchbox {width:95%;min-height:70px;}
+ .searchresults input#query {width:100%;}
+ .searchresults .result-count {padding-left:12px;margin-bottom:.5em;}
  
  /* skills graph */
  .skills-graph-container {position:relative;}
