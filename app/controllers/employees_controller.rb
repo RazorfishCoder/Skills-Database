@@ -62,7 +62,7 @@ class EmployeesController < ApplicationController
 
   def find_employee
     @employee = Employee.find_by_permalink(params[:id])
-    
+    @similar_employees = []
     # find similar employees to the one we're viewing
     if (@employee && @employee.skill_tags && !@employee.skill_tags.empty?)
       @skill_tag_query = ""
@@ -77,7 +77,6 @@ class EmployeesController < ApplicationController
       @similar_employees_results = EmployeeIndexer.search(@skill_tag_query) if @skill_tag_query
       @ids = []
       @similar_employees_results['results'].each { |doc| @ids << doc['docid'] }
-      @similar_employees = []
       @ids.each do |id| 
         @similar_employees << Employee.find(id) unless (id == @employee.id)
       end
