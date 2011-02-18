@@ -3,13 +3,16 @@
     <h2>Top <%= @tag.upcase %></h2>
     <% for employee in @employees   %>
       <section class="profile">
-	      <img src="<%= employee.picture_url %>" width="80" height="80" id="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
+		  <% if employee.picture_url -%>
+			  <%= link_to image_tag(employee.picture_url, :size => "80x80", :class => "profile-img"), employee_path(employee) %>	
+          <% else -%>
+              <%= link_to image_tag("generic.profile.gif", :size => "80x80", :class => "profile-img", :alt => "No Image Found"), employee_path(employee) %>
+          <% end -%>
               <ul>
-          	  <li><h3><%= employee.first_name %> <%= employee.last_name %> // <%= employee.job_title %></h3></li>
-	          	<li>Skills: <%= employee.skill_tags_names %>  </li>
-	          	<li>Products: <%= employee.product_tags_names %> </li>
+          	    <li><h3><%= employee_link(employee) %></h3></li>
+	          	<li>Skills: <%= employee.skill_tags_names %></li>
+	          	<li>Products: <%= employee.product_tags_names %></li>
 	          	<li>Industry: <%= employee.industry_tags_names %></li>
-
 	          	<li> <%=  @tag.upcase %> : <%= employee.skill_tags.select{|t|   t[:name] == @tag  }.first[:rate] %> </li>
               </ul>
     	</section>

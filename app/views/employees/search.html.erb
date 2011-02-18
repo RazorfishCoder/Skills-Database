@@ -30,9 +30,9 @@
               <li>  
                   <section class="profile clearfix">        
                       <%if doc['picture_url'] -%>
-                          <%= image_tag doc['picture_url'], :class => 'profile-img' %>
+						  <%= link_to image_tag(doc['picture_url'], :size => "80x80", :class => "profile-img"), employee_path(doc) %>	
                       <% else -%>
-                          <img src="/images/generic.profile.gif" width="80" height="80" class="profile-img" alt="No Image Found" />
+                          <%= link_to image_tag("generic.profile.gif", :size => "80x80", :class => "profile-img", :alt => "No Image Found"), employee_path(doc) %>
                       <% end -%>
                         <ul>
                   	        <li><h3><%= employee_link(doc) %></h3></li>
