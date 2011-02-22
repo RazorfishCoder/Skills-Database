@@ -17,7 +17,7 @@ class EmployeeIndexer
   end
 
   def self.search(query)
-    # Searches over__any key 
+    # Searches over __any key 
     #@@keys_to_index.each do |value|
     #  query_to_search << "#{value}:(#{query})"
     #end
