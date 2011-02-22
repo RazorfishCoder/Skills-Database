@@ -29,6 +29,7 @@ class EmployeeIndexer
     any = []
     employee.each do |name, value|
       unless !@@keys_to_index.include?(name) 
+        value = value.join "," if value.kind_of?(Array)
         filters[name] = value
         any << value if (!value.nil? and !value.empty?)
       end
