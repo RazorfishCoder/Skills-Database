@@ -54,7 +54,7 @@ class EmployeesController < ApplicationController
     end
     @matches = @results.compact.count
     @results.compact!
-    @results = @results.paginate(:page => params[:page], :per_page => 2)
+    @results = @results.paginate(:page => params[:page], :per_page => 3)
   end
   
   def bio
