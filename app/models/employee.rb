@@ -35,6 +35,7 @@ class Employee < BaseCouchDocument
   property :give_gets
   property :interesting_facts
   property :location
+  property :num_views, Integer, :default => 0
 
   timestamps!
 
@@ -151,7 +152,7 @@ class Employee < BaseCouchDocument
   after_save :extract_differences, :save_index
 
   def extract_differences
-    useless_properties = ['created_at', 'updated_at']
+    useless_properties = ['created_at', 'updated_at', 'num_views']
 
     if self.current_version == 1
       EmployeeEvent.create(:employee => self, :event_type => 'new_employee')
@@ -162,8 +163,9 @@ class Employee < BaseCouchDocument
       self.properties.reject{|property| useless_properties.include? property.to_s}.each do |property|
         changes << property unless self[property] == previous_instance[property]
       end
-
-      EmployeeEvent.create(:employee => self, :changes => changes, :event_type => 'update_profile')
+      if (!changes.empty?)
+        EmployeeEvent.create(:employee => self, :changes => changes, :event_type => 'update_profile')
+      end
     end
   end
 

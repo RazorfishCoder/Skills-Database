@@ -65,6 +65,12 @@ class EmployeesController < ApplicationController
 
   def find_employee
     @employee = Employee.find_by_permalink(params[:id])
+    
+    # Increment the view counter to track 'most viewed' employees
+    if (@employee != current_user)
+      @employee.update_attributes(:num_views => @employee.num_views + 1)
+    end
+    
     @similar_employees = []
     # find similar employees to the one we're viewing
     if (@employee && @employee.skill_tags && !@employee.skill_tags.empty?)
