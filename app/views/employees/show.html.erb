@@ -1,5 +1,5 @@
 <script>
-    var skill_tags = "{'rows':[ <% @employee.skill_tags.each do |tag| %> {'key': '<%=tag.name%>', 'value':'<%=tag.rate%>'} <% end %>]}";
+    var skill_tags = '{"rows":[ <% @employee.skill_tags.each_with_index do |tag,i| %> {"key": "<%=tag.name%>", "value": "<%=tag.rate%>"} <% if (i != @employee.skill_tags.length - 1) %> , <%end %> <% end %>]}';
 </script>
 
 <article>
