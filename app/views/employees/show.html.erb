@@ -1,3 +1,6 @@
+<script>
+	var skill_tags = "{'rows':[ <% @employee.skill_tags.each do |tag| %> {'key': '<%=tag.name%>', 'value':'<%=tag.rate%>'} <% end %>]}";
+</script>
 <article>
   <p id="notice"><%= notice %></p>
   <div class="primary">
