@@ -77,7 +77,7 @@ skills.common = (function() {
             var colorArray = ['#EEF2F5','#6B5023','#D6C985','#B3B2B8','#677079','#9B1F39','#AE3B0E','#FB9C1C','#DFD011','#5E6900'];
                 // example json = {"rows":[{"key":"php","value":0.6666666666666666},{"key":"cobol","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333},{"key":"javascript","value":0.3333333333333333},{"key":"python","value":0.666666666666666},{"key":"ruby","value":0.8888888888888},{"key":"sql","value":0.3333333333333333}]};
         
-                if (skill_tags == '' || skill_tags === undefined){
+                if (typeof skill_tags == 'undefined'){
                     var skills = $.ajax({
                       type: 'POST',
                       url: '/taggings/skill_tags_cloud/10',
