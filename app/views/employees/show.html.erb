@@ -1,5 +1,5 @@
 <script>
-    var skillTags = "<%= @employee.skill_tags %>";
+    var skill_tags = "{'rows':[ <% @employee.skill_tags.each do |tag| %> {'key': '<%=tag.name%>', 'value':'<%=tag.rate%>'} <% end %>]}";
 </script>
 
 <article>
