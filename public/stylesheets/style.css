@@ -206,9 +206,10 @@ button {  width: auto; overflow: visible; }
  
  /* profile section */
  .profile-img {float:left;margin:0 10px 10px 0;}
- section.profile h3 {font-family:Arial,sans-serif;font-size:123.1%;font-weight:bold;}
+ section.profile h3 {font-family:Arial,sans-serif;font-size:116%;font-weight:bold;}
  section.profile .update-profile {float:left; font-family: 'Arvo', serif;}
  section.profile .update-profile.float-right {float:right}
+ section.profile ul {float:left;width:325px;}
  .attach {background:transparent url(images/icoPaperClip.gif) no-repeat 0 center; display:inline-block; margin:5px 0 10px; padding:0 0 0 15px;}
  
  /* section variants */
@@ -248,7 +249,8 @@ button {  width: auto; overflow: visible; }
  /* skill summary page */
  /* skill page */
  article.skill-summary .secondary section {padding:20px;color:#667078;}
- article.skill-summary section.profile {float:left;clear:none;margin:0 10px 20px 0;width:330px;height:90px;}
+ article.skill-summary section.profile {float:left;clear:none;margin:0 10px 20px 0;width:330px;height:130px;}
+ article.skill-summary section.profile ul {width:235px;}
  
  /* pagination controls */
  .pagination {float:right;margin:0 10px 0 0;}
@@ -278,12 +280,17 @@ button {  width: auto; overflow: visible; }
  h1 {font-size:246.2%;}
  h2 {font-size:138.5%;}
  h3 {font-size:123.1%;}
- h4 {color:#000; font-size:138.5%; margin-bottom:0; padding:12px 0 0;}
+ h4 {font-size:138.5%; margin-bottom:0; padding:12px 0 0;}
+ section h4 {padding-top:0;margin-bottom:0.5em;}
  h2, h3, h4 {text-indent:12px;}
  section h2, section h3, section h4 {text-indent:0;}
 
-label {display:block; margin:6px 0 0;}
-h4 label {margin:0;}
+ /* edit employee page */
+ label {display:block; margin:6px 0 0;}
+ h4 label {margin:0;}
+ fieldset {margin:0 0 1em 0;}
+ fieldset legend {font-size:138.5%;font-family:"Arvo";margin-bottom:0.5em;}
+ form .submit {float:right;}
 
  /* END: Primary Styles */
   
