@@ -94,7 +94,7 @@ skills.common = (function() {
                         this.value = parseFloat(this.value / 5);
                     });
                     processData(result);
-                    console.log(result);
+
                 }
                 
                 
