@@ -60,6 +60,10 @@ class EmployeesController < ApplicationController
   def bio
     send_data(@employee.bio_data, :filename => @employee.bio)
   end
+  
+  def most_viewed
+    @most_viewed = Employee.by_num_views(:descending => true)    
+  end
 
   private
 

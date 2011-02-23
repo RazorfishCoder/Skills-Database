@@ -46,6 +46,7 @@ class Employee < BaseCouchDocument
   view_by :updated_at, :descending => true
   view_by :id
   view_by :permalink
+  view_by :num_views
 
 # Get all employee that have ruby Skills
 # Employee.by_skill_tags( :key => 'ruby')
@@ -138,7 +139,6 @@ class Employee < BaseCouchDocument
     "function(keys, values, rereduce){
        return sum(values);
      };"
-
 
   ################
   # Observers
