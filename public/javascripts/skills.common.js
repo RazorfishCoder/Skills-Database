@@ -82,7 +82,13 @@ skills.common = (function() {
                   data: 'JSON',
                   success: function(result){
                       var result = ($(result.rows).size() > 0) ? result : json; // use sample json for testing
-                      $.each(result.rows,function(i,val){
+                     
+                      processData(result);                      
+                  }
+                });
+                
+                function processData(result){
+                    $.each(result.rows,function(i,val){
                           var label = this.key,
                               percentageRaw = this.value,
                               percentage = parseInt(100 * percentageRaw),
@@ -105,8 +111,7 @@ skills.common = (function() {
                   	        
                       });
 			        init = false;
-                  }
-                });
+                }
 
 
         })();
