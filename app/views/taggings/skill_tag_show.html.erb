@@ -2,7 +2,7 @@
 <div class="primary">
     <h2>Top <%= @tag.upcase %></h2>
     <% for employee in @employees   %>
-      <section class="profile">
+      <section class="profile clearfix">
 		  <% if employee.picture_url -%>
 			  <%= link_to image_tag(employee.picture_url, :size => "80x80", :class => "profile-img"), employee_path(employee) %>	
           <% else -%>
