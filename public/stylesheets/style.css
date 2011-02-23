@@ -223,6 +223,12 @@ button {  width: auto; overflow: visible; }
  .searchbox input[type=image] {position:absolute;top:2px;right:1px;}
  .browse-link {position:absolute;bottom:7px;left:0;}
  
+ /* most viewed carousel */
+ .carousel {width:465px;overflow:hidden;}
+ .carousel ul {width:30000em;margin-left:5px;}
+ .carousel li {float:left;width:150px;padding:0 5px 0 0;font-family:Arial,Helvetica,sans-serif;}
+ .carousel h4 {font-size:93%;font-family:Arial, Helvetica, sans-serif;}
+ 
  /* search results page */
  .searchresults .searchbox {width:95%;min-height:70px;}
  .searchresults input#query {width:100%;}
