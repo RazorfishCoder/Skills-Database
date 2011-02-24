@@ -27,6 +27,7 @@
         <li><strong>Bio:</strong> <%= link_to @employee.bio, bio_path(@employee), :class => 'attach' %></li>
         <% end -%>
       </ul>
+      
       <h4>Professional Information</h4>
       <p><%= @employee.professional_info.html_safe if @employee.professional_info %></p>
       <h4>Give / Gets</h4>

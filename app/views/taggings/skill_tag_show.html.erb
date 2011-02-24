@@ -13,7 +13,8 @@
 	          	<li>Skills: <%= employee.skill_tags_names %></li>
 	          	<li>Products: <%= employee.product_tags_names %></li>
 	          	<li>Industry: <%= employee.industry_tags_names %></li>
-	          	<li> <%=  @tag.upcase %> : <%= employee.skill_tags.select{|t|   t[:name] == @tag  }.first[:rate] %> </li>
+	          	<li> <%=  content_tag(:span,@tag.upcase,:class  => 'tag-rating-label') %> <%= ratings_readonly(employee.skill_tags.select{|t|   t[:name] == @tag  }.first[:rate]) %> 
+	          	    </li>
               </ul>
     	</section>
   	<% end %>
