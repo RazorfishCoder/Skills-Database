@@ -37,8 +37,10 @@ class EmployeesController < ApplicationController
   end
 
   def search
-    #Search index based on query
+    # Search index based on query
     @index_results = EmployeeIndexer.search(params[:query]) if params[:query]
+    
+    # Save the search query in couch
     @search = Search.new(:employee => self.current_user, :search => params[:query])
     if !@search.save
       raise "Error saving search"
@@ -54,7 +56,37 @@ class EmployeesController < ApplicationController
     end
     @matches = @results.compact.count
     @results.compact!
-    @results = @results.paginate(:page => params[:page], :per_page => 3)
+    
+    # Create has set of skills, locations, products, industry - TODO: Move this to couchdb map/reduce!!!!
+    @skills_filter = []
+    @results.collect(&:skill_tags).each do |skill_tag| 
+      skill_tag.each do |skill|
+        @skills_filter << skill.name.downcase
+      end
+    end 
+    
+    @products_filter = []
+    @results.collect(&:product_tags).each do |product_tag|
+      product_tag.each do |product|
+        @products_filter << product.name.downcase
+      end
+    end
+    
+    @industry_filter = []
+    @results.collect(&:industry_tags).each do |industry_tag|
+      industry_tag.each do |industry|
+        @industry_filter << industry.name.downcase
+      end
+    end
+    
+    @locations_filter = @results.collect(&:location).uniq.compact
+    @skills_filter.uniq!
+    @products_filter.uniq!
+    @industry_filter.uniq!    
+    
+    # Paginate the search results
+    @results = @results.paginate(:page => params[:page], :per_page => 3)  
+    
   end
   
   def bio
@@ -89,7 +121,7 @@ class EmployeesController < ApplicationController
       @ids.each do |id| 
         @similar_employees << Employee.find(id) unless (id == @employee.id)
       end
-      @similar_employees = @similar_employees.compact
+      @similar_employees.compact!
     end
     
   end
