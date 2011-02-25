@@ -15,9 +15,22 @@
     
     <h2>Refine Search</h2>
     <section>
-        <h3>Martin</h3>
-       <p> WE DON'T KNOW WHAT SHOULD GO HERE</p>
-        
+		<h3>Skills</h3>
+        <% @skills_filter.each do |skill| %>
+		  <%=skill%> <%= check_box_tag "#{skill}", "#{skill}" %>
+		<% end %>
+		<h3>Locations</h3>  
+		<% @locations_filter.each do |location| %>
+		  <%=location%> <%= check_box_tag "#{location}", "#{location}" %>
+		<% end %>      
+		<h3>Products</h3>  
+		<% @products_filter.each do |products| %>
+		  <%=products%> <%= check_box_tag "#{products}", "#{products}" %>
+		<% end %>
+		<h3>Industry</h3>  
+		<% @industry_filter.each do |industry| %>
+		  <%=industry%> <%= check_box_tag "#{industry}", "#{industry}" %>
+		<% end %>
     </section>
 </div>
 
