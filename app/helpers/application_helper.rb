@@ -33,6 +33,7 @@ module ApplicationHelper
   
   # displays read only version of ratings list
   def ratings_readonly(rating)
+    rating = Integer(rating)
     if(rating <= 5)
       items = ['one','two','three','four','five']
         content = ""
@@ -41,8 +42,24 @@ module ApplicationHelper
             content << content_tag('li', content_tag('a', text, :href => '#' ), :class => item) + " "
         end
         content_tag(:ul, content.html_safe, :class => "ratings read-only " + items[rating - 1])
-      end
     else 
       content_tag(:span,"error: rating out of range");
+    end
+  end
+    
+    # displays editable version of ratings list
+    def ratings_edit(rating)
+      rating = Integer(rating)
+      if(rating <= 5)
+        items = ['one','two','three','four','five']
+          content = ""
+          items.each_with_index do |item, i|
+              text = i + 1
+              content << content_tag('li', content_tag('a', text, :href => '#' ), :class => item) + " "
+          end
+          content_tag(:ul, content.html_safe, :class => "ratings " + items[rating - 1])
+      else 
+        content_tag(:span,"error: rating out of range");
+      end
     end
 end
