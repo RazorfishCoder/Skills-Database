@@ -1,9 +1,14 @@
 <%= fields_for "employee[skill_tags]", skill_tag do |skill_tag_form| %>
-  <div>
+  <div class="clearfix">
     <% stamp = Time.current.to_f.to_s.sub('.','') %>
-    Name: <%= text_field_tag "employee[skill_tags]['#{stamp}'][name]", skill_tag['name'],:class => "skill_tags tagautocomplete" %>
-    Rate: <%= text_field_tag "employee[skill_tags]['#{stamp}'][rate]", skill_tag['rate'] %>
-    <%= link_to 'remove','', :id => 'remove_skill' %>
+    <span class="skill-tag-col">
+        <%= label_tag "employee[skill_tags]['#{stamp}'][name]", "Name:" %> <%= text_field_tag "employee[skill_tags]['#{stamp}'][name]", skill_tag['name'],:class => "skill_tags tagautocomplete" %>
+    </span>
+    <span class="skill-tag-col">
+        <span class="tag-rating-label">Rate:</span> <%= hidden_field_tag "employee[skill_tags]['#{stamp}'][rate]", skill_tag['rate'] %>
+        <%= ratings_edit(skill_tag['rate']) %>
+        <%= link_to 'remove','', :class => 'remove-skill' %>
+    </span>
   </div>
 <% end %>
 

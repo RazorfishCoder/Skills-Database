@@ -276,6 +276,11 @@ button {  width: auto; overflow: visible; }
  ul.ratings.five .one, ul.ratings.five .two, ul.ratings.five .three, ul.ratings.five .four, ul.ratings.five .five {background-position:0 -13px;}
  
  span.tag-rating-label {float:left;margin-right:5px;}
+ span.skill-tag-col {float:left;margin-right:5px;width:210px;}
+ span.skill-tag-col ul.ratings {float:left;}
+ span.skill-tag-col label {display:inline;}
+ .remove-skill {float:left;}
+ #skill-tags div, .skill_tag_fields_template {clear:left;margin:0 0 1em 0;}
  
  /* fonts (base font size is 13px)
  FOR PIXELS (PX)	DECLARE THIS PERCENT (%)

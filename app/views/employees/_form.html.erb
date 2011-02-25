@@ -36,10 +36,10 @@
 
   <fieldset>
       <legend>Skills</legend>
-      <div id="skill_tags">
+      <div id="skill-tags">
       	<%= render :partial => "skill_tag", :collection => @employee.skill_tags, :locals => {:form => f} %>
       </div>
- 	  <%= link_to 'add skills','', :id => 'add_skill' %>
+ 	  <%= link_to 'add skills','', :id => 'add-skill' %>
   </fieldset>
   <fieldset>
       <legend>Industry Tags</legend>
