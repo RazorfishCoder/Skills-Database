@@ -8,6 +8,7 @@ skills.edit = (function() {
         //initialize common code
         addSkill();
         removeSkill();
+        ratings();
     }
     
     function addSkill(){
@@ -29,6 +30,31 @@ skills.edit = (function() {
             // remove markup
             $(this).parents('div:first').remove();
          });
+    }
+    
+    function ratings(){
+        
+        $('ul.ratings > li').live('mouseover mouseout', function(event) {
+          if (event.type == 'mouseover') {
+            $(this).prevAll().addClass('active');
+            $(this).nextAll().addClass('disable');
+          } else {
+            $(this).prevAll().removeClass('active');
+            $(this).nextAll().removeClass('disable');
+          }
+        });
+        
+        $('ul.ratings a').live('click',function(e){
+            e.preventDefault();
+            var $this = $(this),
+                $ratings = $this.parents('ul'),
+                $input = $ratings.prev('input[type="hidden"]');
+                val = $this.text(),
+                newClass = $this.parent().attr('class');
+                
+            $input.attr('value',val);
+            $ratings[0].className = 'ratings ' + newClass;
+        });
     }
 
     return {
