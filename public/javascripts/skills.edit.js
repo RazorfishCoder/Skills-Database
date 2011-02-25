@@ -23,10 +23,7 @@ skills.edit = (function() {
     
     function removeSkill(){
         $('.remove-skill').live('click', function(e) {
-            e.preventDefault();
-            
-            // TODO: delete skill from database
-            
+            e.preventDefault();            
             // remove markup
             $(this).parents('div:first').remove();
          });
