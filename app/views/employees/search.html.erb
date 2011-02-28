@@ -53,6 +53,10 @@
           	        	    <li>
           	        	        <%= doc['skill_tags'].map { |tag| tag.name }.join(', ') %>
           	        	    </li>
+          	        	    <li>
+          	        	        <%= params[:query] %> 
+          	        	        <%= ratings_readonly(doc['skill_tags'].find { |skill| skill.name == params[:query] }.rate) %>
+          	        	    </li>
           	        	    <% end %>
                         </ul>
                     </section>
