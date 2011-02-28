@@ -202,6 +202,8 @@ button {  width: auto; overflow: visible; }
  
  ul, li {margin:0;padding:0;list-style:none;}
  li {margin-bottom:0.1em;}
+ .bullets ul {list-style-type:disc;list-style-position:outside;margin:0 0 1em 0;}
+ .bullets li {margin-left:2em;list-style-type:disc;}
  .arvo {font-family:'Arvo',serif; ;}
  
  /* profile section */
@@ -209,9 +211,9 @@ button {  width: auto; overflow: visible; }
  section.profile h3 {font-family:Arial,sans-serif;font-size:116%;font-weight:bold;}
  section.profile .update-profile {float:left; font-family: 'Arvo', serif;}
  section.profile .update-profile.float-right {float:right}
- section.profile ul {float:left;width:325px;}
+ section.profile ul.summary {float:left;width:325px;}
+ section.profile ul.summary li {margin-left:0;list-style:none;}
  .attach {background:transparent url(images/icoPaperClip.gif) no-repeat 0 center; display:inline-block; margin:5px 0 10px; padding:0 0 0 15px;}
- 
  /* section variants */
  section.callout {margin:0 0 20px 0;background-color:#6d4d26;color:#fffcef !important;}
  section.callout h2 {font-size:108%;}
@@ -226,7 +228,7 @@ button {  width: auto; overflow: visible; }
  /* most viewed carousel */
  .carousel {width:465px;overflow:hidden;}
  .carousel ul {width:30000em;margin-left:5px;}
- .carousel li {float:left;width:150px;padding:0 5px 0 0;font-family:Arial,Helvetica,sans-serif;}
+ .carousel li {float:left;width:150px;padding:0 5px 0 0;margin:0;font-family:Arial,Helvetica,sans-serif;}
  .carousel h4 {font-size:93%;font-family:Arial, Helvetica, sans-serif;}
  
  /* search results page */
