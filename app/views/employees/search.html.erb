@@ -55,7 +55,7 @@
           	        	    </li>
           	        	    <li>
           	        	        <%= params[:query] %> 
-          	        	        <%= ratings_readonly(doc['skill_tags'].find { |skill| skill.name == params[:query] }.rate) %>
+          	        	        <%= ratings_readonly(doc['skill_tags'].find { |skill| skill.name.downcase.eql? (params[:query].downcase) }.rate) %>
           	        	    </li>
           	        	    <% end %>
                         </ul>
