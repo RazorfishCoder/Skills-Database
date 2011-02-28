@@ -8,7 +8,7 @@
           <% else -%>
               <%= link_to image_tag("generic.profile.gif", :size => "80x80", :class => "profile-img", :alt => "No Image Found"), employee_path(employee) %>
           <% end -%>
-              <ul>
+              <ul class="summary">
           	    <li><h3><%= employee_link(employee) %></h3></li>
 	          	<li>Skills: <%= employee.skill_tags_names %></li>
 	          	<li>Products: <%= employee.product_tags_names %></li>

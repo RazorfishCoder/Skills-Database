@@ -37,7 +37,7 @@
         <% else -%>
 			<%= link_to image_tag("generic.profile.gif", :size => "80x80", :class => "profile-img", :alt => "No Image Found"), edit_employee_path(current_user) %>
         <% end -%>
-            <ul>
+            <ul class="summary">
         	    <li><h3><%= current_user.full_name %> // <%= current_user.job_title %></h3></li>
 	        	<li><strong>Industry:</strong> <%= current_user.industry %></li>
 	        	<li><strong>Skills:</strong> <%= current_user.skill_tags_names %></li>

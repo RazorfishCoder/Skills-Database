@@ -4,7 +4,7 @@
     <% for i in 0..7 #faking this for now %>    
     <section class="profile">
 	    <img src="<%= current_user.picture_url %>" width="80" height="80" class="profile-img" alt="<%= current_user.first_name %> <%= current_user.last_name %>" />
-            <ul>
+            <ul class="summary">
         	    <li><h3><%= current_user.first_name %> <%= current_user.last_name %> // <%= current_user.job_title %></h3></li>
 	        	<li>Skills: </li>
 	        	<li>Products: </li>

@@ -14,7 +14,7 @@
         <% end -%>
         
       <h3><%= @employee.full_name %> // <%= @employee.job_title %></h3>
-      <ul>
+      <ul class="summary">
         <li><strong>Industry:</strong> <%= @employee.industry_tags_names %></li>
         <li><strong>Skills:</strong> <%= @employee.skill_tags_names %></li>
         <li><strong>Products:</strong> <%= @employee.product_tags_names %></li>
@@ -28,13 +28,14 @@
         <% end -%>
       </ul>
       
+      <div class="bullets">
       <h4>Professional Information</h4>
       <p><%= @employee.professional_info.html_safe if @employee.professional_info %></p>
       <h4>Give / Gets</h4>
       <p><%= @employee.give_gets.html_safe if @employee.give_gets %></p>
       <h4>Interesting Facts</h4>
       <p><%= @employee.interesting_facts.html_safe if @employee.interesting_facts %></p>
-
+      </div>
       <% if current_user == @employee -%>
         <%= link_to 'Edit', edit_employee_path(@employee) %> |
       <% end -%>
