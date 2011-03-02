@@ -1,11 +1,11 @@
 class EmployeeIndexer
   # Define all the properties of Employee.rb that we want to index 
-  @@keys_to_index = ['first_name', 'last_name', 'job_title', 'industry', 'industry_tags', 'skill_tags', 'product_tags', 'email', 'professional_info', 'give_gets', 'interesting_facts', 'location', 'description' ]
+  @@keys_to_index = ['first_name', 'last_name', 'job_title', 'industry', 'picture_url', 'industry_tags', 'skill_tags', 'product_tags', 'email', 'professional_info', 'give_gets', 'interesting_facts', 'location', 'description' ]
   
   # Defines a property on class that represents our IndexTank's index
   def self.index
-     @api ||= IndexTank::Client.new(API_URL)
-     @index ||= @api.indexes(INDEX_NAME)
+     @api ||= IndexTank::Client.new(INDEXTANK_API_URL)
+     @index ||= @api.indexes(INDEXTANK_INDEX_NAME)
   end
 
   # Creates the IndexTank index - Not sure this is being used within app as Heroku handles initial creation for us.  
