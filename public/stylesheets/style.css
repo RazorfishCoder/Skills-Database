@@ -202,8 +202,9 @@ button {  width: auto; overflow: visible; }
  
  ul, li {margin:0;padding:0;list-style:none;}
  li {margin-bottom:0.1em;}
- .bullets ul {list-style-type:disc;list-style-position:outside;margin:0 0 1em 0;}
+ .bullets ul, .bullets ol {list-style-position:outside;margin:0 0 1em 0;}
  .bullets li {margin-left:2em;list-style-type:disc;}
+ .bullets ol li {list-style-type:decimal;}
  .arvo {font-family:'Arvo',serif; ;}
  
  /* profile section */
