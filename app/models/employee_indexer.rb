@@ -32,10 +32,15 @@ class EmployeeIndexer
     #end
     index.search("__any:(#{query.to_s})")
   end
+  
+  def self.search_by_property(name, value)
+    index.search("#{name}:(#{value})")
+  end
 
   # Adds the Employee model to our index.  
-  # This is called from the after_save filter within our Employee model.
-  # This loops over each property within the employee 
+  # This is called from the after_save filter within our Employee model as well as our Rake Tasks
+  # This loops over each property within the employee and indexes each field.  It also appends 
+  # our properties names into one giant string separated by '.' if we simply want to do a free text search
   def self.add_document(employee)
     filters = {}
     any = []
