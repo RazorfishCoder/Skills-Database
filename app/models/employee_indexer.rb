@@ -1,13 +1,15 @@
 class EmployeeIndexer
-  @@keys_to_index = ['first_name', 'last_name', 'job_title', 'industry', 'industry_tags', 'skill_tags', 'product_tags', 'email', 'professional_info', 'give_gets', 'interesting_facts', 'location', 'description' ]
+  # Define all the properties of Employee.rb that we want to index 
+  @@keys_to_index = ['first_name', 'last_name', 'job_title', 'industry', 'picture_url', 'industry_tags', 'skill_tags', 'product_tags', 'email', 'professional_info', 'give_gets', 'interesting_facts', 'location', 'description' ]
+  
+  # Defines a property on class that represents our IndexTank's index
   def self.index
-     @api ||= IndexTank::Client.new(API_URL)
-     @index ||= @api.indexes(INDEX_NAME)
-     #@index.add unless @index.exists?
-
-     @index
+     @api ||= IndexTank::Client.new(INDEXTANK_API_URL)
+     @index ||= @api.indexes(INDEXTANK_INDEX_NAME)
   end
 
+  # Creates the IndexTank index - Not sure this is being used within app as Heroku handles initial creation for us.  
+  # I believe for local testing and creation of ad-hoc indexes we'll need this method.
   def self.create_index
     @index.add
     while not @index.running?
@@ -16,6 +18,8 @@ class EmployeeIndexer
     end
   end
 
+  # Facilitates the searching of our index via IndexTank.  The query string passed in will 
+  # search all text portion of our documents defined by the aggregation of our @@keys_to_index
   def self.search(query)
     # Searches over __any key 
     #@@keys_to_index.each do |value|
@@ -24,6 +28,9 @@ class EmployeeIndexer
     index.search("__any:(#{query.to_s})")
   end
 
+  # Adds the Employee model to our index.  
+  # This is called from the after_save filter within our Employee model.
+  # This loops over each property within the employee 
   def self.add_document(employee)
     filters = {}
     any = []
@@ -40,6 +47,9 @@ class EmployeeIndexer
     index.document(employee.id).add(filters)
   end
 
-  def self.load
+  # Deletes this index
+  def self.delete
+    index.delete
   end
+
 end
