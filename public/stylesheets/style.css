@@ -270,7 +270,6 @@ button {  width: auto; overflow: visible; }
  ul.ratings li a {text-indent:-2000em;display:block;}
  ul.ratings li.active, ul.ratings li:hover {background-position:0 -13px;}
  ul.ratings li.disable {background-position:0 0 !important;}
- ul.ratings.read-only li:hover {background-position:0 0;}
  ul.ratings.read-only a {cursor:default;}
  ul.ratings.one .one {background-position:0 -13px;}
  ul.ratings.two .one, ul.ratings.two .two {background-position:0 -13px;}
@@ -284,6 +283,8 @@ button {  width: auto; overflow: visible; }
  span.skill-tag-col label {display:inline;}
  .remove-skill {float:left;}
  #skill-tags div, .skill_tag_fields_template {clear:left;margin:0 0 1em 0;}
+ .ratings-container li {overflow:hidden;margin:0 0 0.4em 0;}
+ .ratings-container .ratings {float:left;margin-right:10px;clear:left;}
  
  /* fonts (base font size is 13px)
  FOR PIXELS (PX)	DECLARE THIS PERCENT (%)
