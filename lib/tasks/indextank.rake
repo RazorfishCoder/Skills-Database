@@ -26,8 +26,13 @@ namespace :indextank do
   desc "Reindex documents within the index"
   task :reindex => [:recreate] do
     puts "Reindexing documents for index '#{INDEXTANK_INDEX_NAME}' on '#{INDEXTANK_API_URL}'"
+    @employees = Employee.all
+    puts "About to index #{@employees.length} employees"
+    @employees.each do |employee|
+      EmployeeIndexer.add_document(employee)
+    end
   end
-  
+    
 end
 
 
