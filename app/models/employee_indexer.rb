@@ -33,6 +33,8 @@ class EmployeeIndexer
     index.search("__any:(#{query.to_s})")
   end
   
+  # Facilitates the searching of our index by any specific property defined in the class constant 
+  # array above '@@keys_to_index
   def self.search_by_property(name, value)
     index.search("#{name}:(#{value})")
   end
