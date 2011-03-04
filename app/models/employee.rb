@@ -192,6 +192,18 @@ class Employee < BaseCouchDocument
 
   end
 
+  def update_from_linkedin(hash)
+    employee = hash['user_info'][:employee]
+    Rails.logger.debug(employee)
+    self.first_name = employee['first_name']
+    self.last_name = employee['last_name']
+    self.picture_url = employee['picture_url']
+    self.location = employee['location']
+    self.industry = employee['industry']
+    self.job_title = employee['description']
+    save
+  end
+
   def to_param
     self.permalink
   end

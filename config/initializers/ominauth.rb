@@ -5,7 +5,7 @@ end
 
 class OmniAuth::Strategies::LinkedIn
   def user_hash(access_token)
-    person = Nokogiri::XML::Document.parse(@access_token.get('/v1/people/~:(id,first-name,last-name,industry,headline,picture-url,site-standard-profile-request,positions)').body).xpath('person')
+    person = Nokogiri::XML::Document.parse(@access_token.get('/v1/people/~:(id,first-name,last-name,industry,headline,location:(name),picture-url,site-standard-profile-request,positions)').body).xpath('person')
 
     positions = []
     person.xpath('positions').children.each{|position| positions << position unless position.blank? }
@@ -19,6 +19,7 @@ class OmniAuth::Strategies::LinkedIn
         'description' => person.xpath('headline').text,
         'industry' => person.xpath('industry').text,
         'job_title' => person.xpath('headline').text,
+        'location' => person.xpath('location').text,
         'linkedin_url' => person.xpath('site-standard-profile-request').text
       },
       'id' => person.xpath('id').text,

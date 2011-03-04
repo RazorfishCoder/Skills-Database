@@ -1,9 +1,15 @@
 class SessionsController < ApplicationController
   skip_filter :authenticate_user!, :only => [:create]
 
+  def new
+    @title = "Sign in"
+  end
+
   def create
     auth = request.env['rack.auth']
-    unless @auth = Authorization.find_from_hash(auth)
+    if @auth = Authorization.find_from_hash(auth)
+      @auth.employee.update_from_linkedin(auth)
+    else
       # Create a new user or add an auth to existing user, depending on
       # whether there is already a user signed in.
       @auth = Authorization.create_from_hash(auth, current_user)
