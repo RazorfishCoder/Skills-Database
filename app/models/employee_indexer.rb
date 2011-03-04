@@ -6,16 +6,21 @@ class EmployeeIndexer
   def self.index
      @api ||= IndexTank::Client.new(INDEXTANK_API_URL)
      @index ||= @api.indexes(INDEXTANK_INDEX_NAME)
+     @index
   end
 
-  # Creates the IndexTank index - Not sure this is being used within app as Heroku handles initial creation for us.  
-  # I believe for local testing and creation of ad-hoc indexes we'll need this method.
+  # Creates the IndexTank index - Currently being used by Rake Tasks for management of the index.  
   def self.create_index
-    @index.add
-    while not @index.running?
+    index.add
+    while not index.running?
       puts 'waiting for index to start'
       sleep 1
     end
+  end
+  
+  # Deletes this index - Currently being used by Rake Tasks for management of the index
+  def self.delete_index
+    index.delete
   end
 
   # Facilitates the searching of our index via IndexTank.  The query string passed in will 
@@ -27,10 +32,17 @@ class EmployeeIndexer
     #end
     index.search("__any:(#{query.to_s})")
   end
+  
+  # Facilitates the searching of our index by any specific property defined in the class constant 
+  # array above '@@keys_to_index
+  def self.search_by_property(name, value)
+    index.search("#{name}:(#{value})")
+  end
 
   # Adds the Employee model to our index.  
-  # This is called from the after_save filter within our Employee model.
-  # This loops over each property within the employee 
+  # This is called from the after_save filter within our Employee model as well as our Rake Tasks
+  # This loops over each property within the employee and indexes each field.  It also appends 
+  # our properties names into one giant string separated by '.' if we simply want to do a free text search
   def self.add_document(employee)
     filters = {}
     any = []
@@ -45,11 +57,6 @@ class EmployeeIndexer
     end
     filters[:__any] = any.join(" . ")
     index.document(employee.id).add(filters)
-  end
-
-  # Deletes this index
-  def self.delete
-    index.delete
   end
 
 end
