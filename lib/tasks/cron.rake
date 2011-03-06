@@ -14,6 +14,9 @@ task :cron => :environment do
         	puts "changing to " + newskillname
         	skill.name = newskillname
 	end
+	if skill.rate < 1 or skill.rate > 5
+		skill.rate = 1
+	end
       end
       employee.update_attributes(employee.skill_tags)
     end

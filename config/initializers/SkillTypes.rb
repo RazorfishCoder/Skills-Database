@@ -16,6 +16,8 @@ class SkillTypes
 		'Flex' => 'Flex', 
 		'flex' => 'Flex', 
 		'iOS' => 'iOS', 
+		'jquery' => 'jQuery', 
+		'jQuery' => 'jQuery', 
 		'php' => 'PHP', 
 		'Php' => 'PHP', 
 		'PHP' => 'PHP', 
