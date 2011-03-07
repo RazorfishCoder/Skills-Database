@@ -99,7 +99,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by_permalink(params[:id])
     
     # Increment the view counter to track 'most viewed' employees
-    if (@employee != current_user)
+    if (@employee && @employee != current_user)
       @employee.update_attributes(:num_views => @employee.num_views + 1)
     end
     
