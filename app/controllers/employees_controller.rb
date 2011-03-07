@@ -1,3 +1,5 @@
+require_dependency 'employee'
+
 class EmployeesController < ApplicationController
   before_filter :find_employee, :only => [:show, :edit, :update, :resume, :bio]
   before_filter :validate_current_user, :only => [:edit, :update]
@@ -55,40 +57,66 @@ class EmployeesController < ApplicationController
       @results << Employee.find(id)
     end
     @matches = @results.compact.count
-    @results.compact!
-    
-    # Create has set of skills, locations, products, industry - TODO: Move this to couchdb map/reduce!!!!
+    @results.compact!      
+  
+    # Create has set of skills, locations, products, industry - TODO: Move this to couchdb map/reduce if possible!!!!
+    logger.debug "Creating locations filter"
+    @locations_filter = @results.collect(&:location).uniq.compact
+
+    logger.debug "Creating skills filter"
     @skills_filter = []
     @results.collect(&:skill_tags).each do |skill_tag| 
       skill_tag.each do |skill|
         @skills_filter << skill.name.downcase
       end
     end 
-    
+    @skills_filter.uniq!
+
+    logger.debug "Creating products filter"
     @products_filter = []
     @results.collect(&:product_tags).each do |product_tag|
       product_tag.each do |product|
         @products_filter << product.name.downcase
       end
     end
-    
+    @products_filter.uniq!
+
+    logger.debug "Creating industry filter"
     @industry_filter = []
     @results.collect(&:industry_tags).each do |industry_tag|
       industry_tag.each do |industry|
         @industry_filter << industry.name.downcase
       end
     end
-    
-    @locations_filter = @results.collect(&:location).uniq.compact
-    @skills_filter.uniq!
-    @products_filter.uniq!
-    @industry_filter.uniq!    
+    @industry_filter.uniq!
     
     # Paginate the search results
-    @results = @results.paginate(:page => params[:page], :per_page => 3)  
-    
+    @results = @results.paginate(:page => params[:page], :per_page => 3)    
   end
-  
+
+  def refine_search
+    logger.debug "Refining results"
+    
+    # Create the query string for searching our index
+    query_string = ""
+    query_string += "__any:(#{params[:query]}) " if params[:query]
+    query_string += "skill_tags:(#{params[:skill]})" if params[:skill]
+    
+    logger.debug "The query string is #{query_string}"
+    
+    @index_results = EmployeeIndexer.search_by_query(query_string)
+    
+    logger.debug "Results match type is #{@index_results['results'].class.name}"
+    
+    @index_results.each do |result|
+      logger.debug "Result is #{result}"
+    end
+    
+    logger.debug("Index contains #{@index_results['matches']} results")
+
+    render :nothing => true
+  end
+    
   def bio
     send_data(@employee.bio_data, :filename => @employee.bio)
   end
