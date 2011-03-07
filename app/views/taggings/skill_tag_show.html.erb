@@ -36,12 +36,12 @@
         </ul>
     </section>
 
-    <h3>Interesting Facts</h3>
+    <h3>Related Skills</h3>
     <section>
-        <h4><%= link_to("Skills","#") %></h4>
+        <h4>Skills</h4>
         <ul>
         <% for skill in @skills_name_groups %>
-            <li><%= skill[:name] %> - <%= skill[:count] %> </li>
+            <li> <a href="/taggings/skill_tags/<%=skill[:name]%>"><%=skill[:name]%> </a> (<%= skill[:count] %>) </li>
         <% end %>
         </ul>
     </section>
