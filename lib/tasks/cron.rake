@@ -1,6 +1,9 @@
 desc "This task is called by the Heroku cron add-on"
 task :cron => :environment do
   Rake::Task['normalize_skill_tags'].invoke        
+  
+  # Add more cron tasks below and invoke here
+  
 end
 
 desc "Convert each skill tag to appropriate casing"
