@@ -31,4 +31,5 @@ class SkillTypes
   def self.find_skill_match(skill_name)
      return @skills_hash[skill_name]
   end
+  
 end
