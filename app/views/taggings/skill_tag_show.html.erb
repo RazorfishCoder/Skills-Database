@@ -41,7 +41,7 @@
         <h4>Skills</h4>
         <ul>
         <% for skill in @skills_name_groups %>
-            <li> <a href="/taggings/skill_tags/<%=skill[:name]%>"><%=skill[:name]%> </a> (<%= skill[:count] %>) </li>
+            <li> <%=link_to skill[:name], :controller => "taggings", :action=>"tag_query", :tag_name => skill[:name] %>(<%= skill[:count] %>) </li>
         <% end %>
         </ul>
     </section>
