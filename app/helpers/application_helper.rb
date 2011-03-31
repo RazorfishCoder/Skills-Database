@@ -37,6 +37,7 @@ module ApplicationHelper
     	rating = Integer(rating)
     else
 	rating = 1
+    end
     if(rating <= 5)
       items = ['one','two','three','four','five']
         content = ""
