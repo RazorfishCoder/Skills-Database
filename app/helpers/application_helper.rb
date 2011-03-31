@@ -33,7 +33,10 @@ module ApplicationHelper
   
   # displays read only version of ratings list
   def ratings_readonly(rating)
-    rating = Integer(rating)
+    if (rating.is_a?(Integer) 
+    	rating = Integer(rating)
+    else
+	rating = 1
     if(rating <= 5)
       items = ['one','two','three','four','five']
         content = ""
