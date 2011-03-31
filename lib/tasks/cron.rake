@@ -36,6 +36,7 @@ task :normalize_skill_tags do
 		skill.rate = 1
 	    else if skill.rate < 1 or skill.rate > 5
 		    skill.rate = 1
+		end
 	    end
 	
     end
