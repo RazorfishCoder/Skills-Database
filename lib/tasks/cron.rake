@@ -27,12 +27,14 @@ task :normalize_skill_tags do
       
       # If there is a match...go ahead and replace the name    
 	    unless new_skill_name.nil?
-        puts "Normalizing '#{skill.name}' to '#{new_skill_name}'"
-        skill.name = new_skill_name
+        	puts "Normalizing '#{skill.name}' to '#{new_skill_name}'"
+        	skill.name = new_skill_name
 	    end	
 	    
 	    # Lastly, if the skill rating is out the 1..5 bounds then set it to 1 
-	    if skill.rate < 1 or skill.rate > 5
+	    if skill.rate.nil?
+		skill.rate = 1
+	    else if skill.rate < 1 or skill.rate > 5
 		    skill.rate = 1
 	    end
 	
