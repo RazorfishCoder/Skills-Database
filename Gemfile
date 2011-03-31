@@ -27,7 +27,8 @@ gem 'will_paginate', '3.0.pre2'
 gem 'couchrest_model', :git => 'https://github.com/couchrest/couchrest_model.git'
 gem 'memories'
 #gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
-gem 'omniauth', ">= 0.1.6"
+#gem 'omniauth', ">= 0.1.6"
+gem 'omniauth'
 gem 'indextank'
 gem 'multi_json'
 
