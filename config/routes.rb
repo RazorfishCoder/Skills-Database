@@ -9,7 +9,7 @@ Skillsdatabase::Application.routes.draw do
   match '/taggings/count/:tags_type', :to => "taggings#tags_count"
   match '/taggings/autocomplete', :to => "taggings#autocomplete"
 
-  match '/taggings/:tags_type/:tag_name' , :to => "taggings#tag_query"
+  match '/taggings/:tags_type/:tag_name' , :to => "taggings#tag_query", :requirements => { :tag_name => /.+/ }
 
   match '/employees/resume/:id', :to => "employees#resume", :as => 'resume'
   match '/employees/bio/:id', :to => "employees#bio", :as => 'bio'
