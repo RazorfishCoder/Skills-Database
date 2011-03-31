@@ -33,7 +33,7 @@ module ApplicationHelper
   
   # displays read only version of ratings list
   def ratings_readonly(rating)
-    if (rating.is_a?(Integer) 
+    if (rating.is_a?(Integer) )
     	rating = Integer(rating)
     else
 	rating = 1
