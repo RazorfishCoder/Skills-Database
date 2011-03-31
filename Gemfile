@@ -29,6 +29,7 @@ gem 'memories'
 #gem 'linkedin', :git => "git@github.com:boolean/linkedin.git"
 gem 'omniauth', ">= 0.1.6"
 gem 'indextank'
+gem 'multi_json'
 
 #gem "acts_as_audited", "2.0.0.rc2"
 
