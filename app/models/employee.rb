@@ -177,7 +177,6 @@ class Employee < BaseCouchDocument
   # class Methods
   ################
   def self.create_from_hash!(hash)
-    logger.debug('test')
     if hash['user_info'][:last_job].match(/Razorfish|Globant|Selfemployed/)
       self.create(hash['user_info'][:employee])
     else
