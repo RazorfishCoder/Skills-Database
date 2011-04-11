@@ -30,6 +30,7 @@ gem 'memories'
 gem 'omniauth', "0.1.6"
 #gem 'omniauth'
 gem 'indextank'
+gem 'faraday_stack'
 
 #gem "acts_as_audited", "2.0.0.rc2"
 
