@@ -6,4 +6,4 @@ tmp/**/*
 Gemfile.lock
 CustomGemfile
 config/initializers/globant_custom.rb
-
+tmp

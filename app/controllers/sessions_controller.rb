@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = request.env['rack.auth']
+    auth = request.env['omniauth.auth']
     if @auth = Authorization.find_from_hash(auth)
       @auth.employee.update_from_linkedin(auth)
     else
