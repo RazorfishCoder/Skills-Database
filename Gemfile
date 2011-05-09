@@ -46,6 +46,10 @@ group :test, :development do
    gem 'rr'
 end
 
+group :development do
+  gem 'heroku'
+end
+
 if File.exist?(file = File.expand_path('../CustomGemfile',__FILE__))
   instance_eval(File.read(file))
 end
