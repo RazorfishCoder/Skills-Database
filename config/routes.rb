@@ -19,6 +19,8 @@ Skillsdatabase::Application.routes.draw do
   match '/search', :to => 'employees#search'
   match '/refine', :to => 'employees#refine_search'
 
+  match "/login", :to => "welcome#login"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

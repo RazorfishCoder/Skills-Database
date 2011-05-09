@@ -21,11 +21,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
+    Rails.logger.debug("session is: #{session.inspect}")
     if Linkedin.first.nil?
       # redirect to error page
       render :status => 500, :file => File.join(Rails.root, 'public', '500.html')
     else
-      redirect_to('/auth/linked_in') unless signed_in?
+      redirect_to('/login') unless signed_in?
+      # redirect_to('/auth/linked_in') unless signed_in?
     end
     
   end

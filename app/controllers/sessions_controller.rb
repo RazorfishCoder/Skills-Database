@@ -19,14 +19,16 @@ class SessionsController < ApplicationController
       # Log the authorizing user in.
       self.current_user = @auth.employee
     else
-      flash[:notice] = 'You must work on Razorfish or Globant'
+      flash[:notice] = 'You must work at Razorfish or Globant'
     end
 
     redirect_to root_path
   end
 
   def destroy
-    session[:user_id] = nil
+    # @auth = current_user.
+    Rails.logger.debug("session is: #{session.inspect}")
+    session[:user_id] = ''
     redirect_to root_url, :notice => "Signed out!"
   end
 end
