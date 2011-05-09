@@ -318,7 +318,7 @@ button {  width: auto; overflow: visible; }
  section h2, section h3, section h4 {text-indent:0;}
 
  /* edit employee page */
- label {display:block; margin:6px 0 0;}
+ label {display:block; margin:6px 0 0; font-weight:bold;}
  h4 label {margin:0;}
  fieldset {margin:0 0 1em 0;}
  fieldset legend {font-size:138.5%;font-family:"Arvo";margin-bottom:0.5em;}
