@@ -28,7 +28,7 @@ class EmployeesController < ApplicationController
     params["product_tags"].split(", ").each{|tag| @employee.product_tags << {:name => tag.downcase } }
 
     # Guard to make sure employee isn't bulk updated, per story #10758361. We use an array of positive values in case we want to add more later.
-    updateable_employee_params = params[:employee].select{|key, val| [:email].include? key}
+    updateable_employee_params = params[:employee].select{|key, val| ['email'].include? key}
     if @employee.update_attributes(updateable_employee_params)
       redirect_to(root_path, :notice => 'Employee was successfully updated.')
     else
