@@ -30,11 +30,11 @@
 <section>
   <fieldset>
       <legend>Personal Information</legend>
-      <div><%= f.label :first_name %> <%= f.text_field :first_name %></div>
-      <div><%= f.label :last_name %> <%= f.text_field :last_name %></div>
-      <div><%= f.label :job_title %> <%= f.text_field :job_title %></div>
+      <div><%= f.label :first_name %> <%= non_editable_employee_field(:first_name)%></div>
+      <div><%= f.label :last_name %> <%= non_editable_employee_field(:last_name)%></div>
+      <div><%= f.label :job_title %> <%= non_editable_employee_field(:job_title)%></div>
       <div><%= f.label :email %> <%= f.text_field :email %></div>
-      <div><%= f.label :location %> <%= f.text_field :location %></div>	
+      <div><%= f.label :location %> <%= non_editable_employee_field(:location)%></div>	
   </fieldset>
 
   <fieldset>
