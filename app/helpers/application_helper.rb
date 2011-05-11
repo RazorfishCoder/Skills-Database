@@ -22,13 +22,13 @@ module ApplicationHelper
   # creates a link to an employee detail page
   # @employeeObject = contains the employee's first_name, last_name, and job_title
   def employee_link(employeeObject)
-      link_to(employeeObject.to_param + ' // ' + employeeObject.job_title, '/employees/' + employeeObject.first_name.downcase + '-' + employeeObject.last_name.downcase)
+      link_to(employeeObject.first_name + ' ' + employeeObject.last_name + ' // ' + employeeObject.job_title, employee_path(employeeObject))
   end 
 
   # creates a link to an employee detail page
   # @employeeObject = contains the employee's first_name, last_name
   def employee_link_short(employeeObject)
-      link_to(employeeObject.first_name + ' ' + employeeObject.last_name, '/employees/' + employeeObject.first_name.downcase + '-' + employeeObject.last_name.downcase)
+      link_to(employeeObject.first_name + ' ' + employeeObject.last_name, employee_path(employeeObject))
   end 
   
   # displays read only version of ratings list
