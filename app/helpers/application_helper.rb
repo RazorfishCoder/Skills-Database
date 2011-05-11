@@ -22,7 +22,7 @@ module ApplicationHelper
   # creates a link to an employee detail page
   # @employeeObject = contains the employee's first_name, last_name, and job_title
   def employee_link(employeeObject)
-      link_to(employeeObject.first_name + ' ' + employeeObject.last_name + ' // ' + employeeObject.job_title, '/employees/' + employeeObject.first_name.downcase + '-' + employeeObject.last_name.downcase)
+      link_to(employeeObject.to_param + ' // ' + employeeObject.job_title, '/employees/' + employeeObject.first_name.downcase + '-' + employeeObject.last_name.downcase)
   end 
 
   # creates a link to an employee detail page
