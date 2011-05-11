@@ -107,7 +107,7 @@ skills.common = (function() {
                   	          cnt = i + 1,
                   	          arc;
 
-                  	        arc =  r.path().attr(param).attr({arc: [0, 360, R], href: '/taggings/skill_tags/'+label});
+                  	        arc =  r.path().attr(param).attr({arc: [0, 360, R], href: '/taggings/skill_tags/'+escape(label)});
                             // text labels. we start from the outermost circle and work in (subtracting for text size)
                   	        var yAxis = outerCoord - 9;
                   	        var txt = r.text(220,yAxis, label + " (" + percentage + '%)').attr({'text-anchor':'end','fill':'#444','font-weight':'800','font-family':'Arial'});
